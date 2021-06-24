@@ -23,6 +23,10 @@
 		8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E80B464268127D500D27383 /* BLKCHCRY.TTF */; };
 		8E80B46726812C8800D27383 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80B46626812C8800D27383 /* Configuration.swift */; };
 		8E80B46926812ED500D27383 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80B46826812ED500D27383 /* ConfigurationTests.swift */; };
+		8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF66DF2684115E00494DE6 /* Timescales.swift */; };
+		8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABC26851E6200800575 /* ConfigurationView.swift */; };
+		8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABE26851EFC00800575 /* Preferences.swift */; };
+		8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +110,10 @@
 		8E80B464268127D500D27383 /* BLKCHCRY.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BLKCHCRY.TTF; sourceTree = "<group>"; };
 		8E80B46626812C8800D27383 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8E80B46826812ED500D27383 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
+		8EAF66DF2684115E00494DE6 /* Timescales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescales.swift; sourceTree = "<group>"; };
+		8EF6BABC26851E6200800575 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		8EF6BABE26851EFC00800575 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RawRepresentable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,8 @@
 			children = (
 				8E17DC7F268102FB00FC3C5B /* Timescale.swift */,
 				8E80B46626812C8800D27383 /* Configuration.swift */,
+				8EAF66DF2684115E00494DE6 /* Timescales.swift */,
+				8EF6BABE26851EFC00800575 /* Preferences.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,17 +187,19 @@
 		8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8E39E6402670550C00AED406 /* Assets.xcassets */,
 				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
+				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
+				8EF6BABC26851E6200800575 /* ConfigurationView.swift */,
+				8E39E6382670550B00AED406 /* ContentView.swift */,
+				8E39E6452670550C00AED406 /* Info.plist */,
 				8E17DC7E2681029C00FC3C5B /* Model */,
 				8E39E6362670550B00AED406 /* MorbidMeterApp.swift */,
-				8E39E6382670550B00AED406 /* ContentView.swift */,
 				8E39E63A2670550B00AED406 /* NotificationController.swift */,
 				8E39E63C2670550B00AED406 /* NotificationView.swift */,
-				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
-				8E39E6402670550C00AED406 /* Assets.xcassets */,
-				8E39E6452670550C00AED406 /* Info.plist */,
-				8E39E6462670550C00AED406 /* PushNotificationPayload.apns */,
 				8E39E6422670550C00AED406 /* Preview Content */,
+				8E39E6462670550C00AED406 /* PushNotificationPayload.apns */,
+				8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */,
 			);
 			path = "MorbidMeter WatchKit Extension";
 			sourceTree = "<group>";
@@ -407,10 +419,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E39E63B2670550B00AED406 /* NotificationController.swift in Sources */,
+				8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */,
+				8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */,
+				8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */,
 				8E39E6392670550B00AED406 /* ContentView.swift in Sources */,
 				8E80B46726812C8800D27383 /* Configuration.swift in Sources */,
 				8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */,
 				8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */,
+				8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */,
 				8E39E63D2670550B00AED406 /* NotificationView.swift in Sources */,
 				8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */,
 			);

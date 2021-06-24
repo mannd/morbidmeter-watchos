@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct MorbidMeterApp: App {
+    init() {
+        UserDefaults.standard.register(defaults: Preferences.defaults())
+    }
+    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {

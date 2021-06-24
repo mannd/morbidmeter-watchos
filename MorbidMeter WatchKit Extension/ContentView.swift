@@ -12,14 +12,16 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("MorbidMeter")
-                .font(Font.custom("BlackChancery", size: 20))
+            NavigationLink(destination: ConfigurationView()) {
+                Text("MorbidMeter")
+                    .font(Font.custom("BlackChancery", size: 20))
+            }
             HStack {
-                Button(action:  { printFonts()}, label: {
+                Button(action:  { showConfiguration()}, label: {
                     Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
 
                 })
-                .buttonStyle(BorderedButtonStyle(tint: .black))
+                    .buttonStyle(BorderedButtonStyle(tint: .black))
                 Text("One Year")
             }
             Text("Aug 25, 10:15:20 PM")
@@ -33,6 +35,10 @@ struct ContentView: View {
             let names = UIFont.fontNames(forFamilyName: family)
             print("Family: \(family) Font names: \(names)")
         }
+    }
+
+    func showConfiguration() {
+
     }
 }
 
