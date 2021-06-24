@@ -7,14 +7,15 @@
 
 import SwiftUI
 
+// See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
+
 struct ContentView: View {
     var body: some View {
         VStack {
-
             Text("MorbidMeter")
-
+                .font(Font.custom("BlackChancery", size: 20))
             HStack {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action:  { printFonts()}, label: {
                     Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
 
                 })
@@ -26,7 +27,15 @@ struct ContentView: View {
         }
         .padding()
     }
+
+    func printFonts() {
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
+    }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
