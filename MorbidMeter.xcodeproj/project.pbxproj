@@ -27,6 +27,8 @@
 		8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABC26851E6200800575 /* ConfigurationView.swift */; };
 		8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABE26851EFC00800575 /* Preferences.swift */; };
 		8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */; };
+		8EF6BAC426853EDA00800575 /* DateConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */; };
+		8EF6BAC626853EEB00800575 /* TimescaleConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,8 @@
 		8EF6BABC26851E6200800575 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		8EF6BABE26851EFC00800575 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RawRepresentable.swift"; sourceTree = "<group>"; };
+		8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConfigurationView.swift; sourceTree = "<group>"; };
+		8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleConfigurationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,11 +191,10 @@
 		8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8EF6BAC226853E9E00800575 /* Views */,
 				8E39E6402670550C00AED406 /* Assets.xcassets */,
 				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
 				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
-				8EF6BABC26851E6200800575 /* ConfigurationView.swift */,
-				8E39E6382670550B00AED406 /* ContentView.swift */,
 				8E39E6452670550C00AED406 /* Info.plist */,
 				8E17DC7E2681029C00FC3C5B /* Model */,
 				8E39E6362670550B00AED406 /* MorbidMeterApp.swift */,
@@ -229,6 +232,17 @@
 				8E39E65C2670550C00AED406 /* Info.plist */,
 			);
 			path = MorbidMeterUITests;
+			sourceTree = "<group>";
+		};
+		8EF6BAC226853E9E00800575 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E39E6382670550B00AED406 /* ContentView.swift */,
+				8EF6BABC26851E6200800575 /* ConfigurationView.swift */,
+				8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */,
+				8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +436,7 @@
 				8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */,
 				8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */,
 				8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */,
+				8EF6BAC626853EEB00800575 /* TimescaleConfigurationView.swift in Sources */,
 				8E39E6392670550B00AED406 /* ContentView.swift in Sources */,
 				8E80B46726812C8800D27383 /* Configuration.swift in Sources */,
 				8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */,
@@ -429,6 +444,7 @@
 				8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */,
 				8E39E63D2670550B00AED406 /* NotificationView.swift in Sources */,
 				8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */,
+				8EF6BAC426853EDA00800575 /* DateConfigurationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

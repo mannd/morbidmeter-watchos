@@ -14,17 +14,17 @@ struct ConfigurationView: View {
             return formatter
         }()
 
-    @AppStorage(Preferences.timescaleTypeKey) var timescaleType = Preferences.timescaleType
+    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleType
     @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     var body: some View {
         VStack {
             Text("Configure")
-                .font(Font.custom("BlackChancery", size: 20))
-            Button(action: {}, label: { Text("TS \(TimescaleType(rawValue: timescaleType)!.description)") })
-            Button(action: {}, label: {
+                .font(Font.custom("BlackChancery", size: 12))
+            NavigationLink(destination: TimescaleConfigurationView(), label: { Text("TS \(TimescaleType(rawValue: timescaleTypeInt)!.description)") })
+            NavigationLink(destination: DateConfigurationView(date: $birthday), label: {
                 Text("BD \(Self.dateFormatter.string(from: birthday))") })
-            Button(action: {}, label: {
+            NavigationLink(destination: DateConfigurationView(date: $deathday), label: {
                 Text("DD \(Self.dateFormatter.string(from: deathday))") })
         }
         .padding()

@@ -19,12 +19,25 @@ class Timescales {
     }
 }
 
-enum TimescaleType: Int, CustomStringConvertible {
+enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
+    var id: TimescaleType { self }
+
     var description: String {
         switch self {
         case .seconds: return "Seconds"
         case .minutes: return "Minutes"
-        default: return "DEFAULT"
+        case .hours: return "Hours"
+        case .days: return "Days"
+        case .daysHoursMinsSecs: return "D-H-M-S"
+        case .years: return "Years"
+        case .hour: return "One Hour"
+        case .day: return "One Day"
+        case .month: return "One Month"
+        case .year: return "One Year"
+        case .universe: return "Universe"
+        case .percent: return "Percent"
+        case .none: return "None"
+        case .debug: return "DEBUG"
         }
     }
 
