@@ -9,17 +9,23 @@ import SwiftUI
 
 struct TimescaleConfigurationView: View {
     @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleType
+    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
+
     @State private var timescaleType: TimescaleType = TimescaleType.year
 
     var body: some View {
-        Picker(selection: $timescaleType, label: Text("Timescale"), content: {
-            ForEach(TimescaleType.allCases) { timescaleType in
-                Text(timescaleType.description)
+        VStack {
+            Picker(selection: $timescaleType, label: Text("Timescale"), content: {
+                ForEach(TimescaleType.allCases) { timescaleType in
+                    Text(timescaleType.description)
 
-            }
-        })
-            .onAppear(perform: { convertIntToTimescaleType() })
-            .onDisappear(perform: { convertTimescaleTypeToInt() })
+                }
+            })
+            Toggle(isOn: $reverseTime, label: { Text("Reverse Time") })
+        }
+        .padding()
+        .onAppear(perform: { convertIntToTimescaleType() })
+        .onDisappear(perform: { convertTimescaleTypeToInt() })
     }
 
     func convertIntToTimescaleType() {
@@ -30,7 +36,7 @@ struct TimescaleConfigurationView: View {
     func convertTimescaleTypeToInt() {
         timescaleTypeInt = timescaleType.rawValue
     }
-
+    
 }
 
 struct TimescaleConfigurationView_Previews: PreviewProvider {

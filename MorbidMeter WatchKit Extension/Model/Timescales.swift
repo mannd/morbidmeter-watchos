@@ -20,6 +20,22 @@ class Timescales {
 }
 
 enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
+
+    case seconds
+    case minutes
+    case hours
+    case days
+    case daysHoursMinsSecs
+    case years
+    case hour
+    case day
+    case month
+    case year
+    case universe
+    case percent
+    case none
+    case debug
+
     var id: TimescaleType { self }
 
     var description: String {
@@ -41,18 +57,10 @@ enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
         }
     }
 
-    case seconds
-    case minutes
-    case hours
-    case days
-    case daysHoursMinsSecs
-    case years
-    case hour
-    case day
-    case month
-    case year
-    case universe
-    case percent
-    case none
-    case debug
+    func fullDescription(reverseTime: Bool) -> String {
+        if reverseTime {
+            return description + "-R"
+        }
+        return description
+    }
 }

@@ -21,7 +21,7 @@
 		8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6432670550C00AED406 /* Preview Assets.xcassets */; };
 		8E39E65B2670550C00AED406 /* MorbidMeterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */; };
 		8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E80B464268127D500D27383 /* BLKCHCRY.TTF */; };
-		8E80B46726812C8800D27383 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80B46626812C8800D27383 /* Configuration.swift */; };
+		8E80B46726812C8800D27383 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80B46626812C8800D27383 /* Clock.swift */; };
 		8E80B46926812ED500D27383 /* ConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E80B46826812ED500D27383 /* ConfigurationTests.swift */; };
 		8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF66DF2684115E00494DE6 /* Timescales.swift */; };
 		8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABC26851E6200800575 /* ConfigurationView.swift */; };
@@ -110,7 +110,7 @@
 		8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterUITests.swift; sourceTree = "<group>"; };
 		8E39E65C2670550C00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E80B464268127D500D27383 /* BLKCHCRY.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BLKCHCRY.TTF; sourceTree = "<group>"; };
-		8E80B46626812C8800D27383 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		8E80B46626812C8800D27383 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		8E80B46826812ED500D27383 /* ConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		8EAF66DF2684115E00494DE6 /* Timescales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescales.swift; sourceTree = "<group>"; };
 		8EF6BABC26851E6200800575 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8E17DC7F268102FB00FC3C5B /* Timescale.swift */,
-				8E80B46626812C8800D27383 /* Configuration.swift */,
+				8E80B46626812C8800D27383 /* Clock.swift */,
 				8EAF66DF2684115E00494DE6 /* Timescales.swift */,
 				8EF6BABE26851EFC00800575 /* Preferences.swift */,
 			);
@@ -438,7 +438,7 @@
 				8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */,
 				8EF6BAC626853EEB00800575 /* TimescaleConfigurationView.swift in Sources */,
 				8E39E6392670550B00AED406 /* ContentView.swift in Sources */,
-				8E80B46726812C8800D27383 /* Configuration.swift in Sources */,
+				8E80B46726812C8800D27383 /* Clock.swift in Sources */,
 				8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */,
 				8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */,
 				8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */,

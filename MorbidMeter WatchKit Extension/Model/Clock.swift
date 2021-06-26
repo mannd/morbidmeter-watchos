@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct Configuration {
+struct Clock {
     var timescale: Timescale
     var reverseTime: Bool
-    var notify: Bool
     var birthday: Date
     var deathday: Date
 

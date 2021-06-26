@@ -10,12 +10,12 @@ import XCTest
 
 class ConfigurationTests: XCTestCase {
     var timescale: Timescale?
-    var configuration: Configuration?
+    var configuration: Clock?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         timescale = Timescale(name: "Test", maximum: 0, minimum: 0, formatString: "", units: "", reverseUnits: "", endDate: nil)
-        configuration = Configuration(timescale: timescale!, reverseTime: false, notify: false, birthday: Date(timeInterval: 10000, since: .distantPast), deathday: Date(timeInterval: 20000, since: .distantPast))
+        configuration = Clock(timescale: timescale!, reverseTime: false, notify: false, birthday: Date(timeInterval: 10000, since: .distantPast), deathday: Date(timeInterval: 20000, since: .distantPast))
     }
 
     override func tearDownWithError() throws {
