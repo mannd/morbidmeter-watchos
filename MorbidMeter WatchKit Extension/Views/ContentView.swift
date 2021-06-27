@@ -49,12 +49,14 @@ struct ContentView: View {
 
     func updateClock() {
         print("Updating MorbidMeter")
+        print(birthday)
+        print(deathday)
         guard deathday > birthday else {
             morbidMeterError("BD is after DD?")
             return
         }
         guard let timescaleType = TimescaleType(rawValue: timescaleTypeInt) else {
-            morbidMeterError("Timescale Error")
+            morbidMeterError("TimescaleType Error")
             return
         }
         guard let timescale = Timescales.getInstance(timescaleType) else {
@@ -67,10 +69,11 @@ struct ContentView: View {
             return
         }
         progressValue = percentage
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        let x = formatter.string(from: NSNumber(value: percentage))
-        morbidMeterTime = x!
+        if let clockTime = clock.timescale.clockTime {
+            morbidMeterTime = clockTime(percentage)
+        } else {
+            morbidMeterError("Clock Time Error")
+        }
     }
 
     func morbidMeterError(_ message: String) {

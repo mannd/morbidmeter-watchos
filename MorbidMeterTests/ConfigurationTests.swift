@@ -14,8 +14,8 @@ class ConfigurationTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        timescale = Timescale(name: "Test", maximum: 0, minimum: 0, formatString: "", units: "", reverseUnits: "", endDate: nil)
-        configuration = Clock(timescale: timescale!, reverseTime: false, notify: false, birthday: Date(timeInterval: 10000, since: .distantPast), deathday: Date(timeInterval: 20000, since: .distantPast))
+        timescale = Timescale(name: "Test", maximum: 0, minimum: 0, units: "", reverseUnits: "", endDate: nil, clockTime: nil)
+        configuration = Clock(timescale: timescale!, reverseTime: false, birthday: Date(timeInterval: 10000, since: .distantPast), deathday: Date(timeInterval: 20000, since: .distantPast))
     }
 
     override func tearDownWithError() throws {

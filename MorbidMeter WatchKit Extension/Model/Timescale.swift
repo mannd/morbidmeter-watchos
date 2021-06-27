@@ -11,10 +11,10 @@ struct Timescale {
     let name: String
     let maximum: Double
     let minimum: Double
-    let formatString: String
     let units: String
     let reverseUnits: String
     let endDate: Date? // If endDate non-nil, then this is a calendar-based timescale.
+    let clockTime: ((Double)->String)?
 
     var duration: Double {
         guard let endDate = endDate else { return maximum - minimum }

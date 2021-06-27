@@ -9,8 +9,38 @@ import Foundation
 
 class Timescales {
     static let timescales: [TimescaleType: Timescale] = [
-        .seconds: Timescale(name: "Seconds", maximum: 0, minimum: 0, formatString: "", units: "seconds", reverseUnits: "reverse seconds", endDate: nil),
-        .minutes: Timescale(name: "Minutes", maximum: 0, minimum: 0, formatString: "", units: "minutes", reverseUnits: "reverse minutes", endDate: nil)
+        .seconds: Timescale(
+            name: "Seconds",
+            maximum: 0,
+            minimum: 0,
+            units: "seconds",
+            reverseUnits: "reverse seconds",
+            endDate: nil,
+            clockTime: nil),
+        .minutes: Timescale(
+            name: "Minutes",
+            maximum: 0,
+            minimum: 0,
+            units: "minutes",
+            reverseUnits: "reverse minutes",
+            endDate: nil,
+            clockTime: nil),
+        .percent: Timescale(
+            name: "Percent",
+            maximum: 0,
+            minimum: 0,
+            units: "",
+            reverseUnits: "reverse percent",
+            endDate: nil,
+            clockTime: { percentage in
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .percent
+                formatter.usesSignificantDigits = true
+                formatter.minimumSignificantDigits = 6
+                formatter.maximumSignificantDigits = 8
+                return formatter.string(from: NSNumber(value: percentage)) ?? "Error"
+            }
+        ),
         // etc.
     ]
 
@@ -20,7 +50,6 @@ class Timescales {
 }
 
 enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
-
     case seconds
     case minutes
     case hours

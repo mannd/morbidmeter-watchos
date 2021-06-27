@@ -13,13 +13,18 @@ struct Clock {
     var birthday: Date
     var deathday: Date
 
-    func longevity() -> Int? {
-        return Calendar.current.dateComponents([.second], from: birthday, to: deathday).second
+    func longevity() -> Double {
+        return deathday.timeIntervalSince(birthday)
     }
 
     func percentage(date: Date) -> Double? {
-        guard let longevity = longevity() else { return nil }
-        guard let duration = Calendar.current.dateComponents([.second], from: birthday, to: date).second else { return nil }
-        return Double(duration) / Double(longevity)
+        let longevity = longevity()
+        let duration = date.timeIntervalSince(birthday)
+        if reverseTime {
+            return 1.0 - duration / longevity
+        }
+        return duration / longevity
     }
+
+
 }

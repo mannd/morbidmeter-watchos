@@ -17,10 +17,10 @@ class TimescaleTests: XCTestCase {
             name: "Test",
             maximum: 10000,
             minimum: 0,
-            formatString: "",
             units: "",
             reverseUnits: "",
-            endDate: nil)
+            endDate: nil,
+            clockTime: nil)
     }
 
     override func tearDownWithError() throws {
