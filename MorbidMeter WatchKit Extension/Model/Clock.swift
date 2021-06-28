@@ -9,7 +9,6 @@ import Foundation
 
 struct Clock {
     var timescale: Timescale
-    var reverseTime: Bool
     var birthday: Date
     var deathday: Date
 
@@ -20,7 +19,7 @@ struct Clock {
     func percentage(date: Date) -> Double? {
         let longevity = longevity()
         let duration = date.timeIntervalSince(birthday)
-        if reverseTime {
+        if timescale.reverseTime {
             return 1.0 - duration / longevity
         }
         return duration / longevity

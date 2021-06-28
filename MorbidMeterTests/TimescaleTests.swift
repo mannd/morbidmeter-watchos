@@ -10,6 +10,7 @@ import XCTest
 
 class TimescaleTests: XCTestCase {
     var timescale: Timescale?
+    var timescale1: Timescale?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -17,11 +18,19 @@ class TimescaleTests: XCTestCase {
             name: "Test",
             maximum: 10000,
             minimum: 0,
-            units: "",
-            reverseUnits: "",
+            units: "Units",
+            reverseUnits: "Reverse Units",
             endDate: nil,
             clockTime: nil)
-    }
+        timescale1 = Timescale(
+            name: "Test",
+            maximum: 10000,
+            minimum: 0,
+            units: "",
+            reverseUnits: "Reverse Units",
+            endDate: nil,
+            clockTime: nil)
+     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
@@ -44,6 +53,15 @@ class TimescaleTests: XCTestCase {
 
         XCTAssertEqual(timescale.startDate.description, "2021-01-01 00:00:00 +0000" )
         print(Timescale.referenceDate)
+    }
+
+    func testUnits() {
+        XCTAssertEqual(timescale?.adjustedUnits, " Units")
+        timescale?.reverseTime = true
+        XCTAssertEqual(timescale?.adjustedUnits, " Reverse Units")
+        XCTAssertEqual(timescale1?.adjustedUnits, "")
+        XCTAssertEqual(timescale1?.adjustedUnits, "")
+
     }
 
 }

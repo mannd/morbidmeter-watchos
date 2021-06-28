@@ -20,19 +20,14 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            // TODO: Skull button should go to configuration and title refreshes.
-            NavigationLink(destination: ConfigurationView()) {
-                Text("MorbidMeter")
-                    .font(Font.custom("BlackChancery", size: 20))
-            }
-            Button(action:  { updateClock() }, label: {
-                HStack {
+            Text("MorbidMeter")
+                .font(Font.custom("BlackChancery", size: 22))
+            HStack {
+               Button(action:  { updateClock() }, label: {
                     Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-                    Text(TimescaleType(rawValue: timescaleTypeInt)?.fullDescription(reverseTime: reverseTime) ?? "Error").foregroundColor(.white)
-
-                }
-            })
-                .buttonStyle(BorderedButtonStyle())
+                }).buttonStyle(PlainButtonStyle())
+                NavigationLink(destination: ConfigurationView(), label: { Text(TimescaleType(rawValue: timescaleTypeInt)?.fullDescription(reverseTime: reverseTime) ?? "Error").foregroundColor(.white) })
+             }
             Text(morbidMeterTime)
             ProgressView(value: progressValue)
         }
@@ -59,18 +54,21 @@ struct ContentView: View {
             morbidMeterError("TimescaleType Error")
             return
         }
-        guard let timescale = Timescales.getInstance(timescaleType) else {
+        guard var timescale = Timescales.getInstance(timescaleType) else {
             morbidMeterError("Timescale Error")
             return
         }
-        let clock = Clock(timescale: timescale, reverseTime: reverseTime, birthday: birthday, deathday: deathday)
+        timescale.reverseTime = reverseTime
+        let clock = Clock(timescale: timescale, birthday: birthday, deathday: deathday)
         guard let percentage = clock.percentage(date: Date()) else {
             morbidMeterError("Longevity Error")
             return
         }
         progressValue = percentage
+
+        // TODO: add units/reverseUnits
         if let clockTime = clock.timescale.clockTime {
-            morbidMeterTime = clockTime(percentage)
+            morbidMeterTime = clockTime(percentage) + timescale.adjustedUnits
         } else {
             morbidMeterError("Clock Time Error")
         }

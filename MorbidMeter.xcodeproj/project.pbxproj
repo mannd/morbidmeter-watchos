@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E17DC7F268102FB00FC3C5B /* Timescale.swift */; };
 		8E17DC82268107D600FC3C5B /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E17DC81268107D600FC3C5B /* TimescaleTests.swift */; };
+		8E2943B0268932F8009A32EA /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2943AF268932F8009A32EA /* ClockTests.swift */; };
 		8E39E6262670550A00AED406 /* MorbidMeter WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E62A2670550B00AED406 /* Assets.xcassets */; };
 		8E39E6322670550B00AED406 /* MorbidMeter WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8E39E6312670550B00AED406 /* MorbidMeter WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -90,6 +91,7 @@
 /* Begin PBXFileReference section */
 		8E17DC7F268102FB00FC3C5B /* Timescale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescale.swift; sourceTree = "<group>"; };
 		8E17DC81268107D600FC3C5B /* TimescaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleTests.swift; sourceTree = "<group>"; };
+		8E2943AF268932F8009A32EA /* ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTests.swift; sourceTree = "<group>"; };
 		8E39E6212670550900AED406 /* MorbidMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorbidMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MorbidMeter WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E62A2670550B00AED406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				8E39E6512670550C00AED406 /* Info.plist */,
 				8E17DC81268107D600FC3C5B /* TimescaleTests.swift */,
 				8E80B46826812ED500D27383 /* ConfigurationTests.swift */,
+				8E2943AF268932F8009A32EA /* ClockTests.swift */,
 			);
 			path = MorbidMeterTests;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E2943B0268932F8009A32EA /* ClockTests.swift in Sources */,
 				8E80B46926812ED500D27383 /* ConfigurationTests.swift in Sources */,
 				8E17DC82268107D600FC3C5B /* TimescaleTests.swift in Sources */,
 			);

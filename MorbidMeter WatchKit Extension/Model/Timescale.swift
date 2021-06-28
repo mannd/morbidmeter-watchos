@@ -9,12 +9,29 @@ import Foundation
 
 struct Timescale {
     let name: String
-    let maximum: Double
+    let maximum: Double // if these are non-zero, and endDate is nil, timescale uses integral time
     let minimum: Double
     let units: String
     let reverseUnits: String
     let endDate: Date? // If endDate non-nil, then this is a calendar-based timescale.
-    let clockTime: ((Double)->String)?
+    // TODO: clockTime needs reverse clockTime, or perhaps should return a tuple
+    // Maybe Timescale needs a reverseTime var, which would allow adjustedUnits to become a calculated var.
+    let clockTime: ((Double)->String)? // closure that returns forward clock time as String
+
+    var reverseTime: Bool = false
+    
+    /// Adjusts timescale units depending of time direction, or if timescale doesn't provide units (like Timescale.percent).
+    ///
+    /// Note that a space is prepended to returned value.
+    var adjustedUnits: String {
+        if units.isEmpty {
+            return ""
+        }
+        if reverseTime {
+            return " \(reverseUnits)"
+        }
+        return " \(units)"
+    }
 
     var duration: Double {
         guard let endDate = endDate else { return maximum - minimum }
