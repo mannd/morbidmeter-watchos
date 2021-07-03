@@ -36,7 +36,7 @@ struct DateConfigurationView: View {
                         Text(String(year + Self.minimumYear))
                     }
                 }
-            }
+            }.font(.system(size: 14))
         }
         .onAppear(perform: { convertDateToIndices() })
         .onDisappear(perform: { convertIndicesToDate() })

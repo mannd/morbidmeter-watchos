@@ -30,12 +30,12 @@ class ConfigurationTests: XCTestCase {
 
     func testPercentage() {
         let date = Date(timeInterval: 20000, since: .distantPast)
-        XCTAssertEqual(configuration?.percentage(date: date), 1.0)
+        XCTAssertEqual(try configuration?.percentage(date: date), 1.0)
         let date1 = Date(timeInterval: 10000, since: .distantPast)
-        XCTAssertEqual(configuration?.percentage(date: date1), 0)
+        XCTAssertEqual(try configuration?.percentage(date: date1), 0)
         let date2 = Date(timeInterval: 15000, since: .distantPast)
-        XCTAssertEqual(configuration?.percentage(date: date2), 0.5)
+        XCTAssertEqual(try configuration?.percentage(date: date2), 0.5)
         let date3 = Date(timeInterval: 30000, since: .distantPast)
-        XCTAssertEqual(configuration?.percentage(date: date3), 2.0)
+        XCTAssertThrowsError(try configuration?.percentage(date: date3))
     }
 }

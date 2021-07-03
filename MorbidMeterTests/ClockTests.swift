@@ -30,17 +30,21 @@ class ClockTests: XCTestCase {
         }
         XCTAssertEqual(longevity, Self.deathday!.timeIntervalSince(Self.birthday))
         let today = Self.birthday
-        XCTAssertEqual(clock?.percentage(date: today), 0)
+        XCTAssertEqual(try clock?.percentage(date: today), 0)
         let today1 = Self.deathday
-        XCTAssertEqual(clock?.percentage(date: today1!), 1.0)
+        XCTAssertEqual(try clock?.percentage(date: today1!), 1.0)
         let today2 = Calendar.current.date(byAdding: .year, value: 40, to: Self.birthday)
-        XCTAssertEqual(clock!.percentage(date: today2!)!, 0.5, accuracy: 0.001)
+        XCTAssertEqual(try clock!.percentage(date: today2!), 0.5, accuracy: 0.001)
         let today3 = Calendar.current.date(byAdding: .year, value: 20, to: Self.birthday)
-        XCTAssertEqual(clock!.percentage(date: today3!)!, 0.25, accuracy: 0.001)
+        XCTAssertEqual(try clock!.percentage(date: today3!), 0.25, accuracy: 0.001)
         let today4 = Calendar.current.date(byAdding: .year, value: 60, to: Self.birthday)
-        XCTAssertEqual(clock!.percentage(date: today4!)!, 0.75, accuracy: 0.001)
+        XCTAssertEqual(try clock!.percentage(date: today4!), 0.75, accuracy: 0.001)
         clock?.timescale.reverseTime = true
-        XCTAssertEqual(clock!.percentage(date: today4!)!, 0.25, accuracy: 0.001)
+        XCTAssertEqual(try clock!.percentage(date: today4!), 0.25, accuracy: 0.001)
+
+        clock?.timescale.reverseTime = false
+        let date = Date(timeInterval: -1, since: Self.birthday)
+        XCTAssertThrowsError(try clock!.percentage(date: date))
     }
 
 

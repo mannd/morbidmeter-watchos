@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Clock {
     var timescale: Timescale
@@ -16,14 +17,23 @@ struct Clock {
         return deathday.timeIntervalSince(birthday)
     }
 
-    func percentage(date: Date) -> Double? {
+    func percentage(date: Date) throws -> Double {
         let longevity = longevity()
+        guard longevity > 0 else { throw ClockError.negativeLongevity }
         let duration = date.timeIntervalSince(birthday)
+        let ratio = duration / longevity
+        guard ratio <= 1.0 else { throw ClockError.alreadyDead }
+        guard ratio >= 0 else { throw ClockError.birthdayInFuture }
         if timescale.reverseTime {
             return 1.0 - duration / longevity
         }
         return duration / longevity
     }
-
-
 }
+
+enum ClockError: Error {
+    case negativeLongevity
+    case alreadyDead
+    case birthdayInFuture
+}
+

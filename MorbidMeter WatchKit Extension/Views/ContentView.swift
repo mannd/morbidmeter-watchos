@@ -46,10 +46,6 @@ struct ContentView: View {
         print("Updating MorbidMeter")
         print(birthday)
         print(deathday)
-        guard deathday > birthday else {
-            morbidMeterError("BD is after DD?")
-            return
-        }
         guard let timescaleType = TimescaleType(rawValue: timescaleTypeInt) else {
             morbidMeterError("TimescaleType Error")
             return
@@ -60,17 +56,23 @@ struct ContentView: View {
         }
         timescale.reverseTime = reverseTime
         let clock = Clock(timescale: timescale, birthday: birthday, deathday: deathday)
-        guard let percentage = clock.percentage(date: Date()) else {
+        do {
+            let percentage = try clock.percentage(date: Date())
+            progressValue = percentage
+            // TODO: add units/reverseUnits
+            if let clockTime = clock.timescale.clockTime {
+                morbidMeterTime = clockTime(percentage) + timescale.adjustedUnits
+            } else {
+                morbidMeterError("Clock Time Error")
+            }
+        } catch ClockError.negativeLongevity {
+            morbidMeterError("BD after DD")
+        } catch ClockError.alreadyDead {
+            morbidMeterError("Already Dead")
+        } catch ClockError.birthdayInFuture {
+            morbidMeterError("Birthday in Future")
+        } catch {
             morbidMeterError("Longevity Error")
-            return
-        }
-        progressValue = percentage
-
-        // TODO: add units/reverseUnits
-        if let clockTime = clock.timescale.clockTime {
-            morbidMeterTime = clockTime(percentage) + timescale.adjustedUnits
-        } else {
-            morbidMeterError("Clock Time Error")
         }
     }
 
