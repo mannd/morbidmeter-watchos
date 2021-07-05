@@ -35,8 +35,8 @@ struct DateConfigurationView: View {
                     ForEach(0..<200) { year in
                         Text(String(year + Self.minimumYear))
                     }
-                }
-            }.font(.system(size: 14))
+                }.font(.system(size: 14))
+            }
         }
         .onAppear(perform: { convertDateToIndices() })
         .onDisappear(perform: { convertIndicesToDate() })
@@ -63,6 +63,10 @@ struct DateConfigurationView: View {
 
 struct DateConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        DateConfigurationView(date: .constant(Date()))
+        Group {
+            DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView(date: .constant(Date()))
+                .previewDevice("Apple Watch Series 6 - 44mm")
+        }
     }
 }

@@ -11,35 +11,61 @@ class Timescales {
     static let timescales: [TimescaleType: Timescale] = [
         .seconds: Timescale(
             name: "Seconds",
-            maximum: 0,
-            minimum: 0,
             units: "seconds",
             reverseUnits: "reverse seconds",
-            endDate: nil,
-            clockTime: nil),
+            clockTime: nil,
+            clockTime2: { timeInterval, percentage, reverseTime in
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        var result: Double = 0
+        //        if reverseTime {
+        //            result =
+        //        }
+        result = timeInterval
+        result = floor(abs(result))
+        guard let result = formatter.string(from: NSNumber(value: result)) else {
+            return "Error"
+        }
+        if reverseTime {
+            return result + "\nsecs to go"
+        }
+        return result + "\nsecs lived"
+    }
+
+
+        ),
         .minutes: Timescale(
             name: "Minutes",
-            maximum: 0,
-            minimum: 0,
             units: "minutes",
             reverseUnits: "reverse minutes",
-            endDate: nil,
-            clockTime: nil),
+            clockTime: nil,
+            clockTime2: nil),
         .percent: Timescale(
             name: "Percent",
-            maximum: 0,
-            minimum: 0,
-            units: "",
-            reverseUnits: "reverse percent",
-            endDate: nil,
+            units: "lived",
+            reverseUnits: "to go",
             clockTime: { percentage in
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .percent
-                formatter.usesSignificantDigits = true
-                formatter.minimumSignificantDigits = 6
-                formatter.maximumSignificantDigits = 8
-                return formatter.string(from: NSNumber(value: percentage)) ?? "Error"
-            }
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.usesSignificantDigits = true
+        formatter.minimumSignificantDigits = 6
+        formatter.maximumSignificantDigits = 8
+        return formatter.string(from: NSNumber(value: percentage)) ?? "Error"
+    },
+            clockTime2: { timeInterval, percentage, reverse in
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.usesSignificantDigits = true
+        formatter.minimumSignificantDigits = 4
+        formatter.maximumSignificantDigits = 6
+        guard let result = formatter.string(from: NSNumber(value: percentage)) else {
+            return "Error"
+        }
+        if reverse {
+            return result + " to go"
+        }
+        return result + " lived"
+    }
         ),
         // etc.
     ]

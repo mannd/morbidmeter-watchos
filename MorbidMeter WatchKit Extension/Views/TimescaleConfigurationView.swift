@@ -23,7 +23,6 @@ struct TimescaleConfigurationView: View {
             })
             Toggle(isOn: $reverseTime, label: { Text("Reverse Time") })
         }
-        .padding()
         .onAppear(perform: { convertIntToTimescaleType() })
         .onDisappear(perform: { convertTimescaleTypeToInt() })
     }

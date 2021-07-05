@@ -29,9 +29,10 @@ struct ContentView: View {
                 NavigationLink(destination: ConfigurationView(), label: { Text(TimescaleType(rawValue: timescaleTypeInt)?.fullDescription(reverseTime: reverseTime) ?? "Error").foregroundColor(.white) })
              }
             Text(morbidMeterTime)
+                .font(Font.system(size: 14.0))
+                .multilineTextAlignment(.center)
             ProgressView(value: progressValue)
         }
-        .padding()
         .onAppear(perform: { updateClock() })
     }
 
@@ -46,45 +47,49 @@ struct ContentView: View {
         print("Updating MorbidMeter")
         print(birthday)
         print(deathday)
+        // TODO: replace with lifespan
+
         guard let timescaleType = TimescaleType(rawValue: timescaleTypeInt) else {
             morbidMeterError("TimescaleType Error")
             return
         }
-        guard var timescale = Timescales.getInstance(timescaleType) else {
+        guard let timescale = Timescales.getInstance(timescaleType) else {
             morbidMeterError("Timescale Error")
             return
         }
-        timescale.reverseTime = reverseTime
-        let clock = Clock(timescale: timescale, birthday: birthday, deathday: deathday)
         do {
-            let percentage = try clock.percentage(date: Date())
+            let now = Date()
+            let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
+            let percentage = try lifespan.percentage(date: now, reverse: reverseTime)
             progressValue = percentage
-            // TODO: add units/reverseUnits
-            if let clockTime = clock.timescale.clockTime {
-                morbidMeterTime = clockTime(percentage) + timescale.adjustedUnits
+            if let clockTime2 = timescale.clockTime2 {
+                morbidMeterTime = (clockTime2(lifespan.timeInterval(date: now, reverseTime: reverseTime), percentage, reverseTime) )
             } else {
                 morbidMeterError("Clock Time Error")
             }
-        } catch ClockError.negativeLongevity {
+        } catch LifespanError.birthdayInFuture {
             morbidMeterError("BD after DD")
-        } catch ClockError.alreadyDead {
-            morbidMeterError("Already Dead")
-        } catch ClockError.birthdayInFuture {
-            morbidMeterError("Birthday in Future")
+        } catch LifespanError.excessLongevity {
+            morbidMeterError("Lifespan Too Long")
+        } catch LifespanError.alreadyDead {
+            morbidMeterError("Already Dead", progressValue: 1.0)
+        } catch LifespanError.lifespanIsZero {
+            morbidMeterError("Lifespan too short")
         } catch {
-            morbidMeterError("Longevity Error")
+            morbidMeterError("Lifespan Error")
         }
     }
 
-    func morbidMeterError(_ message: String) {
-        progressValue = 0
+    func morbidMeterError(_ message: String, progressValue: Double = 0) {
+        self.progressValue = progressValue
         morbidMeterTime = message
     }
 }
 
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+        }
     }
 }
