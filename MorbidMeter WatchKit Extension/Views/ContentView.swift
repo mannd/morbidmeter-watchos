@@ -62,10 +62,13 @@ struct ContentView: View {
             let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
             let percentage = try lifespan.percentage(date: now, reverse: reverseTime)
             progressValue = percentage
-            if let clockTime2 = timescale.clockTime2 {
-                morbidMeterTime = (clockTime2(lifespan.timeInterval(date: now, reverseTime: reverseTime), percentage, reverseTime) )
-            } else {
-                morbidMeterError("Clock Time Error")
+            if let clockTime = timescale.clockTime {
+                if timescale.timescaleType == .daysHoursMinsSecs
+                    || timescale.timescaleType == .yearsMonthsDays {
+                    morbidMeterTime = clockTime(now, reverseTime ? deathday : birthday, reverseTime)
+                } else {
+                    morbidMeterTime = (clockTime(lifespan.timeInterval(date: now, reverseTime: reverseTime), percentage, reverseTime) )
+                }
             }
         } catch LifespanError.birthdayInFuture {
             morbidMeterError("BD after DD")
