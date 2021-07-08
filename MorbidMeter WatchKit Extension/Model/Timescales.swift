@@ -16,6 +16,7 @@ class Timescales {
     static let secsPerWeek = secsPerDay * 7.0
     static let secsPerYear = secsPerDay * 364.25
     static let secsPerMonth = secsPerYear / 12.0
+    static let ageOfUniverse = 13_770_000_000.0
 
     static let timescales: [TimescaleType: Timescale] = [
         .seconds: Timescale(timescaleType: .seconds, clockTime: { timeInterval, _, reverseTime in
@@ -137,6 +138,15 @@ class Timescales {
             let adjustedTimeInterval = percentage * secsPerYear
             let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date) }),
+        .universe: Timescale(timescaleType: .universe, clockTime: { _, percentage, reverseTime in
+            guard let percentage = percentage as? Double else {
+                return errorMessage
+            }
+            let adjustedTimeInterval = percentage * ageOfUniverse
+            guard let result = integerFormattedDouble(adjustedTimeInterval) else {
+                return errorMessage
+            }
+            return [result, reverseTime ? "years until Big Bang" : "years since Big Bang"].joined(separator: cr) }),
         .percent: Timescale(timescaleType: .percent, clockTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else { return errorMessage }
             let formatter = NumberFormatter()
