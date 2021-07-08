@@ -22,5 +22,16 @@ struct Timescale {
 
     // Date equivalent to birthday for calendar based timescales.
     // Using a non-leap year.
-    static let referenceDate: Date = Calendar.current.date(from: DateComponents(year: 2021, month: 1, day: 1, hour: 0))!
+    static var referenceDate: Date {
+//        return Date.init(timeIntervalSince1970: 0)
+        var utcCalendar = Calendar.current
+        utcCalendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        return utcCalendar.date(from: DateComponents(year: 2021, month: 1, day: 1, hour: 0))!
+    }
+
+    static var referenceHour: Date {
+        var utcCalendar = Calendar.current
+        utcCalendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        return utcCalendar.date(from: DateComponents(year: 2020, month: 12, day: 31, hour: 23))!
+    }
 }

@@ -82,9 +82,8 @@ class Timescales {
             }
             if let days = dateComponents.day, let hours = dateComponents.hour, let minutes = dateComponents.minute, let seconds = dateComponents.second {
                 return ["\(days) d \(hours) h \(minutes) m \(seconds) s", reverseTime ? "to go" : "lived"].joined(separator: cr)
-            } else {
-                return errorMessage
-            } }),
+            }
+            return errorMessage }),
         .yearsMonthsDays: Timescale(timescaleType: .yearsMonthsDays, clockTime: { now, date, reverseTime in
             // For this timescale we pass in current date and either birthday or deathday depending on reverseTime.
             guard let now = now as? Date, let date = date as? Date else { return errorMessage }
@@ -96,9 +95,48 @@ class Timescales {
             }
             if let days = dateComponents.day, let years = dateComponents.year, let months = dateComponents.month {
                 return ["\(years) y \(months) m \(days) d", reverseTime ? "to go" : "lived"].joined(separator: cr)
-            } else {
+            }
+            return errorMessage }),
+        .hour: Timescale(timescaleType: .year, clockTime: { _, percentage, reverseTime in
+            guard let percentage = percentage as? Double else {
                 return errorMessage
-            } }),
+            }
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            let adjustedTimeInterval = percentage * secsPerHour
+            let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
+            return formatter.string(from: date) }),
+        .day: Timescale(timescaleType: .day, clockTime: { _, percentage, reverseTime in
+            guard let percentage = percentage as? Double else {
+                return errorMessage
+            }
+            let formatter = DateFormatter()
+            formatter.timeStyle = .medium
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            let adjustedTimeInterval = percentage * secsPerDay
+            let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
+            return formatter.string(from: date) }),
+        .month: Timescale(timescaleType: .month, clockTime: { _, percentage, reverseTime in
+            guard let percentage = percentage as? Double else {
+                return errorMessage
+            }
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd hh:mm:ss a"
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            let adjustedTimeInterval = percentage * secsPerMonth
+            let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
+            return formatter.string(from: date) }),
+        .year: Timescale(timescaleType: .year, clockTime: { _, percentage, reverseTime in
+            guard let percentage = percentage as? Double else {
+                return errorMessage
+            }
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd hh:mm:ss a"
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            let adjustedTimeInterval = percentage * secsPerYear
+            let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
+            return formatter.string(from: date) }),
         .percent: Timescale(timescaleType: .percent, clockTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else { return errorMessage }
             let formatter = NumberFormatter()
@@ -110,6 +148,8 @@ class Timescales {
                 return errorMessage
             }
             return [result, reverseTime ? "to go" : "lived"].joined(separator: cr) }),
+        .blank: Timescale(timescaleType: .blank, clockTime: { _, _, _ in
+            return "" }),
     ]
 
     static func getInstance(_ timescaleType: TimescaleType) -> Timescale? {
@@ -143,7 +183,7 @@ enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
     case year
     case universe
     case percent
-    case none
+    case blank
     case debug
 
     var id: TimescaleType { self }
@@ -165,7 +205,7 @@ enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
         case .year: return "One Year"
         case .universe: return "Universe"
         case .percent: return "Percent"
-        case .none: return "None"
+        case .blank: return "None"
         case .debug: return "DEBUG"
         }
     }
