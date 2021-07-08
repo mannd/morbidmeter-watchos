@@ -34,6 +34,7 @@ class LifespanTests: XCTestCase {
         XCTAssertEqual(try? lifespan!.longevity(), Self.deathday.timeIntervalSince(Self.birthday))
     }
 
+    // Test throwing errors.
     func testBadLongevity() {
         XCTAssertThrowsError(negativeLifespan = try Lifespan(birthday: Self.deathday, deathday: Self.birthday))
         if let zeroLifespan = try? Lifespan(birthday: Self.birthday, deathday: Self.birthday) {
