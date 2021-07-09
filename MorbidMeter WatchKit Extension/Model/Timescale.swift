@@ -10,7 +10,7 @@ import Foundation
 struct Timescale {
     let timescaleType: TimescaleType?
     // Different timescales use different parameters, such as dates, time intervals, or percentage, so the first two clock time parameters are Any to allow passing Doubles or Dates.
-    let clockTime: ((Any, Any, Bool)->String)?
+    let getTime: ((Any, Any, Bool)->String)?
 
     // TODO: Decide whether dates are timezone independent.
     var startDate: Date {

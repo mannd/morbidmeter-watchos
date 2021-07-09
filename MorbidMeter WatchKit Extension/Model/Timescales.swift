@@ -18,49 +18,52 @@ class Timescales {
     static let secsPerMonth = secsPerYear / 12.0
     static let ageOfUniverse = 13_770_000_000.0
 
+    static let timescaleBlank = Timescale(timescaleType: .blank, getTime: { _, _, _ in
+        return "" })
+
     static let timescales: [TimescaleType: Timescale] = [
-        .seconds: Timescale(timescaleType: .seconds, clockTime: { timeInterval, _, reverseTime in
+        .seconds: Timescale(timescaleType: .seconds, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
             guard let result = integerFormattedDouble(timeInterval) else {
                 return errorMessage
             }
             return [result, reverseTime ? "secs to go" : "secs lived"].joined(separator: "\n") }),
-        .minutes: Timescale(timescaleType: .minutes, clockTime: { timeInterval, _, reverseTime in
+        .minutes: Timescale(timescaleType: .minutes, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
             let minutes = timeInterval / secsPerMin
             guard let result = integerFormattedDouble(minutes) else {
                 return errorMessage
             }
             return [result, reverseTime ? "mins to go" : "mins lived"].joined(separator: cr) }),
-        .hours: Timescale(timescaleType: .hours, clockTime: { timeInterval, _, reverseTime in
+        .hours: Timescale(timescaleType: .hours, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
             let hours = timeInterval / secsPerHour
             guard let result = integerFormattedDouble(hours) else {
                 return errorMessage
             }
             return [result, reverseTime ? "hours to go" : "hours lived"].joined(separator: cr) }),
-        .days: Timescale(timescaleType: .days, clockTime: { timeInterval, _, reverseTime in
+        .days: Timescale(timescaleType: .days, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
             let days = timeInterval / secsPerDay
             guard let result = integerFormattedDouble(days) else {
                 return errorMessage
             }
             return [result, reverseTime ? "days to go" : "days lived"].joined(separator: cr) }),
-        .weeks: Timescale(timescaleType: .weeks, clockTime: { TimeInterval, _, reverseTime in
+        .weeks: Timescale(timescaleType: .weeks, getTime: { TimeInterval, _, reverseTime in
             guard let timeInterval = TimeInterval as? TimeInterval else { return errorMessage }
             let weeks = timeInterval / secsPerWeek
             guard let result = integerFormattedDouble(weeks) else {
                 return errorMessage
             }
             return [result, reverseTime ? "weeks to go" : "weeks lived"].joined(separator: cr) }),
-        .months: Timescale(timescaleType: .months, clockTime: { timeInterval, _, reverseTime in
+        .months: Timescale(timescaleType: .months, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
             let months = timeInterval / secsPerMonth
             guard let result = integerFormattedDouble(months) else {
                 return errorMessage
             }
             return [result, reverseTime ? "months to go" : "months lived"].joined(separator: cr) }),
-        .years: Timescale(timescaleType: .years, clockTime: { timeInterval, _, reverseTime in
+        .years: Timescale(timescaleType: .years, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
             let years = timeInterval / secsPerYear
             let formatter = NumberFormatter()
@@ -72,7 +75,7 @@ class Timescales {
                 return errorMessage
             }
             return [result, reverseTime ? "years to go" : "years lived"].joined(separator: cr) }),
-        .daysHoursMinsSecs: Timescale(timescaleType: .daysHoursMinsSecs, clockTime: { now, date, reverseTime in
+        .daysHoursMinsSecs: Timescale(timescaleType: .daysHoursMinsSecs, getTime: { now, date, reverseTime in
             // For this timescale we pass in current date and either birthday or deathday depending on reverseTime.
             guard let now = now as? Date, let date = date as? Date else { return errorMessage }
             var dateComponents: DateComponents
@@ -85,7 +88,7 @@ class Timescales {
                 return ["\(days) d \(hours) h \(minutes) m \(seconds) s", reverseTime ? "to go" : "lived"].joined(separator: cr)
             }
             return errorMessage }),
-        .yearsMonthsDays: Timescale(timescaleType: .yearsMonthsDays, clockTime: { now, date, reverseTime in
+        .yearsMonthsDays: Timescale(timescaleType: .yearsMonthsDays, getTime: { now, date, reverseTime in
             // For this timescale we pass in current date and either birthday or deathday depending on reverseTime.
             guard let now = now as? Date, let date = date as? Date else { return errorMessage }
             var dateComponents: DateComponents
@@ -98,7 +101,7 @@ class Timescales {
                 return ["\(years) y \(months) m \(days) d", reverseTime ? "to go" : "lived"].joined(separator: cr)
             }
             return errorMessage }),
-        .hour: Timescale(timescaleType: .year, clockTime: { _, percentage, reverseTime in
+        .hour: Timescale(timescaleType: .year, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
             }
@@ -108,7 +111,7 @@ class Timescales {
             let adjustedTimeInterval = percentage * secsPerHour
             let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date) }),
-        .day: Timescale(timescaleType: .day, clockTime: { _, percentage, reverseTime in
+        .day: Timescale(timescaleType: .day, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
             }
@@ -118,7 +121,7 @@ class Timescales {
             let adjustedTimeInterval = percentage * secsPerDay
             let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date) }),
-        .month: Timescale(timescaleType: .month, clockTime: { _, percentage, reverseTime in
+        .month: Timescale(timescaleType: .month, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
             }
@@ -128,7 +131,7 @@ class Timescales {
             let adjustedTimeInterval = percentage * secsPerMonth
             let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date) }),
-        .year: Timescale(timescaleType: .year, clockTime: { _, percentage, reverseTime in
+        .year: Timescale(timescaleType: .year, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
             }
@@ -138,7 +141,7 @@ class Timescales {
             let adjustedTimeInterval = percentage * secsPerYear
             let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date) }),
-        .universe: Timescale(timescaleType: .universe, clockTime: { _, percentage, reverseTime in
+        .universe: Timescale(timescaleType: .universe, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
             }
@@ -147,7 +150,7 @@ class Timescales {
                 return errorMessage
             }
             return [result, reverseTime ? "years until Big Bang" : "years since Big Bang"].joined(separator: cr) }),
-        .percent: Timescale(timescaleType: .percent, clockTime: { _, percentage, reverseTime in
+        .percent: Timescale(timescaleType: .percent, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else { return errorMessage }
             let formatter = NumberFormatter()
             formatter.numberStyle = .percent
@@ -158,12 +161,14 @@ class Timescales {
                 return errorMessage
             }
             return [result, reverseTime ? "to go" : "lived"].joined(separator: cr) }),
-        .blank: Timescale(timescaleType: .blank, clockTime: { _, _, _ in
-            return "" }),
+        .blank: timescaleBlank,
     ]
 
-    static func getInstance(_ timescaleType: TimescaleType) -> Timescale? {
-        return timescales[timescaleType]
+    static func getInstance(_ timescaleType: TimescaleType) -> Timescale {
+        if let timescale = timescales[timescaleType] {
+            return timescale
+        }
+        return timescaleBlank
     }
 
     static func integerFormattedDouble(_ number: Double) -> String? {

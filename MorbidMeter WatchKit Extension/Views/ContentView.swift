@@ -10,7 +10,7 @@ import SwiftUI
 // See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
 
 struct ContentView: View {
-    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleType
+    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleTypeInt
     @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
@@ -33,7 +33,11 @@ struct ContentView: View {
                 .multilineTextAlignment(.center)
             ProgressView(value: progressValue)
         }
-        .onAppear(perform: { updateClock() })
+        .onAppear(perform: {
+            print(birthday.description)
+            print(deathday.description)
+            updateClock() })
+
     }
 
     func printFonts() {
@@ -44,43 +48,12 @@ struct ContentView: View {
     }
 
     func updateClock() {
-        print("Updating MorbidMeter")
-        print(birthday)
-        print(deathday)
-        // TODO: replace with lifespan
-
-        guard let timescaleType = TimescaleType(rawValue: timescaleTypeInt) else {
-            morbidMeterError("TimescaleType Error")
-            return
-        }
-        guard let timescale = Timescales.getInstance(timescaleType) else {
-            morbidMeterError("Timescale Error")
-            return
-        }
-        do {
-            let now = Date()
-            let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
-            let percentage = try lifespan.percentage(date: now, reverse: reverseTime)
-            progressValue = percentage
-            if let clockTime = timescale.clockTime {
-                if timescale.timescaleType == .daysHoursMinsSecs
-                    || timescale.timescaleType == .yearsMonthsDays {
-                    morbidMeterTime = clockTime(now, reverseTime ? deathday : birthday, reverseTime)
-                } else {
-                    morbidMeterTime = (clockTime(lifespan.timeInterval(date: now, reverseTime: reverseTime), percentage, reverseTime) )
-                }
-            }
-        } catch LifespanError.birthdayInFuture {
-            morbidMeterError("BD after DD")
-        } catch LifespanError.excessLongevity {
-            morbidMeterError("Lifespan Too Long")
-        } catch LifespanError.alreadyDead {
-            morbidMeterError("Already Dead", progressValue: 1.0)
-        } catch LifespanError.lifespanIsZero {
-            morbidMeterError("Lifespan too short")
-        } catch {
-            morbidMeterError("Lifespan Error")
-        }
+        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
+        let timescale = Timescales.getInstance(timescaleType)
+        let clock = Clock(birthday: birthday, deathday: deathday, timescale: timescale, reverseTime: reverseTime)
+        let clockTime = clock.getClockTime()
+        progressValue = clockTime.percentage
+        morbidMeterTime = clockTime.time
     }
 
     func morbidMeterError(_ message: String, progressValue: Double = 0) {

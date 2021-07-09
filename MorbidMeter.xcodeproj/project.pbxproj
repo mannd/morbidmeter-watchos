@@ -23,7 +23,9 @@
 		8E6D255C26914E5E0032CBE2 /* LifespanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */; };
 		8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255D26952A030032CBE2 /* TimescaleTests.swift */; };
 		8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E80B464268127D500D27383 /* BLKCHCRY.TTF */; };
+		8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9503B82697DDD10077851C /* ComplicationViews.swift */; };
 		8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF66DF2684115E00494DE6 /* Timescales.swift */; };
+		8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEB9EB92698A3AF00392BDF /* Clock.swift */; };
 		8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABC26851E6200800575 /* ConfigurationView.swift */; };
 		8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABE26851EFC00800575 /* Preferences.swift */; };
 		8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */; };
@@ -112,7 +114,9 @@
 		8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanTests.swift; sourceTree = "<group>"; };
 		8E6D255D26952A030032CBE2 /* TimescaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleTests.swift; sourceTree = "<group>"; };
 		8E80B464268127D500D27383 /* BLKCHCRY.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BLKCHCRY.TTF; sourceTree = "<group>"; };
+		8E9503B82697DDD10077851C /* ComplicationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationViews.swift; sourceTree = "<group>"; };
 		8EAF66DF2684115E00494DE6 /* Timescales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescales.swift; sourceTree = "<group>"; };
+		8EEB9EB92698A3AF00392BDF /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		8EF6BABC26851E6200800575 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		8EF6BABE26851EFC00800575 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RawRepresentable.swift"; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				8EF6BABE26851EFC00800575 /* Preferences.swift */,
 				8E17DC7F268102FB00FC3C5B /* Timescale.swift */,
 				8EAF66DF2684115E00494DE6 /* Timescales.swift */,
+				8EEB9EB92698A3AF00392BDF /* Clock.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				8EF6BABC26851E6200800575 /* ConfigurationView.swift */,
 				8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */,
 				8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */,
+				8E9503B82697DDD10077851C /* ComplicationViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -441,7 +447,9 @@
 				8E6D255A26914C1D0032CBE2 /* Lifespan.swift in Sources */,
 				8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */,
 				8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */,
+				8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */,
 				8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */,
+				8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */,
 				8E39E63D2670550B00AED406 /* NotificationView.swift in Sources */,
 				8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */,
 				8EF6BAC426853EDA00800575 /* DateConfigurationView.swift in Sources */,
