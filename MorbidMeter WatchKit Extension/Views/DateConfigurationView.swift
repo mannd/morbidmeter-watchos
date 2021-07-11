@@ -26,6 +26,7 @@ struct DateConfigurationView: View {
                         Text(Self.months[index])
                     }
                 }
+                .font(.system(size: 14))
                 Picker("Day", selection: $selectedDayIndex) {
                     ForEach(0..<31) { day in
                         Text(String(day+1))
@@ -35,7 +36,8 @@ struct DateConfigurationView: View {
                     ForEach(0..<200) { year in
                         Text(String(year + Self.minimumYear))
                     }
-                }.font(.system(size: 14))
+                }
+                .font(.system(size: 10))
             }
         }
         .onAppear(perform: { convertDateToIndices() })
@@ -59,12 +61,14 @@ struct DateConfigurationView: View {
             selectedDayIndex = dayIndex - 1
         }
     }
-}
+ }
 
 struct DateConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView(date: .constant(Date()))
+                .previewDevice("Apple Watch Series 6 - 40mm")
             DateConfigurationView(date: .constant(Date()))
                 .previewDevice("Apple Watch Series 6 - 44mm")
         }

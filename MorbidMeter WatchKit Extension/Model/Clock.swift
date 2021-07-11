@@ -34,7 +34,6 @@ struct Clock {
 
 
     func getClockTime() -> ClockTime {
-        print("getClockTime()")
         var clockTime = ClockTime()
         do {
             let now = Date()

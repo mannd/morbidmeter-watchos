@@ -15,6 +15,9 @@ struct ContentView: View {
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
 
+    @State private var timer: Timer?
+    @State private var clock: Clock?
+
     @State private var morbidMeterTime: String = "Loading"
     @State private var progressValue: Double = 0
 
@@ -22,26 +25,23 @@ struct ContentView: View {
         VStack {
             Text("MorbidMeter")
                 .font(Font.custom("BlackChancery", size: 22))
-            HStack {
-               Button(action:  { updateClock() }, label: {
-                    Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-                }).buttonStyle(PlainButtonStyle())
-                NavigationLink(destination: ConfigurationView(), label: { Text(TimescaleType(rawValue: timescaleTypeInt)?.fullDescription(reverseTime: reverseTime) ?? "Error").foregroundColor(.white) })
-             }
+            NavigationLink(destination: ConfigurationView(), label: {
+                Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
+            }).buttonStyle(.plain)
             Text(morbidMeterTime)
                 .font(Font.system(size: 14.0))
                 .multilineTextAlignment(.center)
             ProgressView(value: progressValue)
         }
+        .onDisappear(perform: { timer?.invalidate(); print("onDisappear()") })
         .onAppear(perform: {
-            print(birthday.description)
-            print(deathday.description)
-            updateClock()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+            print("onAppear()")
+            let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
+            clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
                 updateClock()
             })
         })
-
     }
 
     func printFonts() {
@@ -52,12 +52,12 @@ struct ContentView: View {
     }
 
     func updateClock() {
-        print("updateClock()")
-        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
-        let clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
-        let clockTime = clock.getClockTime()
-        progressValue = clockTime.percentage
-        morbidMeterTime = clockTime.time
+        if let clockTime = self.clock?.getClockTime() {
+            progressValue = clockTime.percentage
+            morbidMeterTime = clockTime.time
+        } else {
+            morbidMeterError("Clock Error")
+        }
     }
 
     func morbidMeterError(_ message: String, progressValue: Double = 0) {
