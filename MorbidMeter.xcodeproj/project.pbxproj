@@ -19,6 +19,7 @@
 		8E39E6412670550C00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6402670550C00AED406 /* Assets.xcassets */; };
 		8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6432670550C00AED406 /* Preview Assets.xcassets */; };
 		8E39E65B2670550C00AED406 /* MorbidMeterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */; };
+		8E50D6F0269A029E006239B4 /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50D6EF269A029E006239B4 /* ClockTests.swift */; };
 		8E6D255A26914C1D0032CBE2 /* Lifespan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255926914C1D0032CBE2 /* Lifespan.swift */; };
 		8E6D255C26914E5E0032CBE2 /* LifespanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */; };
 		8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255D26952A030032CBE2 /* TimescaleTests.swift */; };
@@ -110,6 +111,7 @@
 		8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorbidMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterUITests.swift; sourceTree = "<group>"; };
 		8E39E65C2670550C00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E50D6EF269A029E006239B4 /* ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTests.swift; sourceTree = "<group>"; };
 		8E6D255926914C1D0032CBE2 /* Lifespan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifespan.swift; sourceTree = "<group>"; };
 		8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanTests.swift; sourceTree = "<group>"; };
 		8E6D255D26952A030032CBE2 /* TimescaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleTests.swift; sourceTree = "<group>"; };
@@ -196,18 +198,18 @@
 		8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				8EF6BAC226853E9E00800575 /* Views */,
-				8E39E6402670550C00AED406 /* Assets.xcassets */,
-				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
-				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
-				8E39E6452670550C00AED406 /* Info.plist */,
-				8E17DC7E2681029C00FC3C5B /* Model */,
 				8E39E6362670550B00AED406 /* MorbidMeterApp.swift */,
+				8E39E6402670550C00AED406 /* Assets.xcassets */,
+				8E39E6462670550C00AED406 /* PushNotificationPayload.apns */,
+				8E39E6452670550C00AED406 /* Info.plist */,
+				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
+				8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */,
 				8E39E63A2670550B00AED406 /* NotificationController.swift */,
 				8E39E63C2670550B00AED406 /* NotificationView.swift */,
+				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
+				8E17DC7E2681029C00FC3C5B /* Model */,
 				8E39E6422670550C00AED406 /* Preview Content */,
-				8E39E6462670550C00AED406 /* PushNotificationPayload.apns */,
-				8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */,
+				8EF6BAC226853E9E00800575 /* Views */,
 			);
 			path = "MorbidMeter WatchKit Extension";
 			sourceTree = "<group>";
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				8E39E6512670550C00AED406 /* Info.plist */,
+				8E50D6EF269A029E006239B4 /* ClockTests.swift */,
 				8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */,
 				8E6D255D26952A030032CBE2 /* TimescaleTests.swift */,
 			);
@@ -460,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E50D6F0269A029E006239B4 /* ClockTests.swift in Sources */,
 				8E6D255C26914E5E0032CBE2 /* LifespanTests.swift in Sources */,
 				8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */,
 			);

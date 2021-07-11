@@ -23,14 +23,14 @@ struct ConfigurationView: View {
 
     var body: some View {
         VStack {
-            Text("Configure")
-                .font(Font.system(size: 12))
+//            Text("Configure")
+//                .font(Font.system(size: 12))
 //                .font(Font.custom("BlackChancery", size: 12))
-            NavigationLink(destination: TimescaleConfigurationView(), label: { Text("TS \(TimescaleType(rawValue: timescaleTypeInt)!.fullDescription(reverseTime: reverseTime))") })
+            NavigationLink(destination: TimescaleConfigurationView(), label: { Text("\(TimescaleType(rawValue: timescaleTypeInt)!.fullDescription(reverseTime: reverseTime))") })
             NavigationLink(destination: DateConfigurationView(date: $birthday), label: {
-                Text("BD \(Self.dateFormatter.string(from: birthday))") })
+                Text("Start \(Self.dateFormatter.string(from: birthday))") })
             NavigationLink(destination: DateConfigurationView(date: $deathday), label: {
-                Text("DD \(Self.dateFormatter.string(from: deathday))") })
+                Text("End \(Self.dateFormatter.string(from: deathday))") })
         }
     }
 }

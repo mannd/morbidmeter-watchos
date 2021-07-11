@@ -15,8 +15,8 @@ struct ContentView: View {
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
 
-    @State private var morbidMeterTime: String = "Aug 25, 10:15:20 PM"
-    @State private var progressValue: Double = 0.7
+    @State private var morbidMeterTime: String = "Loading"
+    @State private var progressValue: Double = 0
 
     var body: some View {
         VStack {
@@ -36,7 +36,11 @@ struct ContentView: View {
         .onAppear(perform: {
             print(birthday.description)
             print(deathday.description)
-            updateClock() })
+            updateClock()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+                updateClock()
+            })
+        })
 
     }
 
@@ -48,9 +52,9 @@ struct ContentView: View {
     }
 
     func updateClock() {
+        print("updateClock()")
         let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
-        let timescale = Timescales.getInstance(timescaleType)
-        let clock = Clock(birthday: birthday, deathday: deathday, timescale: timescale, reverseTime: reverseTime)
+        let clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
         let clockTime = clock.getClockTime()
         progressValue = clockTime.percentage
         morbidMeterTime = clockTime.time

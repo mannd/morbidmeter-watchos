@@ -14,7 +14,27 @@ struct Clock {
     var timescale: Timescale
     var reverseTime: Bool
 
+    init() {
+        let userDefaults = UserDefaults.standard
+        let now = Date()
+        birthday = userDefaults.object(forKey: Preferences.birthdayKey) as? Date ?? now
+        deathday = userDefaults.object(forKey: Preferences.deathdayKey) as? Date ?? now
+        reverseTime = userDefaults.bool(forKey: Preferences.reverseTimeKey)
+        let timescaleTypeInt = userDefaults.integer(forKey: Preferences.timescaleTypeKey)
+        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
+        timescale = Timescales.getInstance(timescaleType)
+    }
+
+    init(birthday: Date, deathday: Date, timescaleType: TimescaleType, reverseTime: Bool) {
+        self.birthday = birthday
+        self.deathday = deathday
+        self.timescale = Timescales.getInstance(timescaleType)
+        self.reverseTime = reverseTime
+    }
+
+
     func getClockTime() -> ClockTime {
+        print("getClockTime()")
         var clockTime = ClockTime()
         do {
             let now = Date()
@@ -29,19 +49,19 @@ struct Clock {
                 }
             }
         } catch LifespanError.birthdayInFuture {
-            clockTime.time = "BD after DD"
+            clockTime.time = "Start After End"
             clockTime.percentage = 0
         } catch LifespanError.excessLongevity {
-            clockTime.time = "Lifespan Too Long"
+            clockTime.time = "Time Period Too Long"
             clockTime.percentage = 0
         } catch LifespanError.alreadyDead {
-            clockTime.time = "Already Dead"
+            clockTime.time = "You're Finished"
             clockTime.percentage = 1.0
         } catch LifespanError.lifespanIsZero {
-            clockTime.time = "Lifespan too short"
+            clockTime.time = "Time Period Too Short"
             clockTime.percentage = 0
         } catch {
-            clockTime.time = "Lifespan Error"
+            clockTime.time = "Error"
             clockTime.percentage = 0
         }
         return clockTime

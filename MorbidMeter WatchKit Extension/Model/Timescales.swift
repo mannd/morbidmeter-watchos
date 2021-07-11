@@ -220,7 +220,7 @@ enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
         case .year: return "One Year"
         case .universe: return "Universe"
         case .percent: return "Percent"
-        case .blank: return "None"
+        case .blank: return "No Units"
         case .debug: return "DEBUG"
         }
     }
