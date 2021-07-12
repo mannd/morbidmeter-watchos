@@ -18,11 +18,22 @@ struct DateConfigurationView: View {
     @State private var selectedDayIndex = 0 // 1st of month
     @State private var selectedYearIndex = yearDiff
 
+    @State private var selectedHourIndex = 0
+    @State private var selectedMinuteIndex = 0
+    @State private var selectedSecondIndex = 0
+
     var body: some View {
         GeometryReader { geometry in
             VStack {
+                Text("Date").font(Font.system(size: 12))
                 HStack {
-                    Picker("Month", selection: $selectedMonthIndex) {
+                    Picker("Year", selection: $selectedYearIndex) {
+                        ForEach(0..<200) { year in
+                            Text(String(year + Self.minimumYear))
+                        }
+                    }
+                    .frame(width: geometry.size.width * 0.38)
+                     Picker("Month", selection: $selectedMonthIndex) {
                         ForEach(0..<Self.months.count) { index in
                             Text(Self.months[index])
                         }
@@ -33,18 +44,11 @@ struct DateConfigurationView: View {
                             Text(String(day+1))
                         }
                     }
-//                    .frame(width: geometry.size.width * 0.3)
-
-                    Picker("Year", selection: $selectedYearIndex) {
-                        ForEach(0..<200) { year in
-                            Text(String(year + Self.minimumYear))
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.38)
-                }
+               }
                 .font(geometry.size.width > WatchSize.sizeInPoints(WatchSize.size38mm).width ? Font.system(size: 17) : Font.system(size: 13))
+                NavigationLink(destination: TimeConfigurationView(selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
             }
-            .onAppear(perform: { convertDateToIndices(); print(geometry.size) })
+            .onAppear(perform: { convertDateToIndices() })
             .onDisappear(perform: { convertIndicesToDate() })
         }
     }
@@ -54,17 +58,24 @@ struct DateConfigurationView: View {
         let month = selectedMonthIndex + 1
         let day = selectedDayIndex + 1
         let year = selectedYearIndex + Self.minimumYear
-        let dateComponents = DateComponents(year: year, month: month, day: day)
+        let hour = selectedHourIndex
+        let minute = selectedMinuteIndex
+        let second = selectedSecondIndex
+        let dateComponents = DateComponents(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
         date = Calendar.current.date(from: dateComponents)!
         print(date)
     }
 
     func convertDateToIndices() {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
-        if let yearIndex = components.year, let monthIndex = components.month, let dayIndex = components.day {
+        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+        if let yearIndex = components.year, let monthIndex = components.month, let dayIndex = components.day, let hourIndex = components.hour, let minuteIndex = components.minute, let secondIndex = components.second {
+            print(components)
             selectedYearIndex = yearIndex - Self.minimumYear
             selectedMonthIndex = monthIndex - 1
             selectedDayIndex = dayIndex - 1
+            selectedHourIndex = hourIndex
+            selectedMinuteIndex = minuteIndex
+            selectedSecondIndex = secondIndex
         }
     }
  }

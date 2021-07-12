@@ -97,12 +97,10 @@ struct ContentView: View {
     }
 
     func movingToBackground() {
-        print("moving to background")
         stopTimer()
     }
 
     func movingToForeground() {
-        print("moving to foreground")
         startTimer()
     }
 }

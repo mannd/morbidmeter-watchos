@@ -32,12 +32,6 @@ struct ConfigurationView: View {
     }
 }
 
-struct InstructionsView: View {
-    var body: some View {
-        Text("Instructions")
-    }
-}
-
 struct ConfigurationUI_Previews: PreviewProvider {
     static var previews: some View {
         ConfigurationView()
