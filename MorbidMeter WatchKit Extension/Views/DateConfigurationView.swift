@@ -26,19 +26,19 @@ struct DateConfigurationView: View {
                         Text(Self.months[index])
                     }
                 }
-                .font(.system(size: 14))
                 Picker("Day", selection: $selectedDayIndex) {
                     ForEach(0..<31) { day in
                         Text(String(day+1))
                     }
                 }
+
                 Picker("Year", selection: $selectedYearIndex) {
                     ForEach(0..<200) { year in
                         Text(String(year + Self.minimumYear))
                     }
                 }
-                .font(.system(size: 10))
             }
+            .font(Font.system(size: 10))
         }
         .onAppear(perform: { convertDateToIndices() })
         .onDisappear(perform: { convertIndicesToDate() })
@@ -67,6 +67,8 @@ struct DateConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView(date: .constant(Date()))
+                .previewDevice("Apple Watch Series 3 - 38mm")
             DateConfigurationView(date: .constant(Date()))
                 .previewDevice("Apple Watch Series 6 - 40mm")
             DateConfigurationView(date: .constant(Date()))

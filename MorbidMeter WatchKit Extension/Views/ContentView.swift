@@ -21,6 +21,8 @@ struct ContentView: View {
     @State private var morbidMeterTime: String = "Loading"
     @State private var progressValue: Double = 0
 
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some View {
         VStack {
             Text("MorbidMeter")
@@ -33,15 +35,38 @@ struct ContentView: View {
                 .multilineTextAlignment(.center)
             ProgressView(value: progressValue)
         }
-        .onDisappear(perform: { timer?.invalidate(); print("onDisappear()") })
+        .onDisappear(perform: {
+            print("onDisappear()")
+            stopTimer()
+        })
         .onAppear(perform: {
             print("onAppear()")
-            let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
-            clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-                updateClock()
-            })
+            startTimer()
         })
+        .onReceive(NotificationCenter.default.publisher(
+            for: WKExtension.applicationWillResignActiveNotification
+        )) { _ in
+            movingToBackground()
+        }
+        .onReceive(NotificationCenter.default.publisher(
+            for: WKExtension.applicationDidBecomeActiveNotification
+        )) { _ in
+            movingToForeground()
+        }
+    }
+
+    func startTimer() {
+        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
+        clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
+        updateClock()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+            updateClock()
+        })
+    }
+
+    func stopTimer() {
+        timer?.invalidate()
+        morbidMeterTime = "Loading..."
     }
 
     func printFonts() {
@@ -63,6 +88,16 @@ struct ContentView: View {
     func morbidMeterError(_ message: String, progressValue: Double = 0) {
         self.progressValue = progressValue
         morbidMeterTime = message
+    }
+
+    func movingToBackground() {
+        print("moving to background")
+        stopTimer()
+    }
+
+    func movingToForeground() {
+        print("moving to foreground")
+        startTimer()
     }
 }
 

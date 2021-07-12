@@ -85,7 +85,10 @@ class Timescales {
                 dateComponents = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: date, to: now)
             }
             if let days = dateComponents.day, let hours = dateComponents.hour, let minutes = dateComponents.minute, let seconds = dateComponents.second {
-                return ["\(days) d \(hours) h \(minutes) m \(seconds) s", reverseTime ? "to go" : "lived"].joined(separator: cr)
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                let formattedDays = formatter.string(from: NSNumber(value: days))!
+                 return ["\(formattedDays) d \(hours) h \(minutes) m \(seconds) s", reverseTime ? "to go" : "lived"].joined(separator: cr)
             }
             return errorMessage }),
         .yearsMonthsDays: Timescale(timescaleType: .yearsMonthsDays, getTime: { now, date, reverseTime in
@@ -98,7 +101,7 @@ class Timescales {
                 dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date, to: now)
             }
             if let days = dateComponents.day, let years = dateComponents.year, let months = dateComponents.month {
-                return ["\(years) y \(months) m \(days) d", reverseTime ? "to go" : "lived"].joined(separator: cr)
+               return ["\(years) y \(months) m \(days) d", reverseTime ? "to go" : "lived"].joined(separator: cr)
             }
             return errorMessage }),
         .hour: Timescale(timescaleType: .year, getTime: { _, percentage, reverseTime in
