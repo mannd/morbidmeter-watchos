@@ -12,11 +12,13 @@ struct Preferences {
     static let birthdayKey = "birthdayKey"
     static let deathdayKey = "deathdayKey"
     static let reverseTimeKey = "reverseTimeKey"
+    static let firstRunKey = "firstRunKey"
 
     static var timescaleTypeInt = TimescaleType.blank.rawValue
     static var birthday = Date()
     static var deathday = Date()
     static var reverseTime = false
+    static var firstRun = true
 
     static func defaults() -> [String: Any] {
         let defaultPreferences: [String: Any] = [
@@ -24,6 +26,7 @@ struct Preferences {
             Self.birthdayKey: Self.birthday,
             Self.deathdayKey: Self.deathday,
             Self.reverseTimeKey: Self.reverseTime,
+            Self.firstRunKey: Self.firstRun,
         ]
         return defaultPreferences
     }

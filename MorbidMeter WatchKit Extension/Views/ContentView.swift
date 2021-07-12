@@ -14,6 +14,7 @@ struct ContentView: View {
     @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
+    @AppStorage(Preferences.firstRunKey) var firstRun = Preferences.firstRun
 
     @State private var timer: Timer?
     @State private var clock: Clock?
@@ -56,6 +57,11 @@ struct ContentView: View {
     }
 
     func startTimer() {
+        guard !firstRun else {
+            morbidMeterError("Tap 💀 to configure...")
+            firstRun = false
+            return
+        }
         let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
         clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
         updateClock()
@@ -77,7 +83,7 @@ struct ContentView: View {
     }
 
     func updateClock() {
-        if let clockTime = self.clock?.getClockTime() {
+       if let clockTime = self.clock?.getClockTime() {
             progressValue = clockTime.percentage
             morbidMeterTime = clockTime.time
         } else {
@@ -105,6 +111,12 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
+            ContentView()
+                .previewDevice("Apple Watch Series 3 - 38mm")
+            ContentView()
+                .previewDevice("Apple Watch Series 6 - 40mm")
+            ContentView()
+                .previewDevice("Apple Watch Series 6 - 44mm")
         }
     }
 }
