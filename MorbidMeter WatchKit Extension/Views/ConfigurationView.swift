@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ConfigurationView: View {
     static let dateFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            return formatter
-        }()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
     static let reverseTimeSymbol = "-R"
     static let forwardTimeSymbol = ""
 
@@ -23,15 +23,18 @@ struct ConfigurationView: View {
 
     var body: some View {
         VStack {
-//            Text("Configure")
-//                .font(Font.system(size: 12))
-//                .font(Font.custom("BlackChancery", size: 12))
             NavigationLink(destination: TimescaleConfigurationView(), label: { Text("\(TimescaleType(rawValue: timescaleTypeInt)!.fullDescription(reverseTime: reverseTime))") })
             NavigationLink(destination: DateConfigurationView(date: $birthday), label: {
                 Text("Start \(Self.dateFormatter.string(from: birthday))") })
             NavigationLink(destination: DateConfigurationView(date: $deathday), label: {
                 Text("End \(Self.dateFormatter.string(from: deathday))") })
         }
+    }
+}
+
+struct InstructionsView: View {
+    var body: some View {
+        Text("Instructions")
     }
 }
 
