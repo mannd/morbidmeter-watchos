@@ -8,7 +8,7 @@
 import Foundation
 
 struct Preferences {
-    static let timescaleTypeKey = "timescaleTypeKey"
+    static let timescaleTypeIntKey = "timescaleTypeKey"
     static let birthdayKey = "birthdayKey"
     static let deathdayKey = "deathdayKey"
     static let reverseTimeKey = "reverseTimeKey"
@@ -22,7 +22,7 @@ struct Preferences {
 
     static func defaults() -> [String: Any] {
         let defaultPreferences: [String: Any] = [
-            Self.timescaleTypeKey: Self.timescaleTypeInt,
+            Self.timescaleTypeIntKey: Self.timescaleTypeInt,
             Self.birthdayKey: Self.birthday,
             Self.deathdayKey: Self.deathday,
             Self.reverseTimeKey: Self.reverseTime,

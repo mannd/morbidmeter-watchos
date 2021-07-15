@@ -16,7 +16,7 @@ struct ConfigurationView: View {
     static let reverseTimeSymbol = "-R"
     static let forwardTimeSymbol = ""
 
-    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleTypeInt
+    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
     @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime

@@ -10,14 +10,14 @@ import SwiftUI
 // See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
 
 struct ContentView: View {
-    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleTypeInt
+    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
     @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
     @AppStorage(Preferences.firstRunKey) var firstRun = Preferences.firstRun
 
     @State private var timer: Timer?
-    @State private var clock: Clock?
+    @State private var clock: Clock = Clock.activeClock()
 
     @State private var morbidMeterTime: String = "Loading"
     @State private var progressValue: Double = 0
@@ -62,8 +62,6 @@ struct ContentView: View {
             firstRun = false
             return
         }
-        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
-        clock = Clock(birthday: birthday, deathday: deathday, timescaleType: timescaleType, reverseTime: reverseTime)
         updateClock()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             updateClock()
@@ -75,20 +73,10 @@ struct ContentView: View {
         morbidMeterTime = "Loading..."
     }
 
-    func printFonts() {
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
-    }
-
     func updateClock() {
-       if let clockTime = self.clock?.getClockTime() {
-            progressValue = clockTime.percentage
-            morbidMeterTime = clockTime.time
-        } else {
-            morbidMeterError("Clock Error")
-        }
+        let clockTime = clock.getClockTime()
+        progressValue = clockTime.percentage
+        morbidMeterTime = clockTime.time
     }
 
     func morbidMeterError(_ message: String, progressValue: Double = 0) {

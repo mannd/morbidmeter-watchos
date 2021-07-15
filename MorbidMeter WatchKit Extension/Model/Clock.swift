@@ -9,29 +9,23 @@ import Foundation
 import SwiftUI
 
 struct Clock {
-    var birthday: Date
-    var deathday: Date
-    var timescale: Timescale
-    var reverseTime: Bool
+    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
+    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
+    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
+    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
 
-    init() {
-        let userDefaults = UserDefaults.standard
-        let now = Date()
-        birthday = userDefaults.object(forKey: Preferences.birthdayKey) as? Date ?? now
-        deathday = userDefaults.object(forKey: Preferences.deathdayKey) as? Date ?? now
-        reverseTime = userDefaults.bool(forKey: Preferences.reverseTimeKey)
-        let timescaleTypeInt = userDefaults.integer(forKey: Preferences.timescaleTypeKey)
-        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
-        timescale = Timescales.getInstance(timescaleType)
-    }
+    init() {}
 
-    init(birthday: Date, deathday: Date, timescaleType: TimescaleType, reverseTime: Bool) {
+    init(birthday: Date, deathday: Date, timescaleTypeInt: Int, reverseTime: Bool) {
         self.birthday = birthday
         self.deathday = deathday
-        self.timescale = Timescales.getInstance(timescaleType)
+        self.timescaleTypeInt = timescaleTypeInt
         self.reverseTime = reverseTime
     }
 
+    static func activeClock() -> Clock {
+       return Clock()
+    }
 
     func getClockTime() -> ClockTime {
         var clockTime = ClockTime()
@@ -39,6 +33,7 @@ struct Clock {
             let now = Date()
             let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
             clockTime.percentage = try lifespan.percentage(date: now, reverse: reverseTime)
+            let timescale = getTimescale()
             if let getTime = timescale.getTime {
                 if timescale.timescaleType == .daysHoursMinsSecs
                     || timescale.timescaleType == .yearsMonthsDays {
@@ -64,6 +59,12 @@ struct Clock {
             clockTime.percentage = 0
         }
         return clockTime
+    }
+
+    private func getTimescale() -> Timescale {
+        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
+        let timescale = Timescales.getInstance(timescaleType)
+        return timescale
     }
 }
 
