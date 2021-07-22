@@ -15,10 +15,6 @@ struct ComplicationViews: View {
 }
 
 struct ComplicationViewCircular: View {
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
     @State var clockData = ClockData.shared
     @State var date: Date = Date()
 

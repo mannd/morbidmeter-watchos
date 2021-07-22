@@ -61,7 +61,7 @@ struct MorbidMeterView: View {
             firstRun = false
             return
         }
-        clockData.clock = Clock.activeClock()
+//        clockData.clock = Clock.activeClock()
         // TODO: ClockData must be updated when clock changes.
         updateClock()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
@@ -96,15 +96,15 @@ struct MorbidMeterView: View {
 
     private func scheduleBackgroundRefreshTasks() {
         print("scheduleBackgroundRefreshTasks()")
-        //        let watchExtension = WKExtension.shared()
-        //        let targetDate = Date().addingTimeInterval(15.0 * 60.0)
-        //        watchExtension.scheduleBackgroundRefresh(withPreferredDate: targetDate, userInfo: nil, scheduledCompletion: { error in
-        //            if let error = error {
-        //                print("error in scheduling background tasks: \(error.localizedDescription)")
-        //                return
-        //            }
-        //            print("background refresh scheduled")
-        //        })
+        let watchExtension = WKExtension.shared()
+        let targetDate = Date().addingTimeInterval(15.0 * 60.0)
+        watchExtension.scheduleBackgroundRefresh(withPreferredDate: targetDate, userInfo: nil, scheduledCompletion: { error in
+            if let error = error {
+                print("error in scheduling background tasks: \(error.localizedDescription)")
+                return
+            }
+            print("background refresh scheduled")
+        })
     }
 
 }

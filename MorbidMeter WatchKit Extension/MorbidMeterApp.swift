@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct MorbidMeterApp: App {
+    
     @Environment(\.scenePhase) private var scenePhase
 
-    // TODO: Need to define app delegate here?  see sample app
-    
+    @WKExtensionDelegateAdaptor private var appDelegate: ExtensionDelegate
+
     init() {
         UserDefaults.standard.register(defaults: Preferences.defaults())
     }

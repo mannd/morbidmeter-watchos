@@ -26,6 +26,7 @@
 		8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255D26952A030032CBE2 /* TimescaleTests.swift */; };
 		8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E80B464268127D500D27383 /* BLKCHCRY.TTF */; };
 		8E8AB1AC26A9D03600F14E99 /* MorbidMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */; };
+		8E8AB1AE26A9D9B600F14E99 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */; };
 		8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9503B82697DDD10077851C /* ComplicationViews.swift */; };
 		8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF66DF2684115E00494DE6 /* Timescales.swift */; };
 		8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEB9EB92698A3AF00392BDF /* Clock.swift */; };
@@ -122,6 +123,7 @@
 		8E6D255D26952A030032CBE2 /* TimescaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleTests.swift; sourceTree = "<group>"; };
 		8E80B464268127D500D27383 /* BLKCHCRY.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BLKCHCRY.TTF; sourceTree = "<group>"; };
 		8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterView.swift; sourceTree = "<group>"; };
+		8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		8E9503B82697DDD10077851C /* ComplicationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationViews.swift; sourceTree = "<group>"; };
 		8EAF66DF2684115E00494DE6 /* Timescales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescales.swift; sourceTree = "<group>"; };
 		8EEB9EB92698A3AF00392BDF /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */,
 				8E39E63A2670550B00AED406 /* NotificationController.swift */,
 				8E39E63C2670550B00AED406 /* NotificationView.swift */,
+				8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */,
 				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
 				8E17DC7E2681029C00FC3C5B /* Model */,
 				8E39E6422670550C00AED406 /* Preview Content */,
@@ -465,6 +468,7 @@
 				8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */,
 				8EFF8DE7269CAF36002453A0 /* TimeConfigurationView.swift in Sources */,
 				8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */,
+				8E8AB1AE26A9D9B600F14E99 /* ExtensionDelegate.swift in Sources */,
 				8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */,
 				8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */,
 				8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */,

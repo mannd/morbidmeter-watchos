@@ -9,11 +9,6 @@ import Foundation
 import SwiftUI
 
 struct Clock: Codable, Equatable {
-//    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-//    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-//    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-//    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
-
     // TODO: use timescale enum directly? since it is codable
     var timescaleTypeInt: Int
     var birthday: Date
@@ -21,7 +16,6 @@ struct Clock: Codable, Equatable {
     var reverseTime: Bool
     let uuid: UUID
 
-    // TODO: eliminate this init
     init() {
         timescaleTypeInt = 0
         birthday = Date()
