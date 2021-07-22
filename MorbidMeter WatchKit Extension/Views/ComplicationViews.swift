@@ -19,16 +19,18 @@ struct ComplicationViewCircular: View {
     @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
     @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
     @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
-    @State var clock: Clock = Clock.activeClock()
+    @State var clockData = ClockData.shared
+    @State var date: Date = Date()
 
     var body: some View {
         ZStack {
             ProgressView(
-                "💀", value: clock.getClockTime().percentage, total: 1.0 )
+                "💀", value: clockData.clock.getClockTime(date: date).percentage, total: 1.0 )
                 .progressViewStyle(CircularProgressViewStyle())
         }
-        .onAppear(perform: { print( clock.getClockTime().percentage) })
+        .onAppear(perform: { clockData.clock = Clock.activeClock()})
     }
+
 }
 
 struct ComplicationViews_Previews: PreviewProvider {

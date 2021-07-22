@@ -20,10 +20,12 @@
 		8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6432670550C00AED406 /* Preview Assets.xcassets */; };
 		8E39E65B2670550C00AED406 /* MorbidMeterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */; };
 		8E50D6F0269A029E006239B4 /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50D6EF269A029E006239B4 /* ClockTests.swift */; };
+		8E69FCFA26A11506008BF083 /* ClockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69FCF926A11506008BF083 /* ClockData.swift */; };
 		8E6D255A26914C1D0032CBE2 /* Lifespan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255926914C1D0032CBE2 /* Lifespan.swift */; };
 		8E6D255C26914E5E0032CBE2 /* LifespanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */; };
 		8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255D26952A030032CBE2 /* TimescaleTests.swift */; };
 		8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E80B464268127D500D27383 /* BLKCHCRY.TTF */; };
+		8E8AB1AC26A9D03600F14E99 /* MorbidMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */; };
 		8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9503B82697DDD10077851C /* ComplicationViews.swift */; };
 		8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF66DF2684115E00494DE6 /* Timescales.swift */; };
 		8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEB9EB92698A3AF00392BDF /* Clock.swift */; };
@@ -114,10 +116,12 @@
 		8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterUITests.swift; sourceTree = "<group>"; };
 		8E39E65C2670550C00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E50D6EF269A029E006239B4 /* ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTests.swift; sourceTree = "<group>"; };
+		8E69FCF926A11506008BF083 /* ClockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockData.swift; sourceTree = "<group>"; };
 		8E6D255926914C1D0032CBE2 /* Lifespan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifespan.swift; sourceTree = "<group>"; };
 		8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanTests.swift; sourceTree = "<group>"; };
 		8E6D255D26952A030032CBE2 /* TimescaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleTests.swift; sourceTree = "<group>"; };
 		8E80B464268127D500D27383 /* BLKCHCRY.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BLKCHCRY.TTF; sourceTree = "<group>"; };
+		8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterView.swift; sourceTree = "<group>"; };
 		8E9503B82697DDD10077851C /* ComplicationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationViews.swift; sourceTree = "<group>"; };
 		8EAF66DF2684115E00494DE6 /* Timescales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescales.swift; sourceTree = "<group>"; };
 		8EEB9EB92698A3AF00392BDF /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 				8E17DC7F268102FB00FC3C5B /* Timescale.swift */,
 				8EAF66DF2684115E00494DE6 /* Timescales.swift */,
 				8EEB9EB92698A3AF00392BDF /* Clock.swift */,
+				8E69FCF926A11506008BF083 /* ClockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */,
 				8EFF8DE6269CAF36002453A0 /* TimeConfigurationView.swift */,
 				8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */,
+				8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -448,8 +454,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E39E63B2670550B00AED406 /* NotificationController.swift in Sources */,
+				8E8AB1AC26A9D03600F14E99 /* MorbidMeterView.swift in Sources */,
 				8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */,
 				8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */,
+				8E69FCFA26A11506008BF083 /* ClockData.swift in Sources */,
 				8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */,
 				8EF6BAC626853EEB00800575 /* TimescaleConfigurationView.swift in Sources */,
 				8E39E6392670550B00AED406 /* ContentView.swift in Sources */,

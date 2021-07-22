@@ -11,6 +11,8 @@ import SwiftUI
 struct MorbidMeterApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
+    // TODO: Need to define app delegate here?  see sample app
+    
     init() {
         UserDefaults.standard.register(defaults: Preferences.defaults())
     }

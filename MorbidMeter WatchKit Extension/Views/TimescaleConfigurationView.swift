@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TimescaleConfigurationView: View {
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
+    @Binding var timescaleTypeInt: Int
+    @Binding var reverseTime: Bool
 
     @State private var timescaleType: TimescaleType = TimescaleType.year
 
@@ -40,6 +40,6 @@ struct TimescaleConfigurationView: View {
 
 struct TimescaleConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        TimescaleConfigurationView()
+        TimescaleConfigurationView(timescaleTypeInt: .constant(0), reverseTime: .constant(false))
     }
 }

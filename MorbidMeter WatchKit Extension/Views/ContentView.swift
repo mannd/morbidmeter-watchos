@@ -7,90 +7,15 @@
 
 import SwiftUI
 
-// See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
-
 struct ContentView: View {
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
-    @AppStorage(Preferences.firstRunKey) var firstRun = Preferences.firstRun
-
-    @State private var timer: Timer?
-    @State private var clock: Clock = Clock.activeClock()
-
-    @State private var morbidMeterTime: String = "Loading"
-    @State private var progressValue: Double = 0
-
     @Environment(\.scenePhase) private var scenePhase
 
+    let data = ClockData.shared
+
     var body: some View {
-        VStack {
-            Text("MorbidMeter")
-                .font(Font.custom("BlackChancery", size: 22))
-            NavigationLink(destination: ConfigurationView(), label: {
-                Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-            }).buttonStyle(.plain)
-            Text(morbidMeterTime)
-                .font(Font.system(size: 14.0))
-                .multilineTextAlignment(.center)
-            ProgressView(value: progressValue)
-        }
-        .onDisappear(perform: {
-            print("onDisappear()")
-            stopTimer()
-        })
-        .onAppear(perform: {
-            print("onAppear()")
-            startTimer()
-        })
-        .onReceive(NotificationCenter.default.publisher(
-            for: WKExtension.applicationWillResignActiveNotification
-        )) { _ in
-            movingToBackground()
-        }
-        .onReceive(NotificationCenter.default.publisher(
-            for: WKExtension.applicationDidBecomeActiveNotification
-        )) { _ in
-            movingToForeground()
-        }
-    }
-
-    func startTimer() {
-        guard !firstRun else {
-            morbidMeterError("Tap 💀 to configure...")
-            firstRun = false
-            return
-        }
-        updateClock()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-            updateClock()
-        })
-    }
-
-    func stopTimer() {
-        timer?.invalidate()
-        morbidMeterTime = "Loading..."
-    }
-
-    func updateClock() {
-        let clockTime = clock.getClockTime()
-        progressValue = clockTime.percentage
-        morbidMeterTime = clockTime.time
-    }
-
-    func morbidMeterError(_ message: String, progressValue: Double = 0) {
-        self.progressValue = progressValue
-        morbidMeterTime = message
-    }
-
-    func movingToBackground() {
-        stopTimer()
-    }
-
-    func movingToForeground() {
-        startTimer()
-    }
+        MorbidMeterView()
+            .environmentObject(data)
+   }
 }
 
 struct ContentView_Previews: PreviewProvider {

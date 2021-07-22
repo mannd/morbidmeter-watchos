@@ -55,8 +55,6 @@ struct TimeConfigurationView: View {
             selectedMinuteIndex = selectedMinute
             selectedSecondIndex = selectedSecond
         })
-//        .onAppear(perform: { convertDateToIndices() })
-//        .onDisappear(perform: { convertIndicesToDate() })
     }
 }
 
