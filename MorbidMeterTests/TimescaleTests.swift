@@ -28,4 +28,18 @@ class TimescaleTests: XCTestCase {
         XCTAssertEqual(Timescales.integerFormattedDouble(n3), "123")
     }
 
+    func testTimescalesGetTime() {
+        let result = Timescales.getTime(result: "100 sec", reverseTime: false)
+        XCTAssertEqual(result, "100 sec\npassed")
+        let result0 = Timescales.getTime(result: "100 sec", reverseTime: true)
+        XCTAssertEqual(result0, "100 sec\nto go")
+        let result1 = Timescales.getTime(result: "100", reverseTime: false, forwardMessage: "sec passed", backwardMessage: "sec to go")
+        XCTAssertEqual(result1, "100\nsec passed")
+        let result2 = Timescales.getTime(result: "100", reverseTime: true, forwardMessage: "sec passed", backwardMessage: "sec to go")
+        XCTAssertEqual(result2, "100\nsec to go")
+
+
+
+    }
+
 }

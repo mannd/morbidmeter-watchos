@@ -12,6 +12,9 @@ struct DateConfigurationView: View {
     private static let yearDiff = 2020 - minimumYear
     private static let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+
+//    @EnvironmentObject var clockData: ClockData
+
     @Binding var date: Date
 
     @State private var selectedMonthIndex = 0
@@ -84,11 +87,15 @@ struct DateConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 3 - 38mm")
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 6 - 40mm")
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 6 - 44mm")
         }
     }

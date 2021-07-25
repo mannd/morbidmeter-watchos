@@ -27,32 +27,25 @@ struct MorbidMeterView: View {
         VStack {
             Text("MorbidMeter")
                 .font(Font.custom("BlackChancery", size: 22))
-            NavigationLink(destination: ConfigurationView().environmentObject(clockData), label: {
+            NavigationLink(destination: ConfigurationView(), label: {
                 Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-            }).buttonStyle(.plain)
+            }).buttonStyle(PlainButtonStyle())
             Text(morbidMeterTime)
                 .font(Font.system(size: 14.0))
                 .multilineTextAlignment(.center)
             ProgressView(value: progressValue)
         }
+        // Due to SwiftUI bug, .onAppear runs right after onDisappear, weirdly enough.
+        // So we stop timer everytime we start it.
+        // See https://forums.swift.org/t/swiftui-onappear-and-ondisappear-action-ordering/36320/5
         .onDisappear(perform: {
-            print("onDisappear()")
+            print("MM onDisappear()")
             stopTimer()
         })
         .onAppear(perform: {
-            print("onAppear()")
+            print("MM onAppear()")
             startTimer()
         })
-        .onReceive(NotificationCenter.default.publisher(
-            for: WKExtension.applicationWillResignActiveNotification
-        )) { _ in
-            movingToBackground()
-        }
-        .onReceive(NotificationCenter.default.publisher(
-            for: WKExtension.applicationDidBecomeActiveNotification
-        )) { _ in
-            movingToForeground()
-        }
     }
 
     func startTimer() {
@@ -61,8 +54,8 @@ struct MorbidMeterView: View {
             firstRun = false
             return
         }
-//        clockData.clock = Clock.activeClock()
-        // TODO: ClockData must be updated when clock changes.
+        // stop any timer that was already running
+        stopTimer()
         updateClock()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             updateClock()
@@ -71,6 +64,7 @@ struct MorbidMeterView: View {
 
     func stopTimer() {
         timer?.invalidate()
+        timer = nil
         morbidMeterTime = "Loading..."
     }
 
@@ -84,29 +78,6 @@ struct MorbidMeterView: View {
         self.progressValue = progressValue
         morbidMeterTime = message
     }
-
-    func movingToBackground() {
-        stopTimer()
-        scheduleBackgroundRefreshTasks()
-    }
-
-    func movingToForeground() {
-        startTimer()
-    }
-
-    private func scheduleBackgroundRefreshTasks() {
-        print("scheduleBackgroundRefreshTasks()")
-        let watchExtension = WKExtension.shared()
-        let targetDate = Date().addingTimeInterval(15.0 * 60.0)
-        watchExtension.scheduleBackgroundRefresh(withPreferredDate: targetDate, userInfo: nil, scheduledCompletion: { error in
-            if let error = error {
-                print("error in scheduling background tasks: \(error.localizedDescription)")
-                return
-            }
-            print("background refresh scheduled")
-        })
-    }
-
 }
 
 struct MorbidMeterView_Previews: PreviewProvider {

@@ -21,17 +21,14 @@ struct ComplicationViewCircular: View {
     var body: some View {
         ZStack {
             ProgressView(
-                "💀", value: clockData.clock.getClockTime(date: date).percentage, total: 1.0 )
+                "💀", value: clockData.getClockTime(date: date).percentage, total: 1.0 )
                 .progressViewStyle(CircularProgressViewStyle())
         }
-        .onAppear(perform: { clockData.clock = Clock.activeClock()})
     }
-
 }
 
 struct ComplicationViews_Previews: PreviewProvider {
     static var previews: some View {
-        //        ComplicationViews()
         CLKComplicationTemplateGraphicCircularView(
             ComplicationViewCircular()
         ).previewContext()

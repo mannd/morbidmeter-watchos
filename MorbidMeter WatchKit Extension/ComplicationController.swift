@@ -29,7 +29,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        return handler(Date().addingTimeInterval(60 * 60 * 24))
+        return handler(Date().addingTimeInterval(60 * 30.0))
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -56,6 +56,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries after the given date
         let fiveMinutes = 5.0 * 60.0
+        let fifteenMinutes = 15.0 * 60.0
+        let thirtyMinutes = 30.0 * 60.0
         let twentyFourHours = 24.0 * 60.0 * 60.0
 
         // Create an array to hold the timeline entries.
@@ -63,9 +65,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
         // Calculate the start and end dates.
         var current = date.addingTimeInterval(fiveMinutes)
-        let endDate = date.addingTimeInterval(twentyFourHours)
+        let endDate = date.addingTimeInterval(thirtyMinutes)
         while (current.compare(endDate) == .orderedAscending) && (entries.count < limit) {
-            let template = getComplicationTemplate(for: complication, using: date)!
+            let template = getComplicationTemplate(for: complication, using: current)!
             let entry = CLKComplicationTimelineEntry(
                 date: current,
                 complicationTemplate: template)
@@ -88,7 +90,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getComplicationTemplate(for complication: CLKComplication, using date: Date) -> CLKComplicationTemplate? {
         switch complication.family {
         case .graphicCircular:
-            // TODO: need to update depending on date
             return CLKComplicationTemplateGraphicCircularView(ComplicationViewCircular(date: date))
         default:
             return nil

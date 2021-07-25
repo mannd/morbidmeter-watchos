@@ -15,7 +15,6 @@ class ClockData: ObservableObject {
 
     static let shared = ClockData()
 
-    // TODO: possible remove data model from user defaults and change to system used in sample app
     private var background = DispatchQueue(label: "Background Queue", qos: .userInitiated)
 
     @Published public var clock = Clock() {
@@ -25,7 +24,8 @@ class ClockData: ObservableObject {
             // Update complications
             let server = CLKComplicationServer.sharedInstance()
             for complication in server.activeComplications ?? [] {
-                server.reloadTimeline(for: complication)
+                // FIXME: Temporarily inhibited
+//                server.reloadTimeline(for: complication)
             }
             // potentially save data, if not using user defaults
             self.save()
@@ -44,6 +44,7 @@ class ClockData: ObservableObject {
     }
     
     private func load() {
+        logger.debug("Loading saved clock")
         background.async { [unowned self] in
             var clock: Clock
 
@@ -60,14 +61,18 @@ class ClockData: ObservableObject {
 
             DispatchQueue.main.async { [unowned self] in
                 savedClock = clock
+                self.clock = clock
             }
         }
     }
 
     private func save() {
+        // Don't bother resaving clock if it hasn't changed.
         if clock == savedClock  {
             return
         }
+
+        logger.debug("saving clock")
 
         let encoder = PropertyListEncoder()
         encoder.outputFormat = .binary
@@ -91,11 +96,11 @@ class ClockData: ObservableObject {
         }
 
         if WKExtension.shared().applicationState == .background {
-            logger.debug("saving synchrounously")
+            logger.debug("saving synchronously")
             saveAction()
         } else {
             background.async { [unowned self] in
-                self.logger.debug("saving asynchrounously")
+                self.logger.debug("saving asynchronously")
                 saveAction()
             }
         }

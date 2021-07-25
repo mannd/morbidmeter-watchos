@@ -18,32 +18,14 @@ struct ConfigurationView: View {
 
     @EnvironmentObject var clockData: ClockData
 
-    @State var timescaleTypeInt = 0
-    @State var birthday = Date()
-    @State var deathday = Date()
-    @State var reverseTime = false
-
-
     var body: some View {
         VStack {
-            NavigationLink(destination: TimescaleConfigurationView(timescaleTypeInt: $timescaleTypeInt, reverseTime: $reverseTime), label: { Text("\(TimescaleType(rawValue: timescaleTypeInt)!.fullDescription(reverseTime: reverseTime))") })
-            NavigationLink(destination: DateConfigurationView(date: $birthday), label: {
-                Text("Start \(Self.dateFormatter.string(from: birthday))") })
-            NavigationLink(destination: DateConfigurationView(date: $deathday), label: {
-                Text("End \(Self.dateFormatter.string(from: deathday))") })
+            NavigationLink(destination: TimescaleConfigurationView(timescaleTypeInt: $clockData.clock.timescaleTypeInt, reverseTime: $clockData.clock.reverseTime), label: { Text("\(TimescaleType(rawValue: clockData.clock.timescaleTypeInt)!.fullDescription(reverseTime: clockData.clock.reverseTime))") })
+            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
+                            Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
+            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
+                            Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
         }
-        .onAppear(perform: {
-            self.timescaleTypeInt = self.clockData.clock.timescaleTypeInt
-            self.birthday = self.clockData.clock.birthday
-            self.deathday = self.clockData.clock.deathday
-            self.reverseTime = self.clockData.clock.reverseTime
-        })
-        .onDisappear(perform: {
-            self.clockData.clock.timescaleTypeInt = self.timescaleTypeInt
-            self.clockData.clock.birthday = self.birthday
-            self.clockData.clock.deathday = self.deathday
-            self.clockData.clock.reverseTime = self.reverseTime
-        })
     }
 }
 
