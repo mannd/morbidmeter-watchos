@@ -48,6 +48,7 @@ func scheduleBackgroundRefreshTasks() {
             print("error in scheduling background tasks: \(error.localizedDescription)")
             return
         }
+        // TODO: do we need to update server complications here???  Do we need to do anything to the app in the background for real?
         print("background refresh scheduled")
     })
 }

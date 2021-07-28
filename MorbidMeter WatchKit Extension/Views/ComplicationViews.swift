@@ -18,10 +18,21 @@ struct ComplicationViewCircular: View {
     @State var clockData = ClockData.shared
     @State var date: Date = Date()
 
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumIntegerDigits = 2
+        formatter.maximumFractionDigits = 0
+        return formatter
+    }()
+
     var body: some View {
         ZStack {
             ProgressView(
-                "💀", value: clockData.getClockTime(date: date).percentage, total: 1.0 )
+                clockData.clock.getClockTime(date: date).percentage < 1.0 ?
+                    formatter.string(for: clockData.clock.getClockTime(date: date).percentage)! :
+                "💀",
+                value: clockData.getClockTime(date: date).percentage, total: 1.0 )
                 .progressViewStyle(CircularProgressViewStyle())
         }
     }
