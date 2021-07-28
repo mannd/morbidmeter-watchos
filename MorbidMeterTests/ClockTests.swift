@@ -14,16 +14,10 @@ class ClockTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        savedBirthday = UserDefaults.standard.object(forKey: Preferences.birthdayKey)
-        savedDeathday = UserDefaults.standard.object(forKey: Preferences.deathdayKey)
-        UserDefaults.standard.removeObject(forKey: Preferences.birthdayKey)
-        UserDefaults.standard.removeObject(forKey: Preferences.deathdayKey)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        UserDefaults.standard.set(savedBirthday, forKey: Preferences.birthdayKey)
-        UserDefaults.standard.set(savedDeathday, forKey: Preferences.deathdayKey)
     }
 
     func testDefaultClock() {
@@ -31,8 +25,7 @@ class ClockTests: XCTestCase {
         XCTAssertEqual(clock.birthday.description, clock.deathday.description)
         clock.deathday = Date().addingTimeInterval(60)
         XCTAssertNotEqual(clock.birthday.description, clock.deathday.description)
-        UserDefaults.standard.set(Date() + 600, forKey: Preferences.deathdayKey)
-        let clock1 = Clock()
-        XCTAssertNotEqual(clock1.birthday.description, clock1.deathday.description)
+        let clock1 = Clock(birthday: clock.birthday.addingTimeInterval(60), deathday: clock.deathday, timescaleTypeInt: 0, reverseTime: false)
+        XCTAssertNotEqual(clock.birthday.description, clock1.birthday.description)
     }
 }

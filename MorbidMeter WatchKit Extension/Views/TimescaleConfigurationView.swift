@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+// TODO: with these dialogs, we only want to update the model if there is a change in the clock data.
 struct TimescaleConfigurationView: View {
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
+    @Binding var timescaleTypeInt: Int
+    @Binding var reverseTime: Bool
 
     @State private var timescaleType: TimescaleType = TimescaleType.year
+    @State private var reverseTimeState: Bool = false
+
+    @EnvironmentObject var clockData: ClockData
+
 
     var body: some View {
         VStack {
@@ -21,7 +26,7 @@ struct TimescaleConfigurationView: View {
 
                 }
             })
-            Toggle(isOn: $reverseTime, label: { Text("Reverse Time") })
+            Toggle(isOn: $clockData.clock.reverseTime, label: { Text("Reverse Time") })
         }
         .onAppear(perform: { convertIntToTimescaleType() })
         .onDisappear(perform: { convertTimescaleTypeToInt() })
@@ -40,6 +45,7 @@ struct TimescaleConfigurationView: View {
 
 struct TimescaleConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        TimescaleConfigurationView()
+        TimescaleConfigurationView(timescaleTypeInt: .constant(0), reverseTime: .constant(false))
+            .environmentObject(ClockData.shared)
     }
 }

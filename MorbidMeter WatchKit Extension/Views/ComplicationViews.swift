@@ -15,25 +15,31 @@ struct ComplicationViews: View {
 }
 
 struct ComplicationViewCircular: View {
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
-    @State var clock: Clock = Clock.activeClock()
+    @State var clockData = ClockData.shared
+    @State var date: Date = Date()
+
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumIntegerDigits = 2
+        formatter.maximumFractionDigits = 0
+        return formatter
+    }()
 
     var body: some View {
         ZStack {
             ProgressView(
-                "💀", value: clock.getClockTime().percentage, total: 1.0 )
+                clockData.clock.getClockTime(date: date).percentage < 1.0 ?
+                    formatter.string(for: clockData.clock.getClockTime(date: date).percentage)! :
+                "💀",
+                value: clockData.getClockTime(date: date).percentage, total: 1.0 )
                 .progressViewStyle(CircularProgressViewStyle())
         }
-        .onAppear(perform: { print( clock.getClockTime().percentage) })
     }
 }
 
 struct ComplicationViews_Previews: PreviewProvider {
     static var previews: some View {
-        //        ComplicationViews()
         CLKComplicationTemplateGraphicCircularView(
             ComplicationViewCircular()
         ).previewContext()

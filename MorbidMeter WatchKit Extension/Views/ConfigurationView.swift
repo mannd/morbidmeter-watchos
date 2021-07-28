@@ -16,18 +16,15 @@ struct ConfigurationView: View {
     static let reverseTimeSymbol = "-R"
     static let forwardTimeSymbol = ""
 
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
+    @EnvironmentObject var clockData: ClockData
 
     var body: some View {
         VStack {
-            NavigationLink(destination: TimescaleConfigurationView(), label: { Text("\(TimescaleType(rawValue: timescaleTypeInt)!.fullDescription(reverseTime: reverseTime))") })
-            NavigationLink(destination: DateConfigurationView(date: $birthday), label: {
-                Text("Start \(Self.dateFormatter.string(from: birthday))") })
-            NavigationLink(destination: DateConfigurationView(date: $deathday), label: {
-                Text("End \(Self.dateFormatter.string(from: deathday))") })
+            NavigationLink(destination: TimescaleConfigurationView(timescaleTypeInt: $clockData.clock.timescaleTypeInt, reverseTime: $clockData.clock.reverseTime), label: { Text("\(TimescaleType(rawValue: clockData.clock.timescaleTypeInt)!.fullDescription(reverseTime: clockData.clock.reverseTime))") })
+            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
+                            Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
+            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
+                            Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
         }
     }
 }
@@ -35,5 +32,6 @@ struct ConfigurationView: View {
 struct ConfigurationUI_Previews: PreviewProvider {
     static var previews: some View {
         ConfigurationView()
+            .environmentObject(ClockData.shared)
     }
 }

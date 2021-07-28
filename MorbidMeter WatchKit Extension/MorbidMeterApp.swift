@@ -9,7 +9,9 @@ import SwiftUI
 
 @main
 struct MorbidMeterApp: App {
-    @Environment(\.scenePhase) private var scenePhase
+
+    @WKExtensionDelegateAdaptor private var appDelegate: ExtensionDelegate
+    @StateObject var clockData = ClockData.shared
 
     init() {
         UserDefaults.standard.register(defaults: Preferences.defaults())
@@ -19,25 +21,8 @@ struct MorbidMeterApp: App {
         WindowGroup {
             NavigationView {
                 ContentView()
-                    .onChange(of: scenePhase) { phase in
-                           switch phase {
-                           case .active:
-                               // The app has become active.
-                               print("app active")
-                               break
-                           case .inactive:
-                               // The app has become inactive.
-                               print("app inactive")
-                               break
-                           case .background:
-                               // The app has moved to the background.
-                               print("app background")
-                               break
-                           @unknown default:
-                               fatalError("The app has entered an unknown state.")
-                           }
-                       }
             }
+            .environmentObject(clockData)
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")

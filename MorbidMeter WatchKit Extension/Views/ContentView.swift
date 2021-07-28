@@ -6,103 +6,55 @@
 //
 
 import SwiftUI
-
-// See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
+import os
 
 struct ContentView: View {
-    @AppStorage(Preferences.timescaleTypeIntKey) var timescaleTypeInt = Preferences.timescaleTypeInt
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
-    @AppStorage(Preferences.firstRunKey) var firstRun = Preferences.firstRun
 
-    @State private var timer: Timer?
-    @State private var clock: Clock = Clock.activeClock()
-
-    @State private var morbidMeterTime: String = "Loading"
-    @State private var progressValue: Double = 0
+    let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ContentView", category: "Content View")
 
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        VStack {
-            Text("MorbidMeter")
-                .font(Font.custom("BlackChancery", size: 22))
-            NavigationLink(destination: ConfigurationView(), label: {
-                Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-            }).buttonStyle(.plain)
-            Text(morbidMeterTime)
-                .font(Font.system(size: 14.0))
-                .multilineTextAlignment(.center)
-            ProgressView(value: progressValue)
-        }
-        .onDisappear(perform: {
-            print("onDisappear()")
-            stopTimer()
-        })
-        .onAppear(perform: {
-            print("onAppear()")
-            startTimer()
-        })
-        .onReceive(NotificationCenter.default.publisher(
-            for: WKExtension.applicationWillResignActiveNotification
-        )) { _ in
-            movingToBackground()
-        }
-        .onReceive(NotificationCenter.default.publisher(
-            for: WKExtension.applicationDidBecomeActiveNotification
-        )) { _ in
-            movingToForeground()
-        }
-    }
+        MorbidMeterView()
+            .onChange(of: scenePhase) { (phase) in
+                switch phase {
 
-    func startTimer() {
-        guard !firstRun else {
-            morbidMeterError("Tap 💀 to configure...")
-            firstRun = false
-            return
-        }
-        updateClock()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-            updateClock()
-        })
-    }
+                case .inactive:
+                    logger.debug("Scene became inactive.")
 
-    func stopTimer() {
-        timer?.invalidate()
-        morbidMeterTime = "Loading..."
-    }
+                case .active:
+                    logger.debug("Scene became active.")
 
-    func updateClock() {
-        let clockTime = clock.getClockTime()
-        progressValue = clockTime.percentage
-        morbidMeterTime = clockTime.time
-    }
+                case .background:
+                    logger.debug("Scene moved to the background.")
+                    // Schedule a background refresh task
+                    // to update the complications.
+                    scheduleBackgroundRefreshTasks()
 
-    func morbidMeterError(_ message: String, progressValue: Double = 0) {
-        self.progressValue = progressValue
-        morbidMeterTime = message
-    }
+                @unknown default:
+                    logger.debug("Scene entered unknown state.")
+                    assertionFailure()
+                }
+            }
 
-    func movingToBackground() {
-        stopTimer()
-    }
+   }
 
-    func movingToForeground() {
-        startTimer()
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
+                .environmentObject(ClockData.shared)
             ContentView()
                 .previewDevice("Apple Watch Series 3 - 38mm")
+                .environmentObject(ClockData.shared)
             ContentView()
                 .previewDevice("Apple Watch Series 6 - 40mm")
+                .environmentObject(ClockData.shared)
             ContentView()
                 .previewDevice("Apple Watch Series 6 - 44mm")
+                .environmentObject(ClockData.shared)
         }
     }
 }

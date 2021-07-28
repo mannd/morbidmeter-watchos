@@ -12,6 +12,9 @@ struct DateConfigurationView: View {
     private static let yearDiff = 2020 - minimumYear
     private static let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+
+//    @EnvironmentObject var clockData: ClockData
+
     @Binding var date: Date
 
     @State private var selectedMonthIndex = 0
@@ -23,34 +26,34 @@ struct DateConfigurationView: View {
     @State private var selectedSecondIndex = 0
 
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Text("Date").font(Font.system(size: 12))
-                HStack {
-                    Picker("Year", selection: $selectedYearIndex) {
-                        ForEach(0..<200) { year in
-                            Text(String(year + Self.minimumYear))
+            GeometryReader { geometry in
+                VStack {
+                    Text("Date").font(Font.system(size: 12))
+                    HStack {
+                        Picker("Year", selection: $selectedYearIndex) {
+                            ForEach(0..<200) { year in
+                                Text(String(year + Self.minimumYear))
+                            }
+                        }
+                        .frame(width: geometry.size.width * 0.38)
+                        Picker("Month", selection: $selectedMonthIndex) {
+                            ForEach(0..<Self.months.count) { index in
+                                Text(Self.months[index])
+                            }
+                        }
+                        .frame(width: geometry.size.width * 0.32)
+                        Picker("Day", selection: $selectedDayIndex) {
+                            ForEach(0..<31) { day in
+                                Text(String(day+1))
+                            }
                         }
                     }
-                    .frame(width: geometry.size.width * 0.38)
-                     Picker("Month", selection: $selectedMonthIndex) {
-                        ForEach(0..<Self.months.count) { index in
-                            Text(Self.months[index])
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.32)
-                    Picker("Day", selection: $selectedDayIndex) {
-                        ForEach(0..<31) { day in
-                            Text(String(day+1))
-                        }
-                    }
-               }
-                .font(geometry.size.width > WatchSize.sizeInPoints(WatchSize.size38mm).width ? Font.system(size: 17) : Font.system(size: 13))
-                NavigationLink(destination: TimeConfigurationView(selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
+                    .font(geometry.size.width > WatchSize.sizeInPoints(WatchSize.size38mm).width ? Font.system(size: 17) : Font.system(size: 13))
+                    NavigationLink(destination: TimeConfigurationView(selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
+                }
+                .onAppear(perform: { convertDateToIndices() })
+                .onDisappear(perform: { convertIndicesToDate() })
             }
-            .onAppear(perform: { convertDateToIndices() })
-            .onDisappear(perform: { convertIndicesToDate() })
-        }
     }
 
 
@@ -63,7 +66,7 @@ struct DateConfigurationView: View {
         let second = selectedSecondIndex
         let dateComponents = DateComponents(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
         date = Calendar.current.date(from: dateComponents)!
-        print(date)
+        print("Date is now... ", date)
     }
 
     func convertDateToIndices() {
@@ -78,17 +81,21 @@ struct DateConfigurationView: View {
             selectedSecondIndex = secondIndex
         }
     }
- }
+}
 
 struct DateConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 3 - 38mm")
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 6 - 40mm")
             DateConfigurationView(date: .constant(Date()))
+                .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 6 - 44mm")
         }
     }
