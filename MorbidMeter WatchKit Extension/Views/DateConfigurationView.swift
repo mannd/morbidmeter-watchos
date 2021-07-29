@@ -12,9 +12,6 @@ struct DateConfigurationView: View {
     private static let yearDiff = 2020 - minimumYear
     private static let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-
-//    @EnvironmentObject var clockData: ClockData
-
     @Binding var date: Date
 
     @State private var selectedMonthIndex = 0
@@ -65,7 +62,9 @@ struct DateConfigurationView: View {
         let minute = selectedMinuteIndex
         let second = selectedSecondIndex
         let dateComponents = DateComponents(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
-        date = Calendar.current.date(from: dateComponents)!
+        if let newDate = Calendar.current.date(from: dateComponents), newDate != date {
+            date = newDate
+        }
         print("Date is now... ", date)
     }
 
