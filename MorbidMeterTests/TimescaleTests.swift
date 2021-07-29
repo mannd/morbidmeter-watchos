@@ -37,8 +37,17 @@ class TimescaleTests: XCTestCase {
         XCTAssertEqual(result1, "100\nsec passed")
         let result2 = Timescales.getTime(result: "100", reverseTime: true, forwardMessage: "sec passed", backwardMessage: "sec to go")
         XCTAssertEqual(result2, "100\nsec to go")
+    }
 
-
+    func testTimescalesGetFormattedTime() {
+        let formattedResult = Timescales.getFormattedTime(result: "100", units: "sec", reverseTime: false)
+        XCTAssertEqual(formattedResult, "100\nsec passed")
+        let formattedResult1 = Timescales.getFormattedTime(result: "100 secs", units: nil, reverseTime: false)
+        XCTAssertEqual(formattedResult1, "100 secs\npassed")
+        let formattedResult2 = Timescales.getFormattedTime(result: "100 secs", units: nil, reverseTime: true)
+        XCTAssertEqual(formattedResult2, "100 secs\nto go")
+        let formattedResult3 = Timescales.getFormattedTime(result: "100", units: "sec", reverseTime: true)
+        XCTAssertEqual(formattedResult3, "100\nsec to go")
 
     }
 
