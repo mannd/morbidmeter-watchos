@@ -10,7 +10,6 @@ import SwiftUI
 // See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
 
 struct MorbidMeterView: View {
-    @State var timescaleTypeInt = 0
     @State var birthday = Date()
     @State var deathday = Date()
     @State var reverseTime = false

@@ -25,7 +25,7 @@ class ClockTests: XCTestCase {
         XCTAssertEqual(clock.birthday.description, clock.deathday.description)
         clock.deathday = Date().addingTimeInterval(60)
         XCTAssertNotEqual(clock.birthday.description, clock.deathday.description)
-        let clock1 = Clock(birthday: clock.birthday.addingTimeInterval(60), deathday: clock.deathday, timescaleTypeInt: 0, reverseTime: false)
+        let clock1 = Clock(timescaleType: .seconds, birthday: clock.birthday.addingTimeInterval(60), deathday: clock.deathday, reverseTime: false)
         XCTAssertNotEqual(clock.birthday.description, clock1.birthday.description)
     }
 }

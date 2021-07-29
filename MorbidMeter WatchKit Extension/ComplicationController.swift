@@ -56,9 +56,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries after the given date
         let fiveMinutes = 5.0 * 60.0
-        let fifteenMinutes = 15.0 * 60.0
+//        let fifteenMinutes = 15.0 * 60.0
         let thirtyMinutes = 30.0 * 60.0
-        let twentyFourHours = 24.0 * 60.0 * 60.0
+//        let twentyFourHours = 24.0 * 60.0 * 60.0
 
         // Create an array to hold the timeline entries.
         var entries = [CLKComplicationTimelineEntry]()

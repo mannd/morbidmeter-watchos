@@ -20,7 +20,8 @@ struct ConfigurationView: View {
 
     var body: some View {
         VStack {
-            NavigationLink(destination: TimescaleConfigurationView(timescaleTypeInt: $clockData.clock.timescaleTypeInt, reverseTime: $clockData.clock.reverseTime), label: { Text("\(TimescaleType(rawValue: clockData.clock.timescaleTypeInt)!.fullDescription(reverseTime: clockData.clock.reverseTime))") })
+            NavigationLink(destination: TimescaleConfigurationView(timescaleType: $clockData.clock.timescaleType, reverseTime: $clockData.clock.reverseTime), label: {
+                            Text("\(clockData.clock.timescaleType.fullDescription(reverseTime: clockData.clock.reverseTime))") })
             NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
                             Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
             NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {

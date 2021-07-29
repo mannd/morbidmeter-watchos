@@ -9,31 +9,31 @@ import Foundation
 import SwiftUI
 
 struct Clock: Codable, Equatable {
-    // TODO: use timescale enum directly? since it is codable
-    var timescaleTypeInt: Int
+    var timescaleType: TimescaleType
     var birthday: Date
     var deathday: Date
     var reverseTime: Bool
+
     let uuid: UUID
 
+    var timescale: Timescale {
+        return Timescales.getInstance(timescaleType)
+    }
+
     init() {
-        timescaleTypeInt = 0
+        timescaleType = .seconds
         birthday = Date()
         deathday = Date()
         reverseTime = false
         uuid = UUID()
     }
 
-    init(birthday: Date, deathday: Date, timescaleTypeInt: Int, reverseTime: Bool, uuid: UUID = UUID()) {
+    init(timescaleType: TimescaleType = .seconds, birthday: Date, deathday: Date, reverseTime: Bool, uuid: UUID = UUID()) {
         self.birthday = birthday
         self.deathday = deathday
-        self.timescaleTypeInt = timescaleTypeInt
         self.reverseTime = reverseTime
+        self.timescaleType = timescaleType
         self.uuid = uuid
-    }
-
-    static func activeClock() -> Clock {
-       return Clock()
     }
 
     func getClockTime(date: Date = Date()) -> ClockTime {
@@ -42,7 +42,6 @@ struct Clock: Codable, Equatable {
             let now = date
             let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
             clockTime.percentage = try lifespan.percentage(date: now, reverse: reverseTime)
-            let timescale = getTimescale()
             if let getTime = timescale.getTime {
                 if timescale.timescaleType == .daysHoursMinsSecs
                     || timescale.timescaleType == .yearsMonthsDays {
@@ -69,12 +68,6 @@ struct Clock: Codable, Equatable {
             clockTime.percentage = 0
         }
         return clockTime
-    }
-
-    private func getTimescale() -> Timescale {
-        let timescaleType = TimescaleType(rawValue: timescaleTypeInt) ?? TimescaleType.blank
-        let timescale = Timescales.getInstance(timescaleType)
-        return timescale
     }
 }
 

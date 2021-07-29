@@ -206,7 +206,7 @@ class Timescales {
 
 }
 
-enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
+enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identifiable {
     case seconds
     case minutes
     case hours
@@ -223,7 +223,6 @@ enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
     case universe
     case percent
     case blank
-    case debug
 
     var id: TimescaleType { self }
 
@@ -245,7 +244,6 @@ enum TimescaleType: Int, CustomStringConvertible, CaseIterable, Identifiable {
         case .universe: return "Universe"
         case .percent: return "Percent"
         case .blank: return "No Units"
-        case .debug: return "DEBUG"
         }
     }
 
