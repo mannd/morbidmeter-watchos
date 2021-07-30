@@ -24,7 +24,7 @@ struct MorbidMeterView: View {
 
     var body: some View {
         VStack {
-            Text("MorbidMeter")
+            Text("Morbid Meter")
                 .font(Font.custom("BlackChancery", size: 22))
             NavigationLink(destination: ConfigurationView(), label: {
                 Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
@@ -53,9 +53,9 @@ struct MorbidMeterView: View {
             firstRun = false
             return
         }
+        morbidMeterTime = "Loading..."
         // stop any timer that was already running
         stopTimer()
-        updateClock()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             updateClock()
         })
@@ -64,13 +64,17 @@ struct MorbidMeterView: View {
     func stopTimer() {
         timer?.invalidate()
         timer = nil
-        morbidMeterTime = "Loading..."
     }
 
     func updateClock() {
         let clockTime = clockData.getClockTime()
         progressValue = clockTime.percentage
         morbidMeterTime = clockTime.time
+        if progressValue < 1.0 {
+            return
+        }
+        WKInterfaceDevice.current().play(.stop)
+        stopTimer()
     }
 
     func morbidMeterError(_ message: String, progressValue: Double = 0) {

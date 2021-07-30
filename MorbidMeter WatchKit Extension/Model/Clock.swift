@@ -69,6 +69,12 @@ struct Clock: Codable, Equatable {
         }
         return clockTime
     }
+
+    func getFormattedClockTime(formatter: Formatter, date: Date = Date()) -> String {
+        // TODO: need to round percentage DOWN (otherwise we get 0% for 99.9%).
+        return getClockTime(date: date).percentage < 1.0 ?
+            formatter.string(for: getClockTime(date: date).percentage)! : "💀"
+    }
 }
 
 struct ClockTime {

@@ -6,6 +6,7 @@
 //
 
 import WatchKit
+import ClockKit
 import os
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
@@ -16,12 +17,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         logger.debug("App State: \(WKExtension.shared().applicationState.rawValue)")
         for task in backgroundTasks {
             logger.debug("Task: \(task)")
-
             switch task {
             // Handle background refresh tasks.
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
+                reloadComplications()
                 scheduleBackgroundRefreshTasks()
-                backgroundTask.setTaskCompletedWithSnapshot(true)
+                backgroundTask.setTaskCompletedWithSnapshot(false)
+                logger.debug("MorbidMeter app background refresh scheduled")
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
@@ -42,13 +44,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 func scheduleBackgroundRefreshTasks() {
     print("scheduleBackgroundRefreshTasks()")
     let watchExtension = WKExtension.shared()
-    let targetDate = Date().addingTimeInterval(15.0 * 60.0)
+    let targetDate = Date().addingTimeInterval(TimeConstants.fifteenMinutes)
     watchExtension.scheduleBackgroundRefresh(withPreferredDate: targetDate, userInfo: nil, scheduledCompletion: { error in
         if let error = error {
             print("error in scheduling background tasks: \(error.localizedDescription)")
             return
         }
-        // TODO: do we need to update server complications here???  Do we need to do anything to the app in the background for real?
-        print("background refresh scheduled")
     })
+}
+
+func reloadComplications() {
+    let server = CLKComplicationServer.sharedInstance()
+    for complication in server.activeComplications ?? [] {
+        server.reloadTimeline(for: complication)
+    }
 }

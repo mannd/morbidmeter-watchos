@@ -22,14 +22,7 @@ class ClockData: ObservableObject {
             logger.debug("Clock was set.")
 
             // Update complications
-            let server = CLKComplicationServer.sharedInstance()
-            for complication in server.activeComplications ?? [] {
-                // FIXME: Temporarily inhibited
-                // Need to call this sparingly, only after clock really changes
-                // Consider checking to see if clock really has changed before reloading data and saving it.
-                server.reloadTimeline(for: complication)
-            }
-            // potentially save data, if not using user defaults
+            reloadComplications()
             self.save()
         }
     }

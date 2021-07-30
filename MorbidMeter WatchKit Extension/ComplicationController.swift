@@ -29,7 +29,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        return handler(Date().addingTimeInterval(60 * 30.0))
+        // Reloading time line every 2 hours.  Update time line every hour.
+//        return handler(Date().addingTimeInterval(60 * 60 * 2))
+        // TODO: change to longer time interval, this is just to debug
+        return handler(Date().addingTimeInterval(TimeConstants.oneHour))
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -55,26 +58,23 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         // Call the handler with the timeline entries after the given date
-        let fiveMinutes = 5.0 * 60.0
-//        let fifteenMinutes = 15.0 * 60.0
-        let thirtyMinutes = 30.0 * 60.0
-//        let twentyFourHours = 24.0 * 60.0 * 60.0
 
         // Create an array to hold the timeline entries.
         var entries = [CLKComplicationTimelineEntry]()
-
+        let updateTimeInterval = TimeConstants.fiveMinutes
         // Calculate the start and end dates.
-        var current = date.addingTimeInterval(fiveMinutes)
-        let endDate = date.addingTimeInterval(thirtyMinutes)
+        // Provide timeline updates every 5 minutes for an hour (and timeline is updated 4 times / hour).
+        var current = date.addingTimeInterval(updateTimeInterval)
+        let endDate = date.addingTimeInterval(TimeConstants.oneHour)
         while (current.compare(endDate) == .orderedAscending) && (entries.count < limit) {
             let template = getComplicationTemplate(for: complication, using: current)!
             let entry = CLKComplicationTimelineEntry(
                 date: current,
                 complicationTemplate: template)
             entries.append(entry)
-            print(entries)
-            current = current.addingTimeInterval(fiveMinutes)
+            current = current.addingTimeInterval(updateTimeInterval)
         }
+        print(entries)
         handler(entries)
     }
 

@@ -15,8 +15,6 @@ struct TimescaleConfigurationView: View {
     @State var timescaleTypeState: TimescaleType = TimescaleType.seconds
     @State var reverseTimeState: Bool = false
 
-//    @EnvironmentObject var clockData: ClockData
-
     var body: some View {
         VStack {
             Picker(selection: $timescaleTypeState, label: Text("Timescale"), content: {
