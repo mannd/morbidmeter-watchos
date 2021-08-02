@@ -14,6 +14,9 @@ class ClockData: ObservableObject {
     let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ClockData", category: "Model")
 
     static let shared = ClockData()
+    static let test = ClockData(clock: Clock(birthday: Date().addingTimeInterval(-60.0 * 60.0),
+                                             deathday: Date().addingTimeInterval(60.8 * 60.8),
+                                             reverseTime: false))
 
     private var background = DispatchQueue(label: "Background Queue", qos: .userInitiated)
 
@@ -36,6 +39,10 @@ class ClockData: ObservableObject {
     // Load and save model to disk
     private init() {
         load()
+    }
+
+    private init(clock: Clock) {
+        self.clock = clock
     }
     
     private func load() {

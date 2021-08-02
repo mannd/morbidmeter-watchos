@@ -16,6 +16,11 @@ struct Clock: Codable, Equatable {
 
     let uuid: UUID
 
+    static let fullName = "MorbidMeter"
+    static let shortName = "MM"
+    static let ultraShortName = "M"
+    static let skull = "💀"
+
     var timescale: Timescale {
         return Timescales.getInstance(timescaleType)
     }
@@ -36,7 +41,7 @@ struct Clock: Codable, Equatable {
         self.uuid = uuid
     }
 
-    func getClockTime(date: Date = Date()) -> ClockTime {
+    func 	getClockTime(date: Date = Date()) -> ClockTime {
         var clockTime = ClockTime()
         do {
             let now = date
@@ -52,7 +57,7 @@ struct Clock: Codable, Equatable {
                 print("getClockTime()", clockTime.percentage)
             }
         } catch LifespanError.birthdayInFuture {
-            clockTime.time = "Start After End"
+            clockTime.time = "Start in Future"
             clockTime.percentage = 0
         } catch LifespanError.excessLongevity {
             clockTime.time = "Time Period Too Long"
@@ -70,10 +75,15 @@ struct Clock: Codable, Equatable {
         return clockTime
     }
 
+    // TODO: distinguish clocktime from time: this returns string not ClockTime
     func getFormattedClockTime(formatter: Formatter, date: Date = Date()) -> String {
         // TODO: need to round percentage DOWN (otherwise we get 0% for 99.9%).
         return getClockTime(date: date).percentage < 1.0 ?
-            formatter.string(for: getClockTime(date: date).percentage)! : "💀"
+            formatter.string(for: getClockTime(date: date).percentage)! : Self.skull
+    }
+
+    func getShortClockTime(date: Date) -> String {
+        return "Not implemented"
     }
 }
 

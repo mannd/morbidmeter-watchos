@@ -133,7 +133,7 @@ class Timescales {
             }
             return errorMessage
         }),
-        .hour: Timescale(timescaleType: .year, getTime: { _, percentage, reverseTime in
+        .hour: Timescale(timescaleType: .hour, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
             }
@@ -171,10 +171,11 @@ class Timescales {
                 return errorMessage
             }
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd hh:mm:ss a"
+            formatter.dateFormat = "MMM dd h:mm:ss a"
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
+
             let adjustedTimeInterval = percentage * secsPerYear
-            let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
+            let date = Timescale.referenceDate.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date)
         }),
         // TODO: Trash Big Bang?

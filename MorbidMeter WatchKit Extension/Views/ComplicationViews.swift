@@ -27,18 +27,50 @@ struct ComplicationViewCircular: View {
 
     var body: some View {
         ZStack {
-            ProgressView(
-                clockData.clock.getFormattedClockTime(formatter: formatter, date: date),
-                value: clockData.getClockTime(date: date).percentage, total: 1.0 )
-                .progressViewStyle(CircularProgressViewStyle())
+            ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 ) {
+                Text(clockData.clock.getFormattedClockTime(formatter: formatter, date: date))
+                    .complicationForeground()
+            }
+            .progressViewStyle(CircularProgressViewStyle())
+        }
+    }
+}
+
+struct ComplicationViewRectangular: View {
+    @State var clockData = ClockData.shared
+    @State var date: Date = Date()
+
+    let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.roundingMode = .down
+        return formatter
+    }()
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(Clock.fullName)                .font(Font.custom("BlackChancery", size: 22))
+            Text("\(clockData.clock.getFormattedClockTime(formatter: formatter, date: date))")
+                .complicationForeground()
+            ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 )
+                .progressViewStyle(LinearProgressViewStyle(tint: .accentColor))
         }
     }
 }
 
 struct ComplicationViews_Previews: PreviewProvider {
+
     static var previews: some View {
-        CLKComplicationTemplateGraphicCircularView(
-            ComplicationViewCircular()
-        ).previewContext()
+        Group {
+            CLKComplicationTemplateGraphicCircularView(
+                ComplicationViewCircular(clockData: ClockData.test)
+            ).previewContext()
+            CLKComplicationTemplateGraphicCircularView(
+                ComplicationViewCircular(clockData: ClockData.test)
+            ).previewContext(faceColor: .blue)
+            CLKComplicationTemplateGraphicRectangularFullView(
+                ComplicationViewRectangular(clockData: ClockData.test)
+            ).previewContext(faceColor: .green)
+        }
     }
 }

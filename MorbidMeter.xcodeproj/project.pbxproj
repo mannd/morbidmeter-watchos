@@ -211,17 +211,17 @@
 		8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				8E39E6362670550B00AED406 /* MorbidMeterApp.swift */,
-				8E39E6402670550C00AED406 /* Assets.xcassets */,
 				8E39E6462670550C00AED406 /* PushNotificationPayload.apns */,
 				8E39E6452670550C00AED406 /* Info.plist */,
 				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
 				8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */,
+				8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */,
+				8E39E6362670550B00AED406 /* MorbidMeterApp.swift */,
 				8E39E63A2670550B00AED406 /* NotificationController.swift */,
 				8E39E63C2670550B00AED406 /* NotificationView.swift */,
-				8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */,
-				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
 				8E77A6B226B45AC000109B9E /* TimeConstants.swift */,
+				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
+				8E39E6402670550C00AED406 /* Assets.xcassets */,
 				8E17DC7E2681029C00FC3C5B /* Model */,
 				8E39E6422670550C00AED406 /* Preview Content */,
 				8EF6BAC226853E9E00800575 /* Views */,

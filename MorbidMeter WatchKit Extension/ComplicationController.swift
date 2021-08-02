@@ -15,7 +15,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         print("getComplicationDescriptors()")
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "morbidmeter_complication", displayName: "MorbidMeter", supportedFamilies: [CLKComplicationFamily.graphicCircular])
+            CLKComplicationDescriptor(identifier: "morbidmeter_complication", displayName: "MorbidMeter", supportedFamilies: CLKComplicationFamily.allCases)
         ]
         // Call the handler with the currently supported complication descriptors
         handler(descriptors)
@@ -72,9 +72,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 date: current,
                 complicationTemplate: template)
             entries.append(entry)
+            print(entry)
             current = current.addingTimeInterval(updateTimeInterval)
         }
-        print(entries)
         handler(entries)
     }
 
@@ -89,13 +89,26 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getComplicationTemplate(for complication: CLKComplication, using date: Date) -> CLKComplicationTemplate? {
         switch complication.family {
+        case .modularSmall:
+            return createModularSmallTemplate(forDate: date)
         case .graphicCircular:
             return CLKComplicationTemplateGraphicCircularView(ComplicationViewCircular(date: date))
+        case .graphicRectangular:
+            return CLKComplicationTemplateGraphicRectangularFullView(ComplicationViewRectangular(date: date))
         default:
             return nil
         }
     }
 
-    // func createTimelineEntry(forComplication: CLKComplication, date: Date) {}
-
+    func createModularSmallTemplate(forDate date: Date) -> CLKComplicationTemplate {
+        let formatter: NumberFormatter = {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .percent
+            formatter.roundingMode = .down
+            return formatter
+        }()
+        let labelProvider = CLKSimpleTextProvider(text: Clock.shortName, shortText: Clock.skull)
+        let percentProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getFormattedClockTime(formatter: formatter, date: date))
+        return CLKComplicationTemplateModularSmallStackText(line1TextProvider: labelProvider, line2TextProvider: percentProvider)
+    }
 }

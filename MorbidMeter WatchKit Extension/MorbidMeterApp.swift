@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct MorbidMeterApp: App {
+    static let appName = "MorbidMeter"
 
     @WKExtensionDelegateAdaptor private var appDelegate: ExtensionDelegate
     @StateObject var clockData = ClockData.shared

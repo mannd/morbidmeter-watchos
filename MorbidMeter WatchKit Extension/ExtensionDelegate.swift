@@ -20,7 +20,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             // Handle background refresh tasks.
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                reloadComplications()
+                extendComplications()
                 scheduleBackgroundRefreshTasks()
                 backgroundTask.setTaskCompletedWithSnapshot(false)
                 logger.debug("MorbidMeter app background refresh scheduled")
@@ -57,5 +57,12 @@ func reloadComplications() {
     let server = CLKComplicationServer.sharedInstance()
     for complication in server.activeComplications ?? [] {
         server.reloadTimeline(for: complication)
+    }
+}
+
+func extendComplications() {
+    let server = CLKComplicationServer.sharedInstance()
+    for complication in server.activeComplications ?? [] {
+        server.extendTimeline(for: complication)
     }
 }

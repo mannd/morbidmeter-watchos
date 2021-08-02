@@ -24,7 +24,7 @@ struct MorbidMeterView: View {
 
     var body: some View {
         VStack {
-            Text("Morbid Meter")
+            Text(Clock.fullName)
                 .font(Font.custom("BlackChancery", size: 22))
             NavigationLink(destination: ConfigurationView(), label: {
                 Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
