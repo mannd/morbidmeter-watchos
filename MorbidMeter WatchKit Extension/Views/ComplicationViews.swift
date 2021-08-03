@@ -18,20 +18,71 @@ struct ComplicationViewCircular: View {
     @State var clockData = ClockData.shared
     @State var date: Date = Date()
 
-    let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.roundingMode = .down
-        return formatter
-    }()
-
     var body: some View {
         ZStack {
             ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 ) {
-                Text(clockData.clock.getFormattedClockTime(formatter: formatter, date: date))
+                Text(clockData.clock.getShortFormattedPercentage(date: date))
                     .complicationForeground()
             }
             .progressViewStyle(CircularProgressViewStyle())
+        }
+    }
+}
+
+struct ComplicationViewExtraLargeCircular: View {
+    @State var clockData = ClockData.shared
+    @State var date: Date = Date()
+
+    var body: some View {
+        ZStack(alignment: .center) {
+            Circle()
+                .foregroundColor(.blue)
+            VStack {
+                Text("MM\n" + clockData.clock.getShortTime(date: date))
+                    .complicationForeground()
+                    .font(.headline)
+                    .minimumScaleFactor(0.4)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 )
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .complicationForeground()
+            }
+        }
+    }
+}
+
+struct ComplicationViewCornerCircular: View {
+    @State var clockData = ClockData.shared
+    @State var date: Date = Date()
+
+    @Environment(\.complicationRenderingMode) var renderingMode
+
+    var body: some View {
+        ZStack {
+            switch renderingMode {
+            case .fullColor:
+              Circle()
+                .fill(Color.white)
+            case .tinted:
+              Circle()
+                .fill(
+                  RadialGradient(
+                    gradient: Gradient(colors: [.clear, .white]),
+                    center: .center,
+                    startRadius: 10,
+                    endRadius: 15))
+            @unknown default:
+              Circle()
+                .fill(Color.white)
+            }
+            // TODO: tinted view can't see text
+            Text(clockData.clock.getShortFormattedPercentage(date: date))
+                .foregroundColor(.black)
+                .complicationForeground()
+            Circle()
+                .stroke(Color.yellow, lineWidth: 5.0)
+                .complicationForeground()
         }
     }
 }
@@ -40,26 +91,20 @@ struct ComplicationViewRectangular: View {
     @State var clockData = ClockData.shared
     @State var date: Date = Date()
 
-    let formatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.roundingMode = .down
-        return formatter
-    }()
-
     var body: some View {
         VStack(alignment: .leading) {
-            Text(Clock.fullName)                .font(Font.custom("BlackChancery", size: 22))
-            Text("\(clockData.clock.getFormattedClockTime(formatter: formatter, date: date))")
+            Text(Clock.fullName)
+            Text("\(clockData.clock.getShortTime(date: date))")
+                // fixedSize allows multiline text without truncation
+                .fixedSize(horizontal: false, vertical: true)
                 .complicationForeground()
             ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 )
-                .progressViewStyle(LinearProgressViewStyle(tint: .accentColor))
+                .progressViewStyle(LinearProgressViewStyle())
         }
     }
 }
 
 struct ComplicationViews_Previews: PreviewProvider {
-
     static var previews: some View {
         Group {
             CLKComplicationTemplateGraphicCircularView(
@@ -70,7 +115,19 @@ struct ComplicationViews_Previews: PreviewProvider {
             ).previewContext(faceColor: .blue)
             CLKComplicationTemplateGraphicRectangularFullView(
                 ComplicationViewRectangular(clockData: ClockData.test)
-            ).previewContext(faceColor: .green)
+            ).previewContext()
+            CLKComplicationTemplateGraphicRectangularFullView(
+                ComplicationViewRectangular(clockData: ClockData.test)
+            ).previewContext(faceColor: .blue)
+            CLKComplicationTemplateGraphicCornerCircularView(ComplicationViewCornerCircular(clockData: ClockData.test)
+            ).previewContext()
+            CLKComplicationTemplateGraphicCornerCircularView(ComplicationViewCornerCircular(clockData: ClockData.test)
+            ).previewContext(faceColor: .orange)
+            CLKComplicationTemplateGraphicExtraLargeCircularView(ComplicationViewExtraLargeCircular(clockData: ClockData.test)
+            ).previewContext()
+            CLKComplicationTemplateGraphicExtraLargeCircularView(ComplicationViewExtraLargeCircular(clockData: ClockData.test)
+            ).previewContext(faceColor: .red)
         }
     }
 }
+//

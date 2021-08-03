@@ -63,16 +63,12 @@ struct TimeConfigurationView: View {
 struct TimeConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            //            TimeConfigurationView(date: .constant(Date()))
-            //                .previewDevice("Apple Watch Series 3 - 38mm")
             TimeConfigurationView(selectedHourIndex: .constant(0), selectedMinuteIndex: .constant(0), selectedSecondIndex: .constant(0))
                 .previewDevice("Apple Watch Series 6 - 40mm")
-                .environmentObject(ClockData.shared)
-
+            TimeConfigurationView(selectedHourIndex: .constant(0), selectedMinuteIndex: .constant(0), selectedSecondIndex: .constant(0))
+                .previewDevice("Apple Watch Series 3 - 38mm")
             TimeConfigurationView(selectedHourIndex: .constant(23), selectedMinuteIndex: .constant(59), selectedSecondIndex: .constant(59))
                 .previewDevice("Apple Watch Series 6 - 44mm")
-                .environmentObject(ClockData.shared)
-
         }
     }
 }

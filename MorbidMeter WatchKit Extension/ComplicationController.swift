@@ -90,25 +90,102 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getComplicationTemplate(for complication: CLKComplication, using date: Date) -> CLKComplicationTemplate? {
         switch complication.family {
         case .modularSmall:
-            return createModularSmallTemplate(forDate: date)
+            return createTemplateModularSmall(forDate: date)
+        case .modularLarge:
+            return createTemplateModularLarge(forDate: date)
+        case .utilitarianSmall, .utilitarianSmallFlat:
+            return createUtilitarianSmallFlatTemplate(forDate: date)
+        case .utilitarianLarge:
+            return createTemplateUtilitarianLargeFlat(forDate: date)
+        case .circularSmall:
+            return createCircularSmallTemplate(forDate: date)
+        case .extraLarge:
+            return createExtraLargeTemplate(forDate: date)
+        case .graphicCorner:
+            return CLKComplicationTemplateGraphicCornerCircularView(ComplicationViewCornerCircular(date: date))
+        case .graphicBezel:
+            return createGraphicBezelTemplate(forDate: date)
         case .graphicCircular:
             return CLKComplicationTemplateGraphicCircularView(ComplicationViewCircular(date: date))
         case .graphicRectangular:
             return CLKComplicationTemplateGraphicRectangularFullView(ComplicationViewRectangular(date: date))
-        default:
+        case .graphicExtraLarge:
+            return CLKComplicationTemplateGraphicExtraLargeCircularView(ComplicationViewExtraLargeCircular(date: date))
+        @unknown default:
             return nil
         }
     }
 
-    func createModularSmallTemplate(forDate date: Date) -> CLKComplicationTemplate {
-        let formatter: NumberFormatter = {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .percent
-            formatter.roundingMode = .down
-            return formatter
-        }()
+    private func createTemplateModularSmall(forDate date: Date) -> CLKComplicationTemplate {
         let labelProvider = CLKSimpleTextProvider(text: Clock.shortName, shortText: Clock.skull)
-        let percentProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getFormattedClockTime(formatter: formatter, date: date))
+        let percentProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getShortFormattedPercentage(date: date))
         return CLKComplicationTemplateModularSmallStackText(line1TextProvider: labelProvider, line2TextProvider: percentProvider)
+    }
+
+    private func createTemplateModularLarge(forDate date: Date) -> CLKComplicationTemplate {
+        let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "Complication/Modular")!)
+        let headerProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
+        let body1Provider = CLKSimpleTextProvider(text: ClockData.shared.clock.getShortFormattedPercentage(date: date))
+        let body2Provider = CLKSimpleTextProvider(text: "test")
+        return CLKComplicationTemplateModularLargeStandardBody(headerImageProvider: imageProvider,
+                                                               headerTextProvider: headerProvider,
+                                                               body1TextProvider: body1Provider,
+                                                               body2TextProvider: body2Provider)
+    }
+
+    private func createTemplateUtilitarianLargeFlat(forDate date: Date) -> CLKComplicationTemplate {
+        let textProvider = CLKSimpleTextProvider(text: "\(Clock.fullName) \(ClockData.shared.clock.getShortFormattedPercentage(date: date))")
+        let complication = CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
+        return complication
+    }
+
+    private func createCircularSmallTemplate(forDate date: Date) -> CLKComplicationTemplate {
+        let appNameProvider = CLKSimpleTextProvider(text: Clock.shortName, shortText: Clock.ultraShortName)
+        let percentageProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getShortFormattedPercentage(date: date))
+        return CLKComplicationTemplateCircularSmallStackText(line1TextProvider: appNameProvider, line2TextProvider: percentageProvider)
+    }
+
+    // Return a utilitarian small flat template.
+    private func createUtilitarianSmallFlatTemplate(forDate date: Date) -> CLKComplicationTemplate {
+        // Create the data providers.
+        let flatUtilitarianImageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "skull_button_2"))
+        let appNameProvider = CLKSimpleTextProvider(text: Clock.shortName, shortText: Clock.ultraShortName)
+        let percentageProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getShortFormattedPercentage(date: date))
+        let combinedMGProvider = CLKTextProvider(format: "%@ %@", appNameProvider, percentageProvider)
+
+        // Create the template using the providers.
+        return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: combinedMGProvider,
+                                                           imageProvider: flatUtilitarianImageProvider)
+    }
+
+    // Return an extra large template.
+    private func createExtraLargeTemplate(forDate date: Date) -> CLKComplicationTemplate {
+        // Create the data providers.
+        let percentageProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getShortFormattedPercentage(date: date))
+        let appNameProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
+
+        // Create the template using the providers.
+        return CLKComplicationTemplateExtraLargeStackText(line1TextProvider: appNameProvider,
+                                                          line2TextProvider: percentageProvider)
+    }
+
+    // Return a circular template with text that wraps around the top of the watch's bezel.
+    private func createGraphicBezelTemplate(forDate date: Date) -> CLKComplicationTemplate {
+
+        // Create a graphic circular template with an image provider.
+        let circle = CLKComplicationTemplateGraphicCircularImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!))
+
+        // Create the text provider.
+        let mgCaffeineProvider = CLKSimpleTextProvider(text: ClockData.shared.clock.getShortTime(date: date))
+        let mgUnitProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
+        let combinedMGProvider = CLKTextProvider(format: "%@ %@", mgUnitProvider, mgCaffeineProvider)
+
+
+        let textProvider = CLKTextProvider(format: "%@",
+                                           combinedMGProvider)
+
+        // Create the bezel template using the circle template and the text provider.
+        return CLKComplicationTemplateGraphicBezelCircularText(circularTemplate: circle,
+                                                               textProvider: textProvider)
     }
 }

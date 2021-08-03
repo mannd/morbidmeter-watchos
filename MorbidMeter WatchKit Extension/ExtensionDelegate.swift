@@ -56,10 +56,12 @@ func scheduleBackgroundRefreshTasks() {
 func reloadComplications() {
     let server = CLKComplicationServer.sharedInstance()
     for complication in server.activeComplications ?? [] {
+        print("complication family", complication.description)
         server.reloadTimeline(for: complication)
     }
 }
 
+// FIXME: Determine if extendComplications works in background, as opposed to reloadComplications.
 func extendComplications() {
     let server = CLKComplicationServer.sharedInstance()
     for complication in server.activeComplications ?? [] {

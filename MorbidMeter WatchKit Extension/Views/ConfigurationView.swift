@@ -19,6 +19,7 @@ struct ConfigurationView: View {
     @EnvironmentObject var clockData: ClockData
 
     var body: some View {
+        ScrollView {
         VStack {
             NavigationLink(destination: TimescaleConfigurationView(timescaleType: $clockData.clock.timescaleType, reverseTime: $clockData.clock.reverseTime), label: {
                             Text("\(clockData.clock.timescaleType.fullDescription(reverseTime: clockData.clock.reverseTime))") })
@@ -26,7 +27,13 @@ struct ConfigurationView: View {
                             Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
             NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
                             Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
+            NavigationLink(
+                destination: SecretsView(),
+                label: {
+                    Text("Secrets")
+                })
         }
+    }
     }
 }
 

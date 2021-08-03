@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E17DC7F268102FB00FC3C5B /* Timescale.swift */; };
+		8E289D6026B77FA800E70899 /* SecretsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E289D5F26B77FA800E70899 /* SecretsView.swift */; };
 		8E39E6262670550A00AED406 /* MorbidMeter WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E62A2670550B00AED406 /* Assets.xcassets */; };
 		8E39E6322670550B00AED406 /* MorbidMeter WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8E39E6312670550B00AED406 /* MorbidMeter WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -98,6 +99,7 @@
 
 /* Begin PBXFileReference section */
 		8E17DC7F268102FB00FC3C5B /* Timescale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescale.swift; sourceTree = "<group>"; };
+		8E289D5F26B77FA800E70899 /* SecretsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsView.swift; sourceTree = "<group>"; };
 		8E39E6212670550900AED406 /* MorbidMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorbidMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MorbidMeter WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E62A2670550B00AED406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				8EFF8DE6269CAF36002453A0 /* TimeConfigurationView.swift */,
 				8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */,
 				8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */,
+				8E289D5F26B77FA800E70899 /* SecretsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				8E39E63B2670550B00AED406 /* NotificationController.swift in Sources */,
 				8E8AB1AC26A9D03600F14E99 /* MorbidMeterView.swift in Sources */,
 				8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */,
+				8E289D6026B77FA800E70899 /* SecretsView.swift in Sources */,
 				8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */,
 				8E69FCFA26A11506008BF083 /* ClockData.swift in Sources */,
 				8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */,

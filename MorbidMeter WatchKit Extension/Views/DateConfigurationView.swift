@@ -25,7 +25,7 @@ struct DateConfigurationView: View {
     var body: some View {
             GeometryReader { geometry in
                 VStack {
-                    Text("Date").font(Font.system(size: 12))
+                    Text("Date").font(Font.system(size: 13))
                     HStack {
                         Picker("Year", selection: $selectedYearIndex) {
                             ForEach(0..<200) { year in

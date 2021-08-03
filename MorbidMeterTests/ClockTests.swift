@@ -28,4 +28,12 @@ class ClockTests: XCTestCase {
         let clock1 = Clock(timescaleType: .seconds, birthday: clock.birthday.addingTimeInterval(60), deathday: clock.deathday, reverseTime: false)
         XCTAssertNotEqual(clock.birthday.description, clock1.birthday.description)
     }
+
+    func testGetShortTime() {
+        var clock = ClockData.test.clock
+        clock.timescaleType = .seconds
+        print(clock.getClockTime(date: Date()))
+        XCTAssertEqual(clock.getClockTime(date: Date()).time, "3,600\nsecs passed")
+        XCTAssertEqual(clock.getShortTime(date: Date()), "3,600 secs passed")
+    }
 }

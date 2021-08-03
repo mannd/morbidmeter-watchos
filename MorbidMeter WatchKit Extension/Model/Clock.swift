@@ -41,18 +41,17 @@ struct Clock: Codable, Equatable {
         self.uuid = uuid
     }
 
-    func 	getClockTime(date: Date = Date()) -> ClockTime {
+    func getClockTime(date: Date = Date()) -> ClockTime {
         var clockTime = ClockTime()
         do {
-            let now = date
             let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
-            clockTime.percentage = try lifespan.percentage(date: now, reverse: reverseTime)
+            clockTime.percentage = try lifespan.percentage(date: date, reverse: reverseTime)
             if let getTime = timescale.getTime {
                 if timescale.timescaleType == .daysHoursMinsSecs
                     || timescale.timescaleType == .yearsMonthsDays {
-                    clockTime.time = getTime(now, reverseTime ? deathday : birthday, reverseTime)
+                    clockTime.time = getTime(date, reverseTime ? deathday : birthday, reverseTime)
                 } else {
-                    clockTime.time = (getTime(lifespan.timeInterval(date: now, reverseTime: reverseTime), clockTime.percentage, reverseTime) )
+                    clockTime.time = (getTime(lifespan.timeInterval(date: date, reverseTime: reverseTime), clockTime.percentage, reverseTime) )
                 }
                 print("getClockTime()", clockTime.percentage)
             }
@@ -82,8 +81,32 @@ struct Clock: Codable, Equatable {
             formatter.string(for: getClockTime(date: date).percentage)! : Self.skull
     }
 
-    func getShortClockTime(date: Date) -> String {
-        return "Not implemented"
+    func getShortFormattedPercentage(date: Date) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.roundingMode = .down
+        return getClockTime(date: date).percentage < 1.0 ?
+            formatter.string(for: getClockTime(date: date).percentage)! : Self.skull
+    }
+
+    /// Get time string, but replace cr with space
+    /// - Parameter date: Date to calculate ClockTime from
+    /// - Returns: Modified time string
+    func getShortTime(date: Date) -> String {
+        let time = getClockTime(date: date).time
+        let shortTime = String(time.map {
+            $0 == "\n" ? " " : $0
+        })
+        return shortTime
+    }
+
+    func getTimeAndUnits(date: Date) -> [String.SubSequence]? {
+        let time = getClockTime(date: date).time
+        let components = time.split(separator: "\n")
+        if components.count == 2 {
+            return components
+        }
+        return nil
     }
 }
 

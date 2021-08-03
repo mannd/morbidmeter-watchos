@@ -33,14 +33,16 @@ class Timescales {
 
     static func getFormattedTime(result: String,
                                  units: String? = nil,
-                                 reverseTime: Bool) -> String {
+                                 reverseTime: Bool,
+                                 separator: String = cr) -> String {
         var finalUnits = reverseTime ? "to go" : "passed"
         if let units = units {
             finalUnits = [units, finalUnits].joined(separator: space)
         }
-        return [result, finalUnits].joined(separator: cr)
+        return [result, finalUnits].joined(separator: separator)
     }
 
+    // TODO: formatting should be left to callers, because different formats for main app and complications.
     static let timescales: [TimescaleType: Timescale] = [
         .seconds: Timescale(timescaleType: .seconds, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
@@ -193,9 +195,7 @@ class Timescales {
             guard let percentage = percentage as? Double else { return errorMessage }
             let formatter = NumberFormatter()
             formatter.numberStyle = .percent
-            formatter.usesSignificantDigits = true
-            formatter.minimumSignificantDigits = 4
-            formatter.maximumSignificantDigits = 6
+            formatter.maximumFractionDigits = 2
             guard let result = formatter.string(from: NSNumber(value: percentage)) else {
                 return errorMessage
             }
@@ -219,7 +219,6 @@ class Timescales {
         }
         return result
     }
-
 }
 
 enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identifiable {
