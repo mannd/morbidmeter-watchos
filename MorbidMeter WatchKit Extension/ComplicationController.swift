@@ -82,7 +82,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
-        handler(nil)
+        // Sample templates will always show 0%.
+        let date = ClockData.shared.clock.birthday
+        let template = getComplicationTemplate(for: complication, using: date)
+        handler(template)
     }
 
     // MARK: - Helper
