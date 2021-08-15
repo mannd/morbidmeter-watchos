@@ -28,7 +28,8 @@ struct MorbidMeterView: View {
                 .font(Font.custom("BlackChancery", size: 22))
             NavigationLink(destination: ConfigurationView(), label: {
                 Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-            }).buttonStyle(PlainButtonStyle())
+            })
+            .buttonStyle(PlainButtonStyle())
             Text(morbidMeterTime)
                 .font(Font.system(size: 14.0))
                 .multilineTextAlignment(.center)
