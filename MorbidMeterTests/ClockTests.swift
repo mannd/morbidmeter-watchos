@@ -32,8 +32,8 @@ class ClockTests: XCTestCase {
     func testGetShortTime() {
         var clock = ClockData.test.clock
         clock.timescaleType = .seconds
-        print(clock.getClockTime(date: Date()))
-        XCTAssertEqual(clock.getClockTime(date: Date()).time, "3,600\nsecs passed")
-        XCTAssertEqual(clock.getShortTime(date: Date()), "3,600 secs passed")
+        print(clock.getMoment(date: Date()))
+        XCTAssertEqual(clock.getMoment(date: Date()).time, "3,600\nsecs passed")
+        XCTAssertEqual(clock.getUnwrappedMomentTime(date: Date()), "3,600 secs passed")
     }
 }

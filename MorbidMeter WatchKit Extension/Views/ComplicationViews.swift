@@ -20,8 +20,8 @@ struct ComplicationViewCircular: View {
 
     var body: some View {
         ZStack {
-            ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 ) {
-                Text(clockData.clock.getShortFormattedPercentage(date: date))
+            ProgressView(value: clockData.getMoment(date: date).percentage, total: 1.0 ) {
+                Text(clockData.clock.getShortFormattedMomentPercentage(date: date))
                     .complicationForeground()
             }
             .progressViewStyle(CircularProgressViewStyle())
@@ -38,13 +38,13 @@ struct ComplicationViewExtraLargeCircular: View {
             Circle()
                 .foregroundColor(.blue)
             VStack {
-                Text("MM\n" + clockData.clock.getShortTime(date: date))
+                Text("MM\n" + clockData.clock.getUnwrappedMomentTime(date: date))
                     .complicationForeground()
                     .font(.headline)
                     .minimumScaleFactor(0.4)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
-                ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 )
+                ProgressView(value: clockData.getMoment(date: date).percentage, total: 1.0 )
                     .progressViewStyle(CircularProgressViewStyle())
                     .complicationForeground()
             }
@@ -77,7 +77,7 @@ struct ComplicationViewCornerCircular: View {
                 .fill(Color.white)
             }
             // TODO: tinted view can't see text
-            Text(clockData.clock.getShortFormattedPercentage(date: date))
+            Text(clockData.clock.getShortFormattedMomentPercentage(date: date))
                 .foregroundColor(.black)
                 .complicationForeground()
             Circle()
@@ -94,11 +94,11 @@ struct ComplicationViewRectangular: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(Clock.fullName)
-            Text("\(clockData.clock.getShortTime(date: date))")
+            Text("\(clockData.clock.getUnwrappedMomentTime(date: date))")
                 // fixedSize allows multiline text without truncation
                 .fixedSize(horizontal: false, vertical: true)
                 .complicationForeground()
-            ProgressView(value: clockData.getClockTime(date: date).percentage, total: 1.0 )
+            ProgressView(value: clockData.getMoment(date: date).percentage, total: 1.0 )
                 .progressViewStyle(LinearProgressViewStyle())
         }
     }

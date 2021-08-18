@@ -7,9 +7,8 @@
 
 import Foundation
 
+/// A Lifespan contains a birthday and deathday, and can determine time intervals and percentages of the Lifespan from a specific Date.
 struct Lifespan {
-    static let oneYear = 365 * 60 * 60 * 24.0
-
     private let dateInterval: DateInterval
 
     var birthday: Date { dateInterval.start }
@@ -23,7 +22,7 @@ struct Lifespan {
     func longevity() throws -> TimeInterval {
         let duration = dateInterval.duration
         guard duration > 0 else { throw LifespanError.lifespanIsZero }
-        guard duration / Self.oneYear < 120 else { throw LifespanError.excessLongevity }
+        guard duration / TimeConstants.oneYear < 120 else { throw LifespanError.excessLongevity }
         return duration
     }
 

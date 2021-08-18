@@ -23,7 +23,6 @@ class Timescales {
     static let timescaleBlank = Timescale(timescaleType: .blank, getTime: { _, _, _ in
         return "" })
 
-    // TODO: get rid of getTime()
     static func getTime(result: String,
                         reverseTime: Bool,
                         forwardMessage: String = "passed",

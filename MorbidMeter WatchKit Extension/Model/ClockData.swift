@@ -10,6 +10,7 @@ import Combine
 import ClockKit
 import os
 
+/// ClockData is the data source for the app, backed by a file in the sandboxed user document directory, i.e. essentially a singleton.
 class ClockData: ObservableObject {
     let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ClockData", category: "Model")
 
@@ -30,8 +31,8 @@ class ClockData: ObservableObject {
         }
     }
 
-    public func getClockTime(date: Date = Date()) -> ClockTime {
-        return clock.getClockTime(date: date)
+    public func getMoment(date: Date = Date()) -> Moment {
+        return clock.getMoment(date: date)
     }
 
     private var savedClock = Clock()

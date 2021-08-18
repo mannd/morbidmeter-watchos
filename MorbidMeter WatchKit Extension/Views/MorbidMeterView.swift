@@ -68,9 +68,9 @@ struct MorbidMeterView: View {
     }
 
     func updateClock() {
-        let clockTime = clockData.getClockTime()
-        progressValue = clockTime.percentage
-        morbidMeterTime = clockTime.time
+        let moment = clockData.getMoment()
+        progressValue = moment.percentage
+        morbidMeterTime = moment.time
         if progressValue < 1.0 {
             return
         }
