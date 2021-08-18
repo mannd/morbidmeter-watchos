@@ -20,7 +20,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             // Handle background refresh tasks.
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                extendComplications()
+                // TODO: reload or extend?
+                reloadComplications()
                 scheduleBackgroundRefreshTasks()
                 backgroundTask.setTaskCompletedWithSnapshot(false)
                 logger.debug("MorbidMeter app background refresh scheduled")
