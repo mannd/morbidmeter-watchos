@@ -111,6 +111,38 @@ struct Clock: Codable, Equatable {
         }
         return nil
     }
+
+    func shortenedTimeString(_ time: String) -> String {
+        let components = time.split(separator: " ")
+        var shortUnits = ""
+        if components.count >= 2 {
+            switch components[1] {
+            case "years":
+                shortUnits = "y"
+            case "months":
+                shortUnits = "m"
+            case "weeks":
+                shortUnits = "w"
+            case "days":
+                shortUnits = "d"
+            case "hours":
+                shortUnits = "h"
+            case "mins", "minutes":
+                shortUnits = "min"
+            case "secs", "seconds":
+                shortUnits = "s"
+            default:
+                return time
+            }
+            return [String(components[0]), shortUnits].joined(separator: " ")
+        }
+        return time
+    }
+
+    func getMomentTimeShortUnits(date: Date) -> String {
+        let time = getUnwrappedMomentTime(date: date)
+        return shortenedTimeString(time)
+    }
 }
 
 /// A moment of MorbidMeter time, containing elapsed percentage of time and a time string.

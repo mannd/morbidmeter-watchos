@@ -33,6 +33,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return handler(Date().addingTimeInterval(TimeConstants.oneHour))
         // Don't bother return a timeline if we are beyond deathday
         // if Date().addintTimeInterval(.oneHour) > clockData.shared.clock.deathday { return handler(nil) }
+        // or
+        // return handler(MIN(Date().addingTimeInterval(TimeConstants.oneHour), data.clock.deathday)
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -79,7 +81,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
         // Sample templates will always show 0%.
-        let date = ClockData.shared.clock.birthday
+        let date = data.clock.reverseTime ? data.clock.deathday : data.clock.birthday
         let template = getComplicationTemplate(for: complication, using: date)
         handler(template)
     }
@@ -101,7 +103,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         case .extraLarge:
             return createExtraLargeTemplate(date: date)
         case .graphicCorner:
-            return CLKComplicationTemplateGraphicCornerCircularView(ComplicationViewCornerCircular(date: date))
+            return createTemplateGraphicCorner(date: date)
         case .graphicBezel:
             return createGraphicBezelTemplate(date: date)
         case .graphicCircular:
@@ -124,8 +126,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     private func createTemplateModularLarge(date: Date) -> CLKComplicationTemplate {
         let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "Complication/Modular")!)
         let headerProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
-        let body1Provider = CLKSimpleTextProvider(text: data.clock.getUnwrappedMomentTime(date: date))
-        let body2Provider = CLKSimpleTextProvider(text: data.clock.getShortFormattedMomentPercentage(date: date))
+        let body1Provider = CLKSimpleTextProvider(text: data.clock.getUnwrappedMomentTime(date: date), shortText: data.clock.getMomentTimeShortUnits(date: date))
+        let body2Provider = CLKSimpleTextProvider(text: "Percent: \(data.clock.getShortFormattedMomentPercentage(date: date))")
         return CLKComplicationTemplateModularLargeStandardBody(headerImageProvider: imageProvider,
                                                                headerTextProvider: headerProvider,
                                                                body1TextProvider: body1Provider,
@@ -138,6 +140,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         return complication
     }
 
+    private func createTemplateGraphicCorner(date: Date) -> CLKComplicationTemplate {
+        let percentage = data.clock.getMoment().percentage
+        let gaugeColorLocations = data.clock.reverseTime ? [0.1, 0.3, 1.0] : [0.0, 0.7, 0.9] as [NSNumber]
+        let gaugeColors: [UIColor] = data.clock.reverseTime ? [.red, .yellow, .green] : [.green, .yellow, .red]
+        let gaugeProvider = CLKSimpleGaugeProvider(style: .fill,
+                                                   gaugeColors: gaugeColors,
+                                                   gaugeColorLocations: gaugeColorLocations,
+                                                   fillFraction: Float(percentage))
+        let outerTextProvider = percentage < 1.0 ? CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName) : CLKSimpleTextProvider(text: Clock.skull)
+        return CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider, leadingTextProvider: nil, trailingTextProvider: nil, outerTextProvider: outerTextProvider)
+    }
+
     private func createCircularSmallTemplate(date: Date) -> CLKComplicationTemplate {
         let appNameProvider = CLKSimpleTextProvider(text: Clock.shortName, shortText: Clock.ultraShortName)
         let percentageProvider = CLKSimpleTextProvider(text: data.clock.getShortFormattedMomentPercentage(date: date))
@@ -147,21 +161,19 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     // Return a utilitarian small flat template.
     private func createUtilitarianSmallFlatTemplate(date: Date) -> CLKComplicationTemplate {
         // Create the data providers.
-        let flatUtilitarianImageProvider = CLKImageProvider(onePieceImage: #imageLiteral(resourceName: "skull_button_2"))
         let appNameProvider = CLKSimpleTextProvider(text: Clock.shortName, shortText: Clock.ultraShortName)
         let percentageProvider = CLKSimpleTextProvider(text: data.clock.getShortFormattedMomentPercentage(date: date))
         let textProvider = CLKTextProvider(format: "%@ %@", appNameProvider, percentageProvider)
 
         // Create the template using the providers.
-        return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider,
-                                                           imageProvider: flatUtilitarianImageProvider)
+        return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider)
     }
 
     // Return an extra large template.
     private func createExtraLargeTemplate(date: Date) -> CLKComplicationTemplate {
         // Create the data providers.
-        let percentageProvider = CLKSimpleTextProvider(text: data.clock.getShortFormattedMomentPercentage(date: date))
         let appNameProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
+        let percentageProvider = CLKSimpleTextProvider(text: data.clock.getShortFormattedMomentPercentage(date: date))
 
         // Create the template using the providers.
         return CLKComplicationTemplateExtraLargeStackText(line1TextProvider: appNameProvider,

@@ -38,51 +38,21 @@ struct ComplicationViewExtraLargeCircular: View {
             Circle()
                 .foregroundColor(.blue)
             VStack {
-                Text("MM\n" + clockData.clock.getUnwrappedMomentTime(date: date))
+                Text(Clock.shortName + "\n" + clockData.clock.getUnwrappedMomentTime(date: date))
                     .complicationForeground()
                     .font(.headline)
                     .minimumScaleFactor(0.4)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
-                ProgressView(value: clockData.getMoment(date: date).percentage, total: 1.0 )
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .complicationForeground()
+                ZStack {
+                    ProgressView(value: clockData.getMoment(date: date).percentage, total: 1.0 )
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .complicationForeground()
+                    Text(clockData.clock.getShortFormattedMomentPercentage(date: date))
+                        .font(Font.caption)
+                        .complicationForeground()
+                }
             }
-        }
-    }
-}
-
-struct ComplicationViewCornerCircular: View {
-    @State var clockData = ClockData.shared
-    @State var date: Date = Date()
-
-    @Environment(\.complicationRenderingMode) var renderingMode
-
-    var body: some View {
-        ZStack {
-            switch renderingMode {
-            case .fullColor:
-              Circle()
-                .fill(Color.white)
-            case .tinted:
-              Circle()
-                .fill(
-                  RadialGradient(
-                    gradient: Gradient(colors: [.clear, .white]),
-                    center: .center,
-                    startRadius: 10,
-                    endRadius: 15))
-            @unknown default:
-              Circle()
-                .fill(Color.white)
-            }
-            // TODO: tinted view can't see text
-            Text(clockData.clock.getShortFormattedMomentPercentage(date: date))
-                .foregroundColor(.black)
-                .complicationForeground()
-            Circle()
-                .stroke(Color.yellow, lineWidth: 5.0)
-                .complicationForeground()
         }
     }
 }
@@ -119,10 +89,6 @@ struct ComplicationViews_Previews: PreviewProvider {
             CLKComplicationTemplateGraphicRectangularFullView(
                 ComplicationViewRectangular(clockData: ClockData.test)
             ).previewContext(faceColor: .blue)
-            CLKComplicationTemplateGraphicCornerCircularView(ComplicationViewCornerCircular(clockData: ClockData.test)
-            ).previewContext()
-            CLKComplicationTemplateGraphicCornerCircularView(ComplicationViewCornerCircular(clockData: ClockData.test)
-            ).previewContext(faceColor: .orange)
             CLKComplicationTemplateGraphicExtraLargeCircularView(ComplicationViewExtraLargeCircular(clockData: ClockData.test)
             ).previewContext()
             CLKComplicationTemplateGraphicExtraLargeCircularView(ComplicationViewExtraLargeCircular(clockData: ClockData.test)
