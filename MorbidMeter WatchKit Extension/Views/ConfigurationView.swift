@@ -9,34 +9,37 @@ import SwiftUI
 
 struct ConfigurationView: View {
     static let dateFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateStyle = .short
-            return formatter
-        }()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
     static let reverseTimeSymbol = "-R"
     static let forwardTimeSymbol = ""
 
-    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleType
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
+    @EnvironmentObject var clockData: ClockData
 
     var body: some View {
+        ScrollView {
         VStack {
-            Text("Configure")
-                .font(Font.custom("BlackChancery", size: 12))
-            NavigationLink(destination: TimescaleConfigurationView(), label: { Text("TS \(TimescaleType(rawValue: timescaleTypeInt)!.fullDescription(reverseTime: reverseTime))") })
-            NavigationLink(destination: DateConfigurationView(date: $birthday), label: {
-                Text("BD \(Self.dateFormatter.string(from: birthday))") })
-            NavigationLink(destination: DateConfigurationView(date: $deathday), label: {
-                Text("DD \(Self.dateFormatter.string(from: deathday))") })
+            NavigationLink(destination: TimescaleConfigurationView(timescaleType: $clockData.clock.timescaleType, reverseTime: $clockData.clock.reverseTime), label: {
+                            Text("\(clockData.clock.timescaleType.fullDescription(reverseTime: clockData.clock.reverseTime))") })
+            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
+                            Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
+            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
+                            Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
+            NavigationLink(
+                destination: SecretsView(),
+                label: {
+                    Text("Secrets")
+                })
         }
-        .padding()
+    }
     }
 }
 
 struct ConfigurationUI_Previews: PreviewProvider {
     static var previews: some View {
         ConfigurationView()
+            .environmentObject(ClockData.shared)
     }
 }

@@ -2,46 +2,54 @@
 //  ClockTests.swift
 //  MorbidMeterTests
 //
-//  Created by David Mann on 6/27/21.
+//  Created by David Mann on 7/10/21.
 //
 
 import XCTest
 @testable import MorbidMeter_WatchKit_Extension
 
 class ClockTests: XCTestCase {
-    static let birthday = Date()
-    static let deathday = Calendar.current.date(byAdding: .year, value: 80, to: birthday)
-
-    var clock: Clock?
+    var savedBirthday: Any?
+    var savedDeathday: Any?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        clock = Clock(timescale: Timescales.getInstance(.percent)!, birthday: Self.birthday, deathday: Self.deathday!)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testPercentage() {
-        guard let longevity = clock?.longevity() else {
-            XCTFail("longevity was null")
-            return
-        }
-        XCTAssertEqual(longevity, Self.deathday!.timeIntervalSince(Self.birthday))
-        let today = Self.birthday
-        XCTAssertEqual(clock?.percentage(date: today), 0)
-        let today1 = Self.deathday
-        XCTAssertEqual(clock?.percentage(date: today1!), 1.0)
-        let today2 = Calendar.current.date(byAdding: .year, value: 40, to: Self.birthday)
-        XCTAssertEqual(clock!.percentage(date: today2!)!, 0.5, accuracy: 0.001)
-        let today3 = Calendar.current.date(byAdding: .year, value: 20, to: Self.birthday)
-        XCTAssertEqual(clock!.percentage(date: today3!)!, 0.25, accuracy: 0.001)
-        let today4 = Calendar.current.date(byAdding: .year, value: 60, to: Self.birthday)
-        XCTAssertEqual(clock!.percentage(date: today4!)!, 0.75, accuracy: 0.001)
-        clock?.timescale.reverseTime = true
-        XCTAssertEqual(clock!.percentage(date: today4!)!, 0.25, accuracy: 0.001)
+    func testDefaultClock() {
+        var clock = Clock()
+        XCTAssertEqual(clock.birthday.description, clock.deathday.description)
+        clock.deathday = Date().addingTimeInterval(60)
+        XCTAssertNotEqual(clock.birthday.description, clock.deathday.description)
+        let clock1 = Clock(timescaleType: .seconds, birthday: clock.birthday.addingTimeInterval(60), deathday: clock.deathday, reverseTime: false)
+        XCTAssertNotEqual(clock.birthday.description, clock1.birthday.description)
     }
 
+    func testGetShortTime() {
+        var clock = ClockData.test.clock
+        clock.timescaleType = .seconds
+        print(clock.getMoment(date: Date()))
+        XCTAssertEqual(clock.getMoment(date: Date()).time, "3,600\nsecs passed")
+        XCTAssertEqual(clock.getUnwrappedMomentTime(date: Date()), "3,600 secs passed")
+    }
 
+    func testShortenedTimeString() {
+        var clock = ClockData.test.clock
+        XCTAssertEqual(clock.shortenedTimeString("3,000 secs"), "3,000 s")
+        XCTAssertEqual(clock.shortenedTimeString("0d 8h 20m"), "0d 8h 20m")
+        XCTAssertEqual(clock.shortenedTimeString("11:30 PM"), "11:30 PM")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 mins"), "3,000 min")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 hours"), "3,000 h")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 years"), "3,000 y")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 months"), "3,000 m")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 weeks"), "3,000 w")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 days"), "3,000 d")
+        XCTAssertEqual(clock.shortenedTimeString("3,000 secs"), "3,000 s")
+        clock.timescaleType = .seconds
+        print("shortend time units", clock.getMomentTimeShortUnits(date: Date()))
+    }
 }

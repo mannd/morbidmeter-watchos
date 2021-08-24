@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct MorbidMeterApp: App {
+    @WKExtensionDelegateAdaptor private var appDelegate: ExtensionDelegate
+    @StateObject var clockData = ClockData.shared
+
     init() {
         UserDefaults.standard.register(defaults: Preferences.defaults())
     }
@@ -18,6 +21,7 @@ struct MorbidMeterApp: App {
             NavigationView {
                 ContentView()
             }
+            .environmentObject(clockData)
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")

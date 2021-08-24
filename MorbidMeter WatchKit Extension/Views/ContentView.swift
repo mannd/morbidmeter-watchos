@@ -6,83 +6,55 @@
 //
 
 import SwiftUI
-
-// See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
+import os
 
 struct ContentView: View {
-    @AppStorage(Preferences.timescaleTypeKey) var timescaleTypeInt = Preferences.timescaleType
-    @AppStorage(Preferences.birthdayKey) var birthday = Preferences.birthday
-    @AppStorage(Preferences.deathdayKey) var deathday = Preferences.deathday
-    @AppStorage(Preferences.reverseTimeKey) var reverseTime = Preferences.reverseTime
 
-    @State private var morbidMeterTime: String = "Aug 25, 10:15:20 PM"
-    @State private var progressValue: Double = 0.7
+    let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ContentView", category: "Content View")
+
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        VStack {
-            Text("MorbidMeter")
-                .font(Font.custom("BlackChancery", size: 22))
-            HStack {
-               Button(action:  { updateClock() }, label: {
-                    Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
-                }).buttonStyle(PlainButtonStyle())
-                NavigationLink(destination: ConfigurationView(), label: { Text(TimescaleType(rawValue: timescaleTypeInt)?.fullDescription(reverseTime: reverseTime) ?? "Error").foregroundColor(.white) })
-             }
-            Text(morbidMeterTime)
-            ProgressView(value: progressValue)
-        }
-        .padding()
-        .onAppear(perform: { updateClock() })
-    }
+        MorbidMeterView()
+            .onChange(of: scenePhase) { (phase) in
+                switch phase {
 
-    func printFonts() {
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
-    }
+                case .inactive:
+                    logger.debug("Scene became inactive.")
 
-    func updateClock() {
-        print("Updating MorbidMeter")
-        print(birthday)
-        print(deathday)
-        guard deathday > birthday else {
-            morbidMeterError("BD is after DD?")
-            return
-        }
-        guard let timescaleType = TimescaleType(rawValue: timescaleTypeInt) else {
-            morbidMeterError("TimescaleType Error")
-            return
-        }
-        guard var timescale = Timescales.getInstance(timescaleType) else {
-            morbidMeterError("Timescale Error")
-            return
-        }
-        timescale.reverseTime = reverseTime
-        let clock = Clock(timescale: timescale, birthday: birthday, deathday: deathday)
-        guard let percentage = clock.percentage(date: Date()) else {
-            morbidMeterError("Longevity Error")
-            return
-        }
-        progressValue = percentage
+                case .active:
+                    logger.debug("Scene became active.")
 
-        // TODO: add units/reverseUnits
-        if let clockTime = clock.timescale.clockTime {
-            morbidMeterTime = clockTime(percentage) + timescale.adjustedUnits
-        } else {
-            morbidMeterError("Clock Time Error")
-        }
-    }
+                case .background:
+                    logger.debug("Scene moved to the background.")
+                    // Schedule a background refresh task
+                    // to update the complications.
+                    scheduleBackgroundRefreshTasks()
 
-    func morbidMeterError(_ message: String) {
-        progressValue = 0
-        morbidMeterTime = message
-    }
+                @unknown default:
+                    logger.debug("Scene entered unknown state.")
+                    assertionFailure()
+                }
+            }
+
+   }
+
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .environmentObject(ClockData.shared)
+            ContentView()
+                .previewDevice("Apple Watch Series 3 - 38mm")
+                .environmentObject(ClockData.shared)
+            ContentView()
+                .previewDevice("Apple Watch Series 6 - 40mm")
+                .environmentObject(ClockData.shared)
+            ContentView()
+                .previewDevice("Apple Watch Series 6 - 44mm")
+                .environmentObject(ClockData.shared)
+        }
     }
 }

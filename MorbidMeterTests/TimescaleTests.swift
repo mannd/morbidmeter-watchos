@@ -2,65 +2,52 @@
 //  TimescaleTests.swift
 //  MorbidMeterTests
 //
-//  Created by David Mann on 6/21/21.
+//  Created by David Mann on 7/6/21.
 //
 
 import XCTest
 @testable import MorbidMeter_WatchKit_Extension
 
 class TimescaleTests: XCTestCase {
-    var timescale: Timescale?
-    var timescale1: Timescale?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        timescale = Timescale(
-            name: "Test",
-            maximum: 10000,
-            minimum: 0,
-            units: "Units",
-            reverseUnits: "Reverse Units",
-            endDate: nil,
-            clockTime: nil)
-        timescale1 = Timescale(
-            name: "Test",
-            maximum: 10000,
-            minimum: 0,
-            units: "",
-            reverseUnits: "Reverse Units",
-            endDate: nil,
-            clockTime: nil)
-     }
+    }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testSimpleTimescale() {
-        guard let timescale = timescale else {
-            XCTFail("timescale is nil")
-            return
-        }
-        XCTAssertEqual(timescale.duration, timescale.maximum)
-        XCTAssertEqual(timescale.proportionalTime(percent: 1.0), timescale.maximum)
-        XCTAssertEqual(timescale.proportionalTime(percent: 0), timescale.minimum)
-        XCTAssertEqual(timescale.proportionalTime(percent: 0.5), timescale.maximum / 2)
-        XCTAssertEqual(timescale.proportionalTime(percent: 0.3), 3000)
-        XCTAssertEqual(timescale.proportionalTime(percent: 1.0, reverseTime: true), timescale.minimum)
-        XCTAssertEqual(timescale.proportionalTime(percent: 0, reverseTime: true), timescale.maximum)
-        XCTAssertEqual(timescale.proportionalTime(percent: 0.5, reverseTime: true), timescale.maximum / 2)
-        XCTAssertEqual(timescale.proportionalTime(percent: 0.3, reverseTime: true), 7000)
-
-        XCTAssertEqual(timescale.startDate.description, "2021-01-01 00:00:00 +0000" )
-        print(Timescale.referenceDate)
+    func testFormatting() {
+        let n1 = 12345.6789
+        XCTAssertEqual(Timescales.integerFormattedDouble(n1), "12,345")
+        let n2 = 0.1111
+        XCTAssertEqual(Timescales.integerFormattedDouble(n2), "0")
+        // integerFormattedDouble() ignores negative sign
+        let n3 = -123.456
+        XCTAssertEqual(Timescales.integerFormattedDouble(n3), "123")
     }
 
-    func testUnits() {
-        XCTAssertEqual(timescale?.adjustedUnits, " Units")
-        timescale?.reverseTime = true
-        XCTAssertEqual(timescale?.adjustedUnits, " Reverse Units")
-        XCTAssertEqual(timescale1?.adjustedUnits, "")
-        XCTAssertEqual(timescale1?.adjustedUnits, "")
+    func testTimescalesGetTime() {
+        let result = Timescales.getTime(result: "100 sec", reverseTime: false)
+        XCTAssertEqual(result, "100 sec\npassed")
+        let result0 = Timescales.getTime(result: "100 sec", reverseTime: true)
+        XCTAssertEqual(result0, "100 sec\nto go")
+        let result1 = Timescales.getTime(result: "100", reverseTime: false, forwardMessage: "sec passed", backwardMessage: "sec to go")
+        XCTAssertEqual(result1, "100\nsec passed")
+        let result2 = Timescales.getTime(result: "100", reverseTime: true, forwardMessage: "sec passed", backwardMessage: "sec to go")
+        XCTAssertEqual(result2, "100\nsec to go")
+    }
+
+    func testTimescalesGetFormattedTime() {
+        let formattedResult = Timescales.getFormattedTime(result: "100", units: "sec", reverseTime: false)
+        XCTAssertEqual(formattedResult, "100\nsec passed")
+        let formattedResult1 = Timescales.getFormattedTime(result: "100 secs", units: nil, reverseTime: false)
+        XCTAssertEqual(formattedResult1, "100 secs\npassed")
+        let formattedResult2 = Timescales.getFormattedTime(result: "100 secs", units: nil, reverseTime: true)
+        XCTAssertEqual(formattedResult2, "100 secs\nto go")
+        let formattedResult3 = Timescales.getFormattedTime(result: "100", units: "sec", reverseTime: true)
+        XCTAssertEqual(formattedResult3, "100\nsec to go")
 
     }
 
