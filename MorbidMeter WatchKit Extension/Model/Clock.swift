@@ -75,16 +75,11 @@ struct Clock: Codable, Equatable {
         return moment
     }
 
-    func getFormattedMomentTime(formatter: Formatter, date: Date = Date()) -> String {
-        // TODO: need to round percentage DOWN (otherwise we get 0% for 99.9%).
-        return getMoment(date: date).percentage < 1.0 ?
-            formatter.string(for: getMoment(date: date).percentage)! : Self.skull
-    }
-
-    func getShortFormattedMomentPercentage(date: Date) -> String {
+    func getShortFormattedMomentPercentage(date: Date, fractionDigits: Int = 0) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
-        formatter.roundingMode = .down
+        formatter.maximumFractionDigits = fractionDigits
+        formatter.roundingMode = reverseTime ? .up : .down
         return getMoment(date: date).percentage < 1.0 ?
             formatter.string(for: getMoment(date: date).percentage)! : Self.skull
     }
@@ -99,9 +94,6 @@ struct Clock: Codable, Equatable {
         })
         return unwrappedTime
     }
-
-    // TODO: Need short time with just units, not passed or to go for
-    // Modular large template ir just with short units ("m" instead of "min")
 
     func getMomentTimeNumberAndUnits(date: Date) -> [String.SubSequence]? {
         let time = getMoment(date: date).time
