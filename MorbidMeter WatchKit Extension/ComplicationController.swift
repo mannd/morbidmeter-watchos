@@ -29,12 +29,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        // Timeline is good for an hour, but is reloaded in background 4 times per hour.
-        return handler(Date().addingTimeInterval(TimeConstants.oneHour))
-        // Don't bother return a timeline if we are beyond deathday
-        // if Date().addintTimeInterval(.oneHour) > clockData.shared.clock.deathday { return handler(nil) }
-        // or
-        // return handler(MIN(Date().addingTimeInterval(TimeConstants.oneHour), data.clock.deathday)
+        return handler(Date().addingTimeInterval(TimeConstants.fifteenMinutes))
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -59,18 +54,19 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the timeline entries after the given date
         // Create an array to hold the timeline entries.
         var entries = [CLKComplicationTimelineEntry]()
+        // Don't want too many or too few updates.
         let updateTimeInterval = TimeConstants.fiveMinutes
         // Calculate the start and end dates.
-        // Provide timeline updates every 5 minutes for an hour (and timeline is updated 4 times / hour).
         var current = date.addingTimeInterval(updateTimeInterval)
-        let endDate = date.addingTimeInterval(TimeConstants.oneHour)
+        let endDate = date.addingTimeInterval(TimeConstants.twentyMinutes)
         while (current.compare(endDate) == .orderedAscending) && (entries.count < limit) {
-            let template = getComplicationTemplate(for: complication, using: current)!
-            let entry = CLKComplicationTimelineEntry(
-                date: current,
-                complicationTemplate: template)
-            entries.append(entry)
-            print(entry)
+            if let template = getComplicationTemplate(for: complication, using: current) {
+                let entry = CLKComplicationTimelineEntry(
+                    date: current,
+                    complicationTemplate: template)
+                entries.append(entry)
+                print(entry)
+            }
             current = current.addingTimeInterval(updateTimeInterval)
         }
         handler(entries)
@@ -127,7 +123,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "Complication/Modular")!)
         let headerProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
         let body1Provider = CLKSimpleTextProvider(text: data.clock.getUnwrappedMomentTime(date: date), shortText: data.clock.getMomentTimeShortUnits(date: date))
-        let body2Provider = CLKSimpleTextProvider(text: "Percent: \(data.clock.getShortFormattedMomentPercentage(date: date))")
+        let body2Provider = CLKSimpleTextProvider(text: "Percent: \(data.clock.getShortFormattedMomentPercentage(date: date, fractionDigits: 2))")
         return CLKComplicationTemplateModularLargeStandardBody(headerImageProvider: imageProvider,
                                                                headerTextProvider: headerProvider,
                                                                body1TextProvider: body1Provider,

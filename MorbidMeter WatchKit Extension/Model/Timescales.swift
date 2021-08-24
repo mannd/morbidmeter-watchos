@@ -41,7 +41,6 @@ class Timescales {
         return [result, finalUnits].joined(separator: separator)
     }
 
-    // TODO: formatting should be left to callers, because different formats for main app and complications.
     static let timescales: [TimescaleType: Timescale] = [
         .seconds: Timescale(timescaleType: .seconds, getTime: { timeInterval, _, reverseTime in
             guard let timeInterval = timeInterval as? TimeInterval else { return errorMessage }
@@ -179,7 +178,6 @@ class Timescales {
             let date = Timescale.referenceDate.addingTimeInterval(adjustedTimeInterval)
             return formatter.string(from: date)
         }),
-        // TODO: Trash Big Bang?
         .universe: Timescale(timescaleType: .universe, getTime: { _, percentage, reverseTime in
             guard let percentage = percentage as? Double else {
                 return errorMessage
@@ -194,6 +192,7 @@ class Timescales {
             guard let percentage = percentage as? Double else { return errorMessage }
             let formatter = NumberFormatter()
             formatter.numberStyle = .percent
+            formatter.roundingMode = reverseTime ? .up : .down
             formatter.maximumFractionDigits = 2
             guard let result = formatter.string(from: NSNumber(value: percentage)) else {
                 return errorMessage

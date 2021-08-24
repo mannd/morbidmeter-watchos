@@ -20,9 +20,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             // Handle background refresh tasks.
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                // TODO: reload or extend?
-                reloadComplications()
-                scheduleBackgroundRefreshTasks()
+                // Don't bother refreshing if we are done.
+                if ClockData.shared.clock.getMoment().percentage < 1.0 {
+                    extendComplications()
+                    scheduleBackgroundRefreshTasks()
+                }
                 backgroundTask.setTaskCompletedWithSnapshot(false)
                 logger.debug("MorbidMeter app background refresh scheduled")
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
@@ -44,8 +46,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
 func scheduleBackgroundRefreshTasks() {
     print("scheduleBackgroundRefreshTasks()")
+
+    let updateFrequency = TimeConstants.fifteenMinutes
     let watchExtension = WKExtension.shared()
-    let targetDate = Date().addingTimeInterval(TimeConstants.fifteenMinutes)
+    let targetDate = Date().addingTimeInterval(updateFrequency)
     watchExtension.scheduleBackgroundRefresh(withPreferredDate: targetDate, userInfo: nil, scheduledCompletion: { error in
         if let error = error {
             print("error in scheduling background tasks: \(error.localizedDescription)")

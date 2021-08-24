@@ -18,7 +18,6 @@ struct ContentView: View {
         MorbidMeterView()
             .onChange(of: scenePhase) { (phase) in
                 switch phase {
-
                 case .inactive:
                     logger.debug("Scene became inactive.")
 

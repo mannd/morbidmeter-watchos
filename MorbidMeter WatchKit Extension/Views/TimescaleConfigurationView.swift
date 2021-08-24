@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// TODO: with these dialogs, we only want to update the model if there is a change in the clock data.
 struct TimescaleConfigurationView: View {
     @Binding var timescaleType: TimescaleType
     @Binding var reverseTime: Bool
