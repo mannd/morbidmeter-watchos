@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ConfigurationView: View {
     static let dateFormatter: DateFormatter = {
@@ -20,20 +21,20 @@ struct ConfigurationView: View {
 
     var body: some View {
         ScrollView {
-        VStack {
-            NavigationLink(destination: TimescaleConfigurationView(timescaleType: $clockData.clock.timescaleType, reverseTime: $clockData.clock.reverseTime), label: {
-                            Text("\(clockData.clock.timescaleType.fullDescription(reverseTime: clockData.clock.reverseTime))") })
-            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
-                            Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
-            NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
-                            Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
-            NavigationLink(
-                destination: SecretsView(),
-                label: {
-                    Text("Secrets")
-                })
+            VStack {
+                NavigationLink(destination: TimescaleConfigurationView(timescaleType: $clockData.clock.timescaleType, reverseTime: $clockData.clock.reverseTime), label: {
+                                Text("\(clockData.clock.timescaleType.fullDescription(reverseTime: clockData.clock.reverseTime))") })
+                NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
+                                Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
+                NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
+                                Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
+                NavigationLink(
+                    destination: SecretsView(),
+                    label: {
+                        Text("Secrets")
+                    })
+            }
         }
-    }
     }
 }
 

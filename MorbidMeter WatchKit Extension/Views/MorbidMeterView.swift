@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 // See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
 
@@ -50,6 +51,15 @@ struct MorbidMeterView: View {
 
     func startTimer() {
         guard !firstRun else {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    // Handle the error here.
+                    print(error.localizedDescription)
+                }
+                // Provisional authorization granted.
+                print("Requested authorization")
+            }
             morbidMeterError("Tap 💀 to configure...")
             firstRun = false
             return
@@ -60,11 +70,39 @@ struct MorbidMeterView: View {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             updateClock()
         })
+        triggerNotification()
     }
 
     func stopTimer() {
         timer?.invalidate()
         timer = nil
+    }
+
+    func triggerNotification() {
+        let center = UNUserNotificationCenter.current()
+        let notificationName = "MMStaticNotification"
+        center.getNotificationSettings { settings in
+            guard (settings.authorizationStatus == .authorized) ||
+                  (settings.authorizationStatus == .provisional) else { return }
+
+            let content = UNMutableNotificationContent()
+            content.title = "You're Finished"
+            content.body = "You are living on borrowed time."
+            content.sound = UNNotificationSound.default
+
+            center.removePendingNotificationRequests(withIdentifiers: [notificationName])
+
+            let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: clockData.clock.deathday)
+
+            print("dateComponents", dateComponents as Any)
+
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+
+
+            let request = UNNotificationRequest(identifier: notificationName, content: content, trigger: trigger)
+
+            center.add(request)
+        }
     }
 
     func updateClock() {
