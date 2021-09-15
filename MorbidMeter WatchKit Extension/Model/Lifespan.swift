@@ -26,6 +26,17 @@ struct Lifespan {
         return duration
     }
 
+    func dateFromPercentage(percent: Double) -> Date? {
+        guard percent >= 0 && percent <= 1.0 else { return nil }
+        do {
+            var duration = try longevity()
+            duration *= percent
+            return birthday.addingTimeInterval(duration)
+        } catch {
+            return nil
+        }
+    }
+
     func percentage(date: Date, reverse: Bool = false) throws -> Double {
         let duration = date.timeIntervalSince(dateInterval.start)
         let ratio = try duration / longevity()

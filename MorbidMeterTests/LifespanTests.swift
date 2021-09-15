@@ -11,6 +11,8 @@ import XCTest
 class LifespanTests: XCTestCase {
     static let birthday = Date()
     static let deathday = Calendar.current.date(byAdding: .year, value: 80, to: birthday)!
+    static let middleday = Calendar.current.date(byAdding: .year, value: 40, to: birthday)!
+
 
     var lifespan: Lifespan?
     var negativeLifespan: Lifespan?
@@ -75,5 +77,16 @@ class LifespanTests: XCTestCase {
         let date1 = Date()
         XCTAssertEqual(lifespan?.timeInterval(date: date1, reverseTime: false), date1.timeIntervalSince(Self.birthday))
         XCTAssertEqual(lifespan?.timeInterval(date: date1, reverseTime: true), Self.deathday.timeIntervalSince(date1))
+    }
+
+    func testDateFromPercentage() {
+        let date1 = lifespan?.dateFromPercentage(percent: 0)
+        XCTAssertEqual(lifespan?.birthday, date1)
+        let date2 = lifespan?.dateFromPercentage(percent: 1)
+        XCTAssertEqual(lifespan?.deathday, date2)
+        let date3 = lifespan?.dateFromPercentage(percent: 0.5)
+        // Just need to be approximate here, within a day, since we are using a longevity of 80 years.
+        let difference = (date3?.distance(to: Self.middleday))!
+        XCTAssert(difference < 24 * 60 * 60)
     }
 }

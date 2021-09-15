@@ -52,4 +52,25 @@ class ClockTests: XCTestCase {
         clock.timescaleType = .seconds
         print("shortend time units", clock.getMomentTimeShortUnits(date: Date()))
     }
+
+    func testDateFromPercentage() {
+        let clock = ClockData.test.clock
+        let date1 = clock.dateFromPercentage(percent: 0)
+        XCTAssertEqual(clock.birthday, date1)
+        let date2 = clock.dateFromPercentage(percent: 1)
+        XCTAssertEqual(clock.deathday, date2)
+        let date3 = clock.dateFromPercentage(percent: 0.5)
+        // Just need to be approximate here, within a minute,
+        // since Date() is midway between bd and dd in test clock.
+        let difference = (date3?.distance(to: Date()))!
+        XCTAssert(difference < 60 * 60)
+    }
+
+    func testLifespanLongerThan() {
+        let clock = ClockData.longLifeTest.clock
+        XCTAssert(clock.lifespanLongerThan(timeInterval: 40 * TimeConstants.oneYear))
+        XCTAssertFalse(clock.lifespanLongerThan(timeInterval: 90 * TimeConstants.oneYear))
+        XCTAssertTrue(clock.lifespanLongerThan(timeInterval: 79 * TimeConstants.oneYear))
+        XCTAssertFalse(clock.lifespanLongerThan(timeInterval: 81 * TimeConstants.oneYear))
+    }
 }

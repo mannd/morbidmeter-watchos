@@ -15,5 +15,6 @@ enum TimeConstants {
     static let thirtyMinutes = 30.0 * oneMinute
     static let oneHour = 60.0 * oneMinute
     static let twentyFourHours = 24.0 * oneHour
+    static let oneWeek = twentyFourHours * 7.0
     static let oneYear = 365.0 * twentyFourHours // non-leap year
 }

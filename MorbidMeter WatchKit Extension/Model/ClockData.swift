@@ -16,8 +16,11 @@ class ClockData: ObservableObject {
 
     static let shared = ClockData()
     static let test = ClockData(clock: Clock(birthday: Date().addingTimeInterval(-60.0 * 60.0),
-                                             deathday: Date().addingTimeInterval(60.8 * 60.8),
+                                             deathday: Date().addingTimeInterval(60.0 * 60.0),
                                              reverseTime: false))
+    static let longLifeTest = ClockData(clock: Clock(birthday: Date().addingTimeInterval(-60.0 * 60.0 * 24 * 365 * 40),
+                                                     deathday: Date().addingTimeInterval(60.0 * 60.0 * 24 * 365 * 40),
+                                                     reverseTime: false))
 
     private var background = DispatchQueue(label: "Background Queue", qos: .userInitiated)
 

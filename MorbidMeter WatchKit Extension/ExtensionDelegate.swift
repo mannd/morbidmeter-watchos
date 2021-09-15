@@ -66,7 +66,6 @@ func reloadComplications() {
     }
 }
 
-// FIXME: Determine if extendComplications works in background, as opposed to reloadComplications.
 func extendComplications() {
     let server = CLKComplicationServer.sharedInstance()
     for complication in server.activeComplications ?? [] {

@@ -43,6 +43,20 @@ struct Clock: Codable, Equatable {
         self.uuid = uuid
     }
 
+    func dateFromPercentage(percent: Double) -> Date? {
+        if let lifespan = try? Lifespan(birthday: birthday, deathday: deathday) {
+            return lifespan.dateFromPercentage(percent: percent)
+        }
+        return nil
+    }
+
+    func lifespanLongerThan(timeInterval: TimeInterval) -> Bool {
+        if let lifespan = try? Lifespan(birthday: birthday, deathday: deathday), let longevity = try? lifespan.longevity() {
+            return longevity > timeInterval
+        }
+        return false
+    }
+
     func getMoment(date: Date = Date()) -> Moment {
         var moment = Moment()
         do {
