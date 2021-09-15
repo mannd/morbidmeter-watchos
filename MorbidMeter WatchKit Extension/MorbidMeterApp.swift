@@ -24,6 +24,6 @@ struct MorbidMeterApp: App {
             .environmentObject(clockData)
         }
 
-        WKNotificationScene(controller: NotificationController.self, category: "myCategory")
+        WKNotificationScene(controller: NotificationController.self, category: "MMNotification")
     }
 }

@@ -16,7 +16,7 @@ class Timescales {
     static let secsPerHour = 60.0 * 60.0
     static let secsPerDay = secsPerHour * 24.0
     static let secsPerWeek = secsPerDay * 7.0
-    static let secsPerYear = secsPerDay * 364.25
+    static let secsPerYear = secsPerDay * 365.25
     static let secsPerMonth = secsPerYear / 12.0
     static let ageOfUniverse = 13_770_000_000.0
 

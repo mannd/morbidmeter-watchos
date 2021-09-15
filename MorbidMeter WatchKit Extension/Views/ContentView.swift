@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 import os
 
 struct ContentView: View {
@@ -34,9 +35,23 @@ struct ContentView: View {
                     logger.debug("Scene entered unknown state.")
                     assertionFailure()
                 }
-            }
+        }
+    }
+}
 
-   }
+struct AllowNotificationsView: View {
+    var body: some View {
+        Button("Notifications") {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                if success {
+                    print("All Set")
+                } else if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+
 
 }
 

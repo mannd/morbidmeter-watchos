@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 // See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
 
@@ -40,7 +41,7 @@ struct MorbidMeterView: View {
         // See https://forums.swift.org/t/swiftui-onappear-and-ondisappear-action-ordering/36320/5
         .onDisappear(perform: {
             print("MM onDisappear()")
-            stopTimer()
+//            stopTimer()
         })
         .onAppear(perform: {
             print("MM onAppear()")
@@ -50,6 +51,13 @@ struct MorbidMeterView: View {
 
     func startTimer() {
         guard !firstRun else {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                print("Requested authorization")
+            }
             morbidMeterError("Tap 💀 to configure...")
             firstRun = false
             return
@@ -60,12 +68,92 @@ struct MorbidMeterView: View {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
             updateClock()
         })
+        triggerNotifications()
     }
 
     func stopTimer() {
         timer?.invalidate()
         timer = nil
     }
+
+    func triggerNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            guard (settings.authorizationStatus == .authorized) ||
+                    (settings.authorizationStatus == .provisional) else { return }
+
+            // Get rid of all old notifications.
+            center.removeAllPendingNotificationRequests()
+
+            let clock = clockData.clock
+            let reverseTime = clock.reverseTime
+
+            // Notification that MM is starting.
+            let startContent = UNMutableNotificationContent()
+            startContent.title = "It's Started"
+            startContent.body = "Timing has begun."
+            startContent.sound = UNNotificationSound.default
+            let startDateComponents = getStandardDateComponents(from: clock.birthday)
+            let startTrigger = UNCalendarNotificationTrigger(dateMatching: startDateComponents, repeats: false)
+            let startRequest = UNNotificationRequest(identifier: UUID().uuidString, content: startContent, trigger: startTrigger)
+            center.add(startRequest)
+
+            // Notification that MM finished.
+            let endContent = UNMutableNotificationContent()
+            endContent.title = "You're Finished"
+            endContent.body = "You are living on borrowed time."
+            endContent.sound = UNNotificationSound.default
+            let endDateComponents = getStandardDateComponents(from: clock.deathday)
+            let endTrigger = UNCalendarNotificationTrigger(dateMatching: endDateComponents, repeats: false)
+            let endRequest = UNNotificationRequest(identifier: UUID().uuidString, content: endContent, trigger: endTrigger)
+            center.add(endRequest)
+
+            // 50% mark
+            // Only set if longevity > 1 day
+            guard clock.lifespanLongerThan(timeInterval: TimeConstants.twentyFourHours) else { return }
+            let halfwayContent = UNMutableNotificationContent()
+            halfwayContent.title = "You're half-way"
+            halfwayContent.body = "Glass half-full or half-empty?"
+            halfwayContent.sound = UNNotificationSound.default
+            if let halfwayDay = clock.dateFromPercentage(percent: 0.5) {
+                let halfwayDateComponents = getStandardDateComponents(from: halfwayDay)
+                let halfwayTrigger = UNCalendarNotificationTrigger(dateMatching: halfwayDateComponents, repeats: false)
+                let halfwayRequest = UNNotificationRequest(identifier: UUID().uuidString, content: halfwayContent, trigger: halfwayTrigger)
+                center.add(halfwayRequest)
+            }
+
+            // 90% mark
+            // Only set if longevity > 1 week
+            guard clock.lifespanLongerThan(timeInterval: TimeConstants.oneWeek) else { return }
+            let ninetyPercentContent = UNMutableNotificationContent()
+            ninetyPercentContent.title = "10% Time Remaining"
+            ninetyPercentContent.body = "Time flies."
+            ninetyPercentContent.sound = UNNotificationSound.default
+            if let ninetyPercentDay = clock.dateFromPercentage(percent: reverseTime ? 0.1 : 0.9) {
+                let ninetyPercentDateComponents = getStandardDateComponents(from: ninetyPercentDay)
+                let ninetyPercentTrigger = UNCalendarNotificationTrigger(dateMatching: ninetyPercentDateComponents, repeats: false)
+                let ninetyPercentRequest = UNNotificationRequest(identifier: UUID().uuidString, content: ninetyPercentContent, trigger: ninetyPercentTrigger)
+                center.add(ninetyPercentRequest)
+            }
+
+            // 99% mark
+            let ninetyNinePercentContent = UNMutableNotificationContent()
+            ninetyNinePercentContent.title = "1% Time Remaining"
+            ninetyNinePercentContent.body = "Prepare yourself."
+            ninetyNinePercentContent.sound = UNNotificationSound.default
+            if let ninetyNinePercentDay = clock.dateFromPercentage(percent: reverseTime ? 0.01 : 0.99) {
+                let ninetyNinePercentDateComponents = getStandardDateComponents(from: ninetyNinePercentDay)
+                let ninetyNinePercentTrigger = UNCalendarNotificationTrigger(dateMatching: ninetyNinePercentDateComponents, repeats: false)
+                let ninetyNinePercentRequest = UNNotificationRequest(identifier: UUID().uuidString, content: ninetyNinePercentContent, trigger: ninetyNinePercentTrigger)
+                center.add(ninetyNinePercentRequest)
+            }
+        }
+    }
+
+    private func getStandardDateComponents(from date: Date) -> DateComponents {
+        return Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+    }
+
 
     func updateClock() {
         let moment = clockData.getMoment()
