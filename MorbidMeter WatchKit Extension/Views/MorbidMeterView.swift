@@ -45,7 +45,7 @@ struct MorbidMeterView: View {
         })
         .onAppear(perform: {
             print("MM onAppear()")
-            startTimer()
+            startTimer2()
         })
     }
 
@@ -69,6 +69,28 @@ struct MorbidMeterView: View {
             updateClock()
         })
         triggerNotifications()
+    }
+
+    func startTimer2() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            print("Requested authorization")
+        }
+        if firstRun {
+            morbidMeterError("Tap 💀 to configure...")
+            firstRun = false
+        } else {
+            morbidMeterTime = "Loading..."
+            stopTimer()
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+                updateClock()
+            })
+            triggerNotifications()
+        }
+
     }
 
     func stopTimer() {
