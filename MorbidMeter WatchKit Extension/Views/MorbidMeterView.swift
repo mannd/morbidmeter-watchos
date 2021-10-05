@@ -36,42 +36,17 @@ struct MorbidMeterView: View {
                 .multilineTextAlignment(.center)
             ProgressView(value: progressValue)
         }
-        // Due to SwiftUI bug, .onAppear runs right after onDisappear, weirdly enough.
-        // So we stop timer everytime we start it.
-        // See https://forums.swift.org/t/swiftui-onappear-and-ondisappear-action-ordering/36320/5
         .onDisappear(perform: {
             print("MM onDisappear()")
-//            stopTimer()
+            stopTimer()
         })
         .onAppear(perform: {
             print("MM onAppear()")
-            startTimer2()
+            startTimer()
         })
     }
 
     func startTimer() {
-        guard !firstRun else {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-                print("Requested authorization")
-            }
-            morbidMeterError("Tap 💀 to configure...")
-            firstRun = false
-            return
-        }
-        morbidMeterTime = "Loading..."
-        // stop any timer that was already running
-        stopTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-            updateClock()
-        })
-        triggerNotifications()
-    }
-
-    func startTimer2() {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
@@ -88,7 +63,7 @@ struct MorbidMeterView: View {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
                 updateClock()
             })
-            triggerNotifications()
+            setupNotifications()
         }
 
     }
@@ -98,7 +73,7 @@ struct MorbidMeterView: View {
         timer = nil
     }
 
-    func triggerNotifications() {
+    func setupNotifications() {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings { settings in
             guard (settings.authorizationStatus == .authorized) ||
