@@ -44,7 +44,7 @@ struct AllowNotificationsView: View {
         Button("Notifications") {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                 if success {
-                    print("All Set")
+                    print("Notifications set up successfully.")
                 } else if let error = error {
                     print(error.localizedDescription)
                 }

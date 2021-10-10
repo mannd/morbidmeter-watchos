@@ -37,11 +37,8 @@ struct MorbidMeterView: View {
             ProgressView(value: progressValue)
         }
         .onDisappear(perform: {
-            print("MM onDisappear()")
-            stopTimer()
         })
         .onAppear(perform: {
-            print("MM onAppear()")
             startTimer()
         })
     }
@@ -59,13 +56,13 @@ struct MorbidMeterView: View {
             firstRun = false
         } else {
             morbidMeterTime = "Loading..."
-            stopTimer()
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
-                updateClock()
+            if timer == nil {
+                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (timer) in
+                    updateClock()
             })
+            }
             setupNotifications()
         }
-
     }
 
     func stopTimer() {

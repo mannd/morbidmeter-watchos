@@ -13,7 +13,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     lazy var data = ClockData.shared
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
-        print("getComplicationDescriptors()")
         let descriptors = [
             CLKComplicationDescriptor(identifier: "morbidmeter_complication", displayName: "MorbidMeter", supportedFamilies: CLKComplicationFamily.allCases)
         ]
@@ -29,21 +28,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        let now = Date()
-        let deathDate = data.clock.deathday
-        let nextDate = now.addingTimeInterval(TimeConstants.fifteenMinutes)
-        // shut off complications if we are past death date
-        if now > deathDate {
-            print("***now > deathDate")
-            return handler(nil)
-        }
-        // death date is the last time we can handle
-        if nextDate > deathDate {
-            print("***nextDate > deathDate")
-            return handler(deathDate)
-        }
-        // haven't reached death date yet
-        print("***haven't reached deathDate yet")
+        let nextDate = Date().addingTimeInterval(TimeConstants.fifteenMinutes)
         return handler(nextDate)
     }
     
@@ -89,7 +74,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                         complicationTemplate: template)
                 }
                 entries.append(entry)
-                print(entry)
             }
             current = current.addingTimeInterval(updateTimeInterval)
         }
