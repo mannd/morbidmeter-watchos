@@ -45,8 +45,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 }
 
 func scheduleBackgroundRefreshTasks() {
-    print("scheduleBackgroundRefreshTasks()")
-
     let updateFrequency = TimeConstants.fifteenMinutes
     let watchExtension = WKExtension.shared()
     let targetDate = Date().addingTimeInterval(updateFrequency)
@@ -61,7 +59,7 @@ func scheduleBackgroundRefreshTasks() {
 func reloadComplications() {
     let server = CLKComplicationServer.sharedInstance()
     for complication in server.activeComplications ?? [] {
-        print("complication family", complication.description)
+//        print("complication family", complication.description)
         server.reloadTimeline(for: complication)
     }
 }

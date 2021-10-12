@@ -13,7 +13,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     lazy var data = ClockData.shared
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
-        print("getComplicationDescriptors()")
         let descriptors = [
             CLKComplicationDescriptor(identifier: "morbidmeter_complication", displayName: "MorbidMeter", supportedFamilies: CLKComplicationFamily.allCases)
         ]
@@ -29,7 +28,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        return handler(Date().addingTimeInterval(TimeConstants.fifteenMinutes))
+        let nextDate = Date().addingTimeInterval(TimeConstants.fifteenMinutes)
+        return handler(nextDate)
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -58,14 +58,22 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let updateTimeInterval = TimeConstants.fiveMinutes
         // Calculate the start and end dates.
         var current = date.addingTimeInterval(updateTimeInterval)
+        // make end date exactly deathday if it is within the twenty minute interval.
         let endDate = date.addingTimeInterval(TimeConstants.twentyMinutes)
         while (current.compare(endDate) == .orderedAscending) && (entries.count < limit) {
             if let template = getComplicationTemplate(for: complication, using: current) {
-                let entry = CLKComplicationTimelineEntry(
-                    date: current,
-                    complicationTemplate: template)
+                let entry: CLKComplicationTimelineEntry
+                if current > data.clock.deathday {
+                    entry = CLKComplicationTimelineEntry(
+                        date: data.clock.deathday,
+                        complicationTemplate: template
+                    )
+                } else {
+                    entry = CLKComplicationTimelineEntry(
+                        date: current,
+                        complicationTemplate: template)
+                }
                 entries.append(entry)
-                print(entry)
             }
             current = current.addingTimeInterval(updateTimeInterval)
         }
