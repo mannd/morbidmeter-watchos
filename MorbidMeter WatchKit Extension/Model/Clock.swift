@@ -50,6 +50,40 @@ struct Clock: Codable, Equatable {
         return nil
     }
 
+    func getClockLandmarks(minimalTimeInterval: TimeInterval = 0) -> [Date: Int] {
+        var dates: [Date: Int] = [:]
+        dates[birthday] = 0
+        dates[deathday] = 100
+        var lastDate = birthday
+        for i in 1...99 {
+            if let date = dateFromPercentage(percent: Double(i)/100.0) {
+                if date.timeIntervalSince(lastDate) > minimalTimeInterval {
+                    dates[date] = i
+                    lastDate = date
+                }
+            }
+        }
+        return dates
+    }
+
+    func getClockLandmarkDates(minimalTimeInterval: TimeInterval = 0, after date: Date? = nil, timeInterval: TimeInterval? = nil) -> [Date] {
+        var startDate: Date
+        var endDate: Date
+        if let date = date {
+            startDate = date
+        } else {
+            startDate = birthday
+        }
+        if let timeInterval = timeInterval {
+            endDate = startDate.addingTimeInterval(timeInterval)
+        } else {
+            endDate = deathday
+        }
+        let landmarks = getClockLandmarks(minimalTimeInterval: minimalTimeInterval)
+        let dates = Array(landmarks.keys).sorted().filter { $0 >= startDate && $0 <= endDate}
+        return dates
+    }
+
     func lifespanLongerThan(timeInterval: TimeInterval) -> Bool {
         if let lifespan = try? Lifespan(birthday: birthday, deathday: deathday), let longevity = try? lifespan.longevity() {
             return longevity > timeInterval
@@ -155,4 +189,10 @@ struct Clock: Codable, Equatable {
 struct Moment {
     var percentage: Double = 0
     var time: String = "Error"
+}
+
+///  The two clock endpoints are birthday and deathday. 
+enum Endpoint {
+    case birthday
+    case deathday
 }

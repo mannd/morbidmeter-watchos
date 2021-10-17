@@ -24,9 +24,9 @@ struct ConfigurationView: View {
             VStack {
                 NavigationLink(destination: TimescaleConfigurationView(timescaleType: $clockData.clock.timescaleType, reverseTime: $clockData.clock.reverseTime), label: {
                                 Text("\(clockData.clock.timescaleType.fullDescription(reverseTime: clockData.clock.reverseTime))") })
-                NavigationLink(destination: DateConfigurationView(date: $clockData.clock.birthday), label: {
+                NavigationLink(destination: DateConfigurationView(endpoint: .birthday), label: {
                                 Text("Start \(Self.dateFormatter.string(from: clockData.clock.birthday))") })
-                NavigationLink(destination: DateConfigurationView(date: $clockData.clock.deathday), label: {
+                NavigationLink(destination: DateConfigurationView(endpoint: .deathday), label: {
                                 Text("End \(Self.dateFormatter.string(from: clockData.clock.deathday))") })
                 NavigationLink(
                     destination: SecretsView(),

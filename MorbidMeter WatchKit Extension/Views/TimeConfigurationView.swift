@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TimeConfigurationView: View {
 
-//    @EnvironmentObject var clockData: ClockData
+    var endpoint: Endpoint = .birthday
+
     @Binding var selectedHourIndex: Int
     @Binding var selectedMinuteIndex: Int
     @Binding var selectedSecondIndex: Int
@@ -27,7 +28,7 @@ struct TimeConfigurationView: View {
 
     var body: some View {
         VStack {
-            Text("Time").font(Font.system(size: 12))
+            Text("\(endpoint == .birthday ? "Start" : "End") Time").font(Font.system(size: 12))
             HStack {
                 Picker("Hour", selection: $selectedHour) {
                     ForEach(0..<24) { hour in
