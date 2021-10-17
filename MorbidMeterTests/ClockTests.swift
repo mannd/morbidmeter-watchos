@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import MorbidMeter_WatchKit_Extension
+import SwiftUI
 
 class ClockTests: XCTestCase {
     var savedBirthday: Any?
@@ -64,6 +65,29 @@ class ClockTests: XCTestCase {
         // since Date() is midway between bd and dd in test clock.
         let difference = (date3?.distance(to: Date()))!
         XCTAssert(difference < 60 * 60)
+    }
+
+    func testPrintDateFromPercentageTable() {
+        let clock = ClockData.test.clock
+        for i in 0...100 {
+            debugPrint("Percent \(i)% = \(clock.dateFromPercentage(percent: Double(i)/100.0).debugDescription))")
+        }
+        XCTAssertEqual(clock.dateFromPercentage(percent: 0), clock.birthday)
+        XCTAssertEqual(clock.dateFromPercentage(percent: 1.0), clock.deathday)
+    }
+
+    func testGetClockLandmarks() {
+        let clock = ClockData.test.clock
+        let clockLandmarks = clock.getClockLandmarks()
+        debugPrint(clockLandmarks as Any)
+        XCTAssertEqual(clockLandmarks[clock.birthday], 0)
+        XCTAssertEqual(clockLandmarks[clock.deathday], 100)
+    }
+
+    func testGetLandmarkDates() {
+        let clock = ClockData.test.clock
+        let dates = clock.getClockLandmarkDates(minimalTimeInterval: 0)
+        debugPrint(dates as Any)
     }
 
     func testLifespanLongerThan() {

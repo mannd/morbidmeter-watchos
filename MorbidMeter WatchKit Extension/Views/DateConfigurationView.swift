@@ -48,7 +48,7 @@ struct DateConfigurationView: View {
                     }
                 }
                 .font(geometry.size.width > WatchSize.sizeInPoints(WatchSize.size38mm).width ? Font.system(size: 17) : Font.system(size: 13))
-                NavigationLink(destination: TimeConfigurationView(selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
+                NavigationLink(destination: TimeConfigurationView(endpoint: endpoint, selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
             }
             .onAppear(perform: { convertDateToIndices() })
             .onDisappear(perform: { convertIndicesToDate() })
