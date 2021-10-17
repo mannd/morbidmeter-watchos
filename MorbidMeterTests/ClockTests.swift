@@ -81,14 +81,42 @@ class ClockTests: XCTestCase {
         let clockLandmarks = clock.getClockLandmarks()
         debugPrint(clockLandmarks as Any)
         XCTAssertEqual(clockLandmarks[clock.birthday], 0)
-        XCTAssertEqual(clockLandmarks[clock.deathday], 100)
+        XCTAssertEqual(clockLandmarks[clock.deathday], 99)
+    }
+
+    func testGetClockLandmark2() {
+        let clock = ClockData.test.clock
+        let clockLandmarks = clock.getClockLandmarks()
+        let clockLandmarks2 = clock.getClockLandmarks2()
+        debugPrint(clockLandmarks as Any)
+        debugPrint(clockLandmarks2 as Any)
+        XCTAssertEqual(Array(clockLandmarks.keys).sorted()[50], clockLandmarks2[50])
+        XCTAssertEqual(clockLandmarks2[0], clock.birthday)
+        XCTAssertEqual(clockLandmarks2[100], clock.deathday)
+        XCTAssertEqual(clockLandmarks.count, 100)
+        XCTAssertEqual(clockLandmarks2.count, 101)
     }
 
     func testGetLandmarkDates() {
         let clock = ClockData.test.clock
-        let dates = clock.getClockLandmarkDates(minimalTimeInterval: 0)
+        let dates = clock.getClockLandmarkDates(minimalTimeInterval: 0, after: clock.birthday, timeInterval: TimeConstants.oneWeek)
         debugPrint(dates as Any)
+        XCTAssertEqual(dates.count, 101)
+        XCTAssertEqual(dates[0], clock.birthday)
+        XCTAssertEqual(dates[dates.count-1], clock.deathday)
+        let dates2 = clock.getClockLandmarkDates(minimalTimeInterval: 0, after: clock.birthday.addingTimeInterval(1), timeInterval: TimeConstants.oneHour)
+        XCTAssert(dates2[0] > clock.birthday)
+        XCTAssert(dates2[dates2.count-1] < clock.deathday)
     }
+
+    // Original getClockLandmarks() 7 times slower than getClockLandmarks2()
+//    func testLandmarkTiming() {
+//        let clock = ClockData.test.clock
+//        for _ in 0..<100000 {
+//            let _ = clock.getClockLandmarks()
+//            let _ = clock.getClockLandmarks2(startDate: clock.birthday, endDate: clock.deathday)
+//        }
+//    }
 
     func testLifespanLongerThan() {
         let clock = ClockData.longLifeTest.clock

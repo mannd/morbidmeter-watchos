@@ -50,12 +50,13 @@ struct Clock: Codable, Equatable {
         return nil
     }
 
+    // Older algorithm that does work, remains for testing of behavior
     func getClockLandmarks(minimalTimeInterval: TimeInterval = 0) -> [Date: Int] {
         var dates: [Date: Int] = [:]
         dates[birthday] = 0
-        dates[deathday] = 100
+        dates[deathday] = 99
         var lastDate = birthday
-        for i in 1...99 {
+        for i in 1...98 {
             if let date = dateFromPercentage(percent: Double(i)/100.0) {
                 if date.timeIntervalSince(lastDate) > minimalTimeInterval {
                     dates[date] = i
@@ -66,22 +67,32 @@ struct Clock: Codable, Equatable {
         return dates
     }
 
-    func getClockLandmarkDates(minimalTimeInterval: TimeInterval = 0, after date: Date? = nil, timeInterval: TimeInterval? = nil) -> [Date] {
-        var startDate: Date
-        var endDate: Date
-        if let date = date {
-            startDate = date
-        } else {
-            startDate = birthday
+    // More efficient algorithm
+    func getClockLandmarks2(minimalTimeInterval: TimeInterval = 0) -> [Date] {
+        var dates: [Date] = []
+        let firstLandmark = birthday
+        let lastLandmark = deathday
+        dates.append(firstLandmark)
+        var lastDate = firstLandmark
+        for counter in 1..<100 {
+            if let date = dateFromPercentage(percent: Double(counter)/100.0) {
+                if date.timeIntervalSince(lastDate) > minimalTimeInterval {
+                    dates.append(date)
+                    lastDate = date
+                }
+            }
         }
-        if let timeInterval = timeInterval {
-            endDate = startDate.addingTimeInterval(timeInterval)
-        } else {
-            endDate = deathday
-        }
-        let landmarks = getClockLandmarks(minimalTimeInterval: minimalTimeInterval)
-        let dates = Array(landmarks.keys).sorted().filter { $0 >= startDate && $0 <= endDate}
+        dates.append(lastLandmark)
         return dates
+    }
+
+    func getClockLandmarkDates(minimalTimeInterval: TimeInterval = 0, after date: Date, timeInterval: TimeInterval) -> [Date] {
+        print("getClockLandmarkDates() after date = \(date) timeInteral = \(timeInterval)")
+        let startDate = date
+        let endDate = startDate.addingTimeInterval(timeInterval)
+
+        let landmarks = getClockLandmarks2(minimalTimeInterval: minimalTimeInterval).filter { $0 >= startDate && $0 <= endDate }
+        return landmarks
     }
 
     func lifespanLongerThan(timeInterval: TimeInterval) -> Bool {
