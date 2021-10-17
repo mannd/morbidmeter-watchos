@@ -30,7 +30,7 @@ class ClockData: ObservableObject {
 
             // FIXME: Move reload complications to configuration disappear?
             // Update complications
-            reloadComplications()
+//            reloadComplications()
             self.save()
         }
     }

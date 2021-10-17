@@ -45,6 +45,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the current timeline entry
         let date = Date()
         print("getCurrentTimelineEntry() for \(date)")
+        // TODO: don't just get current entry, get most recent landmark
         if let template = getComplicationTemplate(for: complication, using: date) {
             let entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
             handler(entry)
@@ -57,7 +58,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the timeline entries after the given date
         // Create an array to hold the timeline entries.
         var entries = [CLKComplicationTimelineEntry]()
-        let landmarkDates = data.clock.getClockLandmarkDates(minimalTimeInterval: TimeConstants.fiveMinutes, after: date, timeInterval: TimeConstants.twentyFourHours)
+        // TODO: makes sure no more than 50 updates per day.  Also consider let timeInterval depend on longevity, i.e. more frequent if longevity shorter?
+        let landmarkDates = data.clock.getClockLandmarkDates(minimalTimeInterval: TimeConstants.fiveMinutes, after: date, timeInterval: TimeConstants.oneHour)
         print("*****landmarkdates", landmarkDates as Any)
         for landmarkDate in landmarkDates {
             if let template = getComplicationTemplate(for: complication, using: landmarkDate) {
@@ -120,8 +122,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     private func createTemplateModularLarge(date: Date) -> CLKComplicationTemplate {
         let imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "Complication/Modular")!)
         let headerProvider = CLKSimpleTextProvider(text: Clock.fullName, shortText: Clock.shortName)
-        let body1Provider = CLKSimpleTextProvider(text: data.clock.getUnwrappedMomentTime(date: date), shortText: data.clock.getMomentTimeShortUnits(date: date))
-        let body2Provider = CLKSimpleTextProvider(text: "Percent: \(data.clock.getShortFormattedMomentPercentage(date: date, fractionDigits: 2))")
+        let body1Provider = CLKSimpleTextProvider(text: "Last landmark: \(data.clock.getShortFormattedMomentPercentage(date: date))")
+        let body2Provider = CLKSimpleTextProvider(text: data.clock.getUnwrappedMomentTime(date: date), shortText: data.clock.getMomentTimeShortUnits(date: date))
         return CLKComplicationTemplateModularLargeStandardBody(headerImageProvider: imageProvider,
                                                                headerTextProvider: headerProvider,
                                                                body1TextProvider: body1Provider,
