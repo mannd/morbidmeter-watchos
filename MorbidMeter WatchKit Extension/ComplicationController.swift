@@ -28,8 +28,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
         // Call the handler with the last entry date you can currently provide or nil if you can't support future timelines
-        let nextDate = Date().addingTimeInterval(TimeConstants.fifteenMinutes)
-        return handler(nextDate)
+//        let nextDate = Date().addingTimeInterval(TimeConstants.fifteenMinutes)
+        let endDate = min(data.clock.deathday, Date().addingTimeInterval(TimeConstants.oneHour))
+        return handler(endDate)
+//        return handler(nextDate)
     }
     
     func getPrivacyBehavior(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationPrivacyBehavior) -> Void) {
@@ -42,6 +44,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         // Call the handler with the current timeline entry
         let date = Date()
+        print("getCurrentTimelineEntry() for \(date)")
         if let template = getComplicationTemplate(for: complication, using: date) {
             let entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
             handler(entry)
@@ -54,28 +57,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the timeline entries after the given date
         // Create an array to hold the timeline entries.
         var entries = [CLKComplicationTimelineEntry]()
-        // Don't want too many or too few updates.
-        let updateTimeInterval = TimeConstants.fiveMinutes
-        // Calculate the start and end dates.
-        var current = date.addingTimeInterval(updateTimeInterval)
-        // make end date exactly deathday if it is within the twenty minute interval.
-        let endDate = date.addingTimeInterval(TimeConstants.twentyMinutes)
-        while (current.compare(endDate) == .orderedAscending) && (entries.count < limit) {
-            if let template = getComplicationTemplate(for: complication, using: current) {
-                let entry: CLKComplicationTimelineEntry
-                if current > data.clock.deathday {
-                    entry = CLKComplicationTimelineEntry(
-                        date: data.clock.deathday,
-                        complicationTemplate: template
-                    )
-                } else {
-                    entry = CLKComplicationTimelineEntry(
-                        date: current,
-                        complicationTemplate: template)
+        let landmarkDates = data.clock.getClockLandmarkDates(minimalTimeInterval: TimeConstants.fiveMinutes, after: date, timeInterval: TimeConstants.twentyFourHours)
+        print("*****landmarkdates", landmarkDates as Any)
+        for landmarkDate in landmarkDates {
+            if let template = getComplicationTemplate(for: complication, using: landmarkDate) {
+                let entry = CLKComplicationTimelineEntry(date: landmarkDate, complicationTemplate: template)
+                if entries.count < limit {
+                    entries.append(entry)
                 }
-                entries.append(entry)
             }
-            current = current.addingTimeInterval(updateTimeInterval)
         }
         handler(entries)
     }
