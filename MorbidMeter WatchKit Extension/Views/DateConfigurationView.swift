@@ -12,7 +12,9 @@ struct DateConfigurationView: View {
     private static let yearDiff = 2020 - minimumYear
     private static let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-    @Binding var date: Date
+    var endpoint: Endpoint = .birthday
+
+    @EnvironmentObject var clockData: ClockData
 
     @State private var selectedMonthIndex = 0
     @State private var selectedDayIndex = 0 // 1st of month
@@ -25,7 +27,7 @@ struct DateConfigurationView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Text("Date").font(Font.system(size: 13))
+                Text("\(endpoint == .birthday ? "Start" : "End") Date").font(Font.system(size: 13))
                 HStack {
                     Picker("Year", selection: $selectedYearIndex) {
                         ForEach(0..<200) { year in
@@ -46,7 +48,7 @@ struct DateConfigurationView: View {
                     }
                 }
                 .font(geometry.size.width > WatchSize.sizeInPoints(WatchSize.size38mm).width ? Font.system(size: 17) : Font.system(size: 13))
-                NavigationLink(destination: TimeConfigurationView(selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
+                NavigationLink(destination: TimeConfigurationView(endpoint: endpoint, selectedHourIndex: $selectedHourIndex, selectedMinuteIndex: $selectedMinuteIndex, selectedSecondIndex: $selectedSecondIndex), label: { Text("Time")})
             }
             .onAppear(perform: { convertDateToIndices() })
             .onDisappear(perform: { convertIndicesToDate() })
@@ -62,16 +64,26 @@ struct DateConfigurationView: View {
         let minute = selectedMinuteIndex
         let second = selectedSecondIndex
         let dateComponents = DateComponents(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
-        if let newDate = Calendar.current.date(from: dateComponents), newDate != date {
-            date = newDate
+        if let newDate = Calendar.current.date(from: dateComponents) {
+            switch endpoint {
+            case .birthday:
+                clockData.clock.birthday = newDate
+            case .deathday:
+                clockData.clock.deathday = newDate
+            }
         }
-        print("Date is now... ", date)
     }
 
     func convertDateToIndices() {
+        let date: Date
+        switch endpoint {
+        case .birthday:
+            date = clockData.clock.birthday
+        case .deathday:
+            date = clockData.clock.deathday
+        }
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         if let yearIndex = components.year, let monthIndex = components.month, let dayIndex = components.day, let hourIndex = components.hour, let minuteIndex = components.minute, let secondIndex = components.second {
-            print(components)
             selectedYearIndex = yearIndex - Self.minimumYear
             selectedMonthIndex = monthIndex - 1
             selectedDayIndex = dayIndex - 1
@@ -85,15 +97,15 @@ struct DateConfigurationView: View {
 struct DateConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView()
                 .environmentObject(ClockData.shared)
-            DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView()
                 .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 3 - 38mm")
-            DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView()
                 .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 6 - 40mm")
-            DateConfigurationView(date: .constant(Date()))
+            DateConfigurationView()
                 .environmentObject(ClockData.shared)
                 .previewDevice("Apple Watch Series 6 - 44mm")
         }

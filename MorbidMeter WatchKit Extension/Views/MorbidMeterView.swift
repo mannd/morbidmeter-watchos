@@ -28,19 +28,22 @@ struct MorbidMeterView: View {
             Text(Clock.fullName)
                 .font(Font.custom("BlackChancery", size: 22))
             NavigationLink(destination: ConfigurationView(), label: {
-                Image("skull_button_2").resizable().aspectRatio(contentMode: .fit)
+                Image("skull_button").resizable().aspectRatio(contentMode: .fit)
             })
             .buttonStyle(PlainButtonStyle())
             Text(morbidMeterTime)
                 .font(Font.system(size: 14.0))
                 .multilineTextAlignment(.center)
+                // This only works if these appear here, not on the VStack
+                .onDisappear(perform: {
+                    stopTimer()
+                })
+                .onAppear(perform: {
+                    startTimer()
+                    reloadComplications()
+                })
             ProgressView(value: progressValue)
         }
-        .onDisappear(perform: {
-        })
-        .onAppear(perform: {
-            startTimer()
-        })
     }
 
     func startTimer() {
