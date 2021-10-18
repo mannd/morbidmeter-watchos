@@ -27,10 +27,6 @@ class ClockData: ObservableObject {
     @Published public var clock = Clock() {
         didSet {
             logger.debug("Clock was set.")
-
-            // FIXME: Move reload complications to configuration disappear?
-            // Update complications
-//            reloadComplications()
             self.save()
         }
     }

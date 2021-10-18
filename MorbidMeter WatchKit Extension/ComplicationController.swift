@@ -56,7 +56,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // Call the handler with the timeline entries after the given date
         // Create an array to hold the timeline entries.
         var entries = [CLKComplicationTimelineEntry]()
-        // TODO: makes sure no more than 50 updates per day.  Also consider let timeInterval depend on longevity, i.e. more frequent if longevity shorter?
         let landmarkDates = data.clock.getClockLandmarkDates(minimalTimeInterval: TimeConstants.fiveMinutes, after: date, timeInterval: TimeConstants.oneHour)
         for landmarkDate in landmarkDates {
             if let template = getComplicationTemplate(for: complication, using: landmarkDate) {
