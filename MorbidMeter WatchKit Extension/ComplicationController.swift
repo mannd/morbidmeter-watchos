@@ -44,8 +44,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         // Call the handler with the current timeline entry
         let date = Date()
-        print("getCurrentTimelineEntry() for \(date)")
-        // TODO: don't just get current entry, get most recent landmark
         if let template = getComplicationTemplate(for: complication, using: date) {
             let entry = CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
             handler(entry)
@@ -60,7 +58,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         var entries = [CLKComplicationTimelineEntry]()
         // TODO: makes sure no more than 50 updates per day.  Also consider let timeInterval depend on longevity, i.e. more frequent if longevity shorter?
         let landmarkDates = data.clock.getClockLandmarkDates(minimalTimeInterval: TimeConstants.fiveMinutes, after: date, timeInterval: TimeConstants.oneHour)
-        print("*****landmarkdates", landmarkDates as Any)
         for landmarkDate in landmarkDates {
             if let template = getComplicationTemplate(for: complication, using: landmarkDate) {
                 let entry = CLKComplicationTimelineEntry(date: landmarkDate, complicationTemplate: template)

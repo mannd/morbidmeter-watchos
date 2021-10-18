@@ -59,7 +59,6 @@ func scheduleBackgroundRefreshTasks() {
 func reloadComplications() {
     let server = CLKComplicationServer.sharedInstance()
     for complication in server.activeComplications ?? [] {
-//        print("complication family", complication.description)
         server.reloadTimeline(for: complication)
     }
 }

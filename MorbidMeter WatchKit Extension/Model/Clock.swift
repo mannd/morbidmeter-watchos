@@ -87,7 +87,6 @@ struct Clock: Codable, Equatable {
     }
 
     func getClockLandmarkDates(minimalTimeInterval: TimeInterval = 0, after date: Date, timeInterval: TimeInterval) -> [Date] {
-        print("getClockLandmarkDates() after date = \(date) timeInteral = \(timeInterval)")
         let startDate = date
         let endDate = startDate.addingTimeInterval(timeInterval)
 

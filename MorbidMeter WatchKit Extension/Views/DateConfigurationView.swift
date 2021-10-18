@@ -71,7 +71,6 @@ struct DateConfigurationView: View {
             case .deathday:
                 clockData.clock.deathday = newDate
             }
-            print("+++Date is now... ", newDate)
         }
     }
 
@@ -85,7 +84,6 @@ struct DateConfigurationView: View {
         }
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         if let yearIndex = components.year, let monthIndex = components.month, let dayIndex = components.day, let hourIndex = components.hour, let minuteIndex = components.minute, let secondIndex = components.second {
-            print(components)
             selectedYearIndex = yearIndex - Self.minimumYear
             selectedMonthIndex = monthIndex - 1
             selectedDayIndex = dayIndex - 1
