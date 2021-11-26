@@ -209,9 +209,18 @@ class Timescales {
         return timescaleBlank
     }
 
-    static func integerFormattedDouble(_ number: Double) -> String? {
+    static func integerFormattedDouble(_ number: Double, verbosePrecision: Bool = true) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.usesSignificantDigits = false
+        formatter.maximumFractionDigits = 4
+        if verbosePrecision && number < 1.0 {
+            guard let result = formatter.string(from: NSNumber(value: abs(number))) else {
+                return nil
+            }
+            return result
+        }
+        // floor() always rounds down
         guard let result = formatter.string(from: NSNumber(value: floor(abs(number)))) else {
             return nil
         }
