@@ -35,10 +35,34 @@ class Timescales {
                                  reverseTime: Bool,
                                  separator: String = cr) -> String {
         var finalUnits = reverseTime ? "to go" : "passed"
-        if let units = units {
+        if var units = units {
+            // Handle 1 which is singular, all fractions are plural in English.
+            if result == "1" {
+                units = unpluralizeUnits(units)
+            }
             finalUnits = [units, finalUnits].joined(separator: space)
         }
         return [result, finalUnits].joined(separator: separator)
+    }
+
+
+    /// Remove terminal "s" from a plural
+    ///
+    /// This method is fragile!  Will remove an "s" from a word ending is "s" even if it is not a plural.
+    /// It can't handle irregular plurals, it can't handle internationalization.
+    /// - Parameter units: time units as String
+    /// - Returns: time units without terminal "s", or original String if no terminal "s"
+    static func unpluralizeUnits(_ units: String) -> String {
+        guard !units.isEmpty, units.count > 1 else { return units }
+        let lastCharacter = units.last
+        if let lastCharacter = lastCharacter {
+            if lastCharacter == "s" || lastCharacter == "S" {
+                var truncatedUnits = units
+                truncatedUnits.remove(at: truncatedUnits.index(before: truncatedUnits.endIndex))
+                return truncatedUnits
+            }
+        }
+        return units
     }
 
     static let timescales: [TimescaleType: Timescale] = [
@@ -209,9 +233,18 @@ class Timescales {
         return timescaleBlank
     }
 
-    static func integerFormattedDouble(_ number: Double) -> String? {
+    static func integerFormattedDouble(_ number: Double, verbosePrecision: Bool = true) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.usesSignificantDigits = false
+        formatter.maximumFractionDigits = 4
+        if verbosePrecision && number < 1.0 {
+            guard let result = formatter.string(from: NSNumber(value: abs(number))) else {
+                return nil
+            }
+            return result
+        }
+        // floor() always rounds down
         guard let result = formatter.string(from: NSNumber(value: floor(abs(number)))) else {
             return nil
         }
