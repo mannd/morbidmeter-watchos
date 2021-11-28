@@ -11,7 +11,7 @@ import UserNotifications
 struct ConfigurationView: View {
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateStyle = .medium
         return formatter
     }()
     static let reverseTimeSymbol = "-R"
