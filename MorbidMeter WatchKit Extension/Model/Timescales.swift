@@ -184,7 +184,13 @@ class Timescales {
                 return errorMessage
             }
             let formatter = DateFormatter()
-            formatter.dateFormat = "MMM dd hh:mm:ss a"
+            // We overide Locale here and for .year, since iOS 12 vs 24 hour clock settings
+            // affect the watch display.
+            // For example, if 24-hr clock is set, you see 07:10:10 instead of 7:10:10 AM.
+            // If we force US locale, the 24 hr clock setting is ignored.
+            // See https://stackoverflow.com/questions/63205346/dateformatter-strange-behaviour-on-ios-13-4-1-while-12-hour-date-style-set-in-t
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = "MMM dd h:mm:ss a"
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             let adjustedTimeInterval = percentage * secsPerMonth
             let date = Timescale.referenceHour.addingTimeInterval(adjustedTimeInterval)
@@ -195,6 +201,7 @@ class Timescales {
                 return errorMessage
             }
             let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "MMM dd h:mm:ss a"
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
 
