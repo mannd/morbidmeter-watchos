@@ -20,12 +20,20 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CLKComplicationPrincipalClass</key>
+	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BLKCHCRY.TTF</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>WKWatchKitApp</key>
+	<key>WKApplication</key>
+	<true/>
+	<key>WKWatchOnly</key>
 	<true/>
 </dict>
 </plist>

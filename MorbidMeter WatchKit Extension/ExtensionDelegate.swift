@@ -9,12 +9,12 @@ import WatchKit
 import ClockKit
 import os
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKApplicationDelegate {
     let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ExtensionDelegate", category: "Extension Delegate")
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         logger.debug("Handling background task")
-        logger.debug("App State: \(WKExtension.shared().applicationState.rawValue)")
+        logger.debug("App State: \(WKApplication.shared().applicationState.rawValue)")
         for task in backgroundTasks {
             logger.debug("Task: \(task)")
             switch task {
@@ -46,7 +46,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
 func scheduleBackgroundRefreshTasks() {
     let updateFrequency = TimeConstants.fifteenMinutes
-    let watchExtension = WKExtension.shared()
+    let watchExtension = WKApplication.shared()
     let targetDate = Date().addingTimeInterval(updateFrequency)
     watchExtension.scheduleBackgroundRefresh(withPreferredDate: targetDate, userInfo: nil, scheduledCompletion: { error in
         if let error = error {
