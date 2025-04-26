@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MorbidMeter_WatchKit_Extension
+@testable import MorbidMeter_WatchKit_App
 import SwiftUI
 
 class ClockTests: XCTestCase {
