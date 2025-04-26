@@ -98,7 +98,7 @@ class ClockData: ObservableObject {
             }
         }
 
-        if WKExtension.shared().applicationState == .background {
+        if WKApplication.shared().applicationState == .background {
             logger.debug("saving synchronously")
             saveAction()
         } else {
