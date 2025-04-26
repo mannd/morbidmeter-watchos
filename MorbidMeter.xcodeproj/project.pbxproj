@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,6 @@
 		8E289D6026B77FA800E70899 /* SecretsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E289D5F26B77FA800E70899 /* SecretsView.swift */; };
 		8E39E6262670550A00AED406 /* MorbidMeter WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E62A2670550B00AED406 /* Assets.xcassets */; };
-		8E39E6322670550B00AED406 /* MorbidMeter WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8E39E6312670550B00AED406 /* MorbidMeter WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E6362670550B00AED406 /* MorbidMeterApp.swift */; };
 		8E39E6392670550B00AED406 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E6382670550B00AED406 /* ContentView.swift */; };
 		8E39E63B2670550B00AED406 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E63A2670550B00AED406 /* NotificationController.swift */; };
@@ -49,21 +48,14 @@
 			remoteGlobalIDString = 8E39E6242670550A00AED406;
 			remoteInfo = "MorbidMeter WatchKit App";
 		};
-		8E39E6332670550B00AED406 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E39E6302670550B00AED406;
-			remoteInfo = "MorbidMeter WatchKit Extension";
-		};
-		8E39E64C2670550C00AED406 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E39E6302670550B00AED406;
-			remoteInfo = "MorbidMeter WatchKit Extension";
-		};
 		8E39E6572670550C00AED406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E39E6242670550A00AED406;
+			remoteInfo = "MorbidMeter WatchKit App";
+		};
+		8EE9835B2DBCE97A000AB178 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
 			proxyType = 1;
@@ -73,17 +65,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8E39E6622670550C00AED406 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				8E39E6322670550B00AED406 /* MorbidMeter WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8E39E6662670550C00AED406 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,7 +85,6 @@
 		8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MorbidMeter WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E62A2670550B00AED406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E39E62C2670550B00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E39E6312670550B00AED406 /* MorbidMeter WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MorbidMeter WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E6362670550B00AED406 /* MorbidMeterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterApp.swift; sourceTree = "<group>"; };
 		8E39E6382670550B00AED406 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E39E63A2670550B00AED406 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -194,7 +174,6 @@
 			children = (
 				8E39E6212670550900AED406 /* MorbidMeter.app */,
 				8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */,
-				8E39E6312670550B00AED406 /* MorbidMeter WatchKit Extension.appex */,
 				8E39E64B2670550C00AED406 /* MorbidMeterTests.xctest */,
 				8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */,
 			);
@@ -300,34 +279,17 @@
 			buildConfigurationList = 8E39E6632670550C00AED406 /* Build configuration list for PBXNativeTarget "MorbidMeter WatchKit App" */;
 			buildPhases = (
 				8E39E6232670550A00AED406 /* Resources */,
-				8E39E6622670550C00AED406 /* Embed App Extensions */,
+				8E39E62D2670550B00AED406 /* Sources */,
+				8E39E62E2670550B00AED406 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8E39E6342670550B00AED406 /* PBXTargetDependency */,
 			);
 			name = "MorbidMeter WatchKit App";
 			productName = "MorbidMeter WatchKit App";
 			productReference = 8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		8E39E6302670550B00AED406 /* MorbidMeter WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8E39E65F2670550C00AED406 /* Build configuration list for PBXNativeTarget "MorbidMeter WatchKit Extension" */;
-			buildPhases = (
-				8E39E62D2670550B00AED406 /* Sources */,
-				8E39E62E2670550B00AED406 /* Frameworks */,
-				8E39E62F2670550B00AED406 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "MorbidMeter WatchKit Extension";
-			productName = "MorbidMeter WatchKit Extension";
-			productReference = 8E39E6312670550B00AED406 /* MorbidMeter WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 		8E39E64A2670550C00AED406 /* MorbidMeterTests */ = {
 			isa = PBXNativeTarget;
@@ -340,7 +302,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				8E39E64D2670550C00AED406 /* PBXTargetDependency */,
+				8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */,
 			);
 			name = MorbidMeterTests;
 			productName = MorbidMeterTests;
@@ -371,8 +333,9 @@
 		8E39E61B2670550900AED406 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					8E39E6202670550900AED406 = {
 						CreatedOnToolsVersion = 12.5;
@@ -380,12 +343,9 @@
 					8E39E6242670550A00AED406 = {
 						CreatedOnToolsVersion = 12.5;
 					};
-					8E39E6302670550B00AED406 = {
-						CreatedOnToolsVersion = 12.5;
-					};
 					8E39E64A2670550C00AED406 = {
 						CreatedOnToolsVersion = 12.5;
-						TestTargetID = 8E39E6302670550B00AED406;
+						TestTargetID = 8E39E6242670550A00AED406;
 					};
 					8E39E6552670550C00AED406 = {
 						CreatedOnToolsVersion = 12.5;
@@ -408,7 +368,6 @@
 			targets = (
 				8E39E6202670550900AED406 /* MorbidMeter */,
 				8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */,
-				8E39E6302670550B00AED406 /* MorbidMeter WatchKit Extension */,
 				8E39E64A2670550C00AED406 /* MorbidMeterTests */,
 				8E39E6552670550C00AED406 /* MorbidMeterUITests */,
 			);
@@ -427,17 +386,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8E39E62F2670550B00AED406 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */,
 				8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */,
 				8E39E6412670550C00AED406 /* Assets.xcassets in Resources */,
+				8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,20 +465,15 @@
 			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
 			targetProxy = 8E39E6272670550A00AED406 /* PBXContainerItemProxy */;
 		};
-		8E39E6342670550B00AED406 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8E39E6302670550B00AED406 /* MorbidMeter WatchKit Extension */;
-			targetProxy = 8E39E6332670550B00AED406 /* PBXContainerItemProxy */;
-		};
-		8E39E64D2670550C00AED406 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8E39E6302670550B00AED406 /* MorbidMeter WatchKit Extension */;
-			targetProxy = 8E39E64C2670550C00AED406 /* PBXContainerItemProxy */;
-		};
 		8E39E6582670550C00AED406 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
 			targetProxy = 8E39E6572670550C00AED406 /* PBXContainerItemProxy */;
+		};
+		8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
+			targetProxy = 8EE9835B2DBCE97A000AB178 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -566,8 +513,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -626,8 +575,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = W74NPJXYEG;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -645,70 +596,20 @@
 			};
 			name = Release;
 		};
-		8E39E6602670550C00AED406 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_ASSET_PATHS = "\"MorbidMeter WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = W74NPJXYEG;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "MorbidMeter WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
-			};
-			name = Debug;
-		};
-		8E39E6612670550C00AED406 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_ASSET_PATHS = "\"MorbidMeter WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = W74NPJXYEG;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "MorbidMeter WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
-			};
-			name = Release;
-		};
 		8E39E6642670550C00AED406 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
-				IBSC_MODULE = MorbidMeter_WatchKit_Extension;
 				INFOPLIST_FILE = "MorbidMeter WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -723,15 +624,17 @@
 		8E39E6652670550C00AED406 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
-				IBSC_MODULE = MorbidMeter_WatchKit_Extension;
 				INFOPLIST_FILE = "MorbidMeter WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -747,9 +650,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
-				MARKETING_VERSION = 1.1.0;
+				CURRENT_PROJECT_VERSION = 7;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -760,9 +662,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
-				MARKETING_VERSION = 1.1.0;
+				CURRENT_PROJECT_VERSION = 7;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -772,10 +673,8 @@
 		8E39E66B2670550C00AED406 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
 				INFOPLIST_FILE = MorbidMeterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -787,7 +686,7 @@
 				SDKROOT = watchos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit Extension.appex/MorbidMeter WatchKit Extension";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MorbidMeter WatchKit App";
 				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Debug;
@@ -795,10 +694,8 @@
 		8E39E66C2670550C00AED406 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
 				INFOPLIST_FILE = MorbidMeterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -810,7 +707,7 @@
 				SDKROOT = watchos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit Extension.appex/MorbidMeter WatchKit Extension";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MorbidMeter WatchKit App";
 				WATCHOS_DEPLOYMENT_TARGET = 7.4;
 			};
 			name = Release;
@@ -819,7 +716,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
 				INFOPLIST_FILE = MorbidMeterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -840,7 +736,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W74NPJXYEG;
 				INFOPLIST_FILE = MorbidMeterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -865,15 +760,6 @@
 			buildConfigurations = (
 				8E39E65D2670550C00AED406 /* Debug */,
 				8E39E65E2670550C00AED406 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8E39E65F2670550C00AED406 /* Build configuration list for PBXNativeTarget "MorbidMeter WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8E39E6602670550C00AED406 /* Debug */,
-				8E39E6612670550C00AED406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

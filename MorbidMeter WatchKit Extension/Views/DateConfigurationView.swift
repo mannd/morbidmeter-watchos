@@ -36,7 +36,7 @@ struct DateConfigurationView: View {
                     }
                     .frame(width: geometry.size.width * 0.38)
                     Picker("Month", selection: $selectedMonthIndex) {
-                        ForEach(0..<Self.months.count) { index in
+                        ForEach(0..<Self.months.count, id: \.self) { index in
                             Text(Self.months[index])
                         }
                     }
