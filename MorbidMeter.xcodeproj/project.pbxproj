@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,9 @@
 		8E39E6412670550C00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6402670550C00AED406 /* Assets.xcassets */; };
 		8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6432670550C00AED406 /* Preview Assets.xcassets */; };
 		8E39E65B2670550C00AED406 /* MorbidMeterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */; };
+		8E40ED9C2DF2267900D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EDB72DF2277200D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EDB82DF2277200D6BD24 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E50D6F0269A029E006239B4 /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50D6EF269A029E006239B4 /* ClockTests.swift */; };
 		8E69FCFA26A11506008BF083 /* ClockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69FCF926A11506008BF083 /* ClockData.swift */; };
 		8E6D255A26914C1D0032CBE2 /* Lifespan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255926914C1D0032CBE2 /* Lifespan.swift */; };
@@ -55,6 +58,20 @@
 			remoteGlobalIDString = 8E39E6242670550A00AED406;
 			remoteInfo = "MorbidMeter WatchKit App";
 		};
+		8E40ED9D2DF2267900D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
+		8E40EDB92DF2277200D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
 		8EE9835B2DBCE97A000AB178 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
@@ -74,6 +91,17 @@
 				8E39E6262670550A00AED406 /* MorbidMeter WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40EDBB2DF2277200D6BD24 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8E40EDB82DF2277200D6BD24 /* ClockCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -99,6 +127,8 @@
 		8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorbidMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterUITests.swift; sourceTree = "<group>"; };
 		8E39E65C2670550C00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E40ED912DF2267800D6BD24 /* ClockCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClockCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E40ED9B2DF2267900D6BD24 /* ClockCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClockCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E50D6EF269A029E006239B4 /* ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTests.swift; sourceTree = "<group>"; };
 		8E69FCF926A11506008BF083 /* ClockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockData.swift; sourceTree = "<group>"; };
 		8E6D255926914C1D0032CBE2 /* Lifespan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifespan.swift; sourceTree = "<group>"; };
@@ -120,11 +150,17 @@
 		8EFF8DE8269CC8C5002453A0 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8E40ED922DF2267800D6BD24 /* ClockCore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ClockCore; sourceTree = "<group>"; };
+		8E40ED9F2DF2267900D6BD24 /* ClockCoreTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ClockCoreTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		8E39E62E2670550B00AED406 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E40EDB72DF2277200D6BD24 /* ClockCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +175,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED8E2DF2267800D6BD24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED982DF2267900D6BD24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E40ED9C2DF2267900D6BD24 /* ClockCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +216,9 @@
 				8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */,
 				8E39E64E2670550C00AED406 /* MorbidMeterTests */,
 				8E39E6592670550C00AED406 /* MorbidMeterUITests */,
+				8E40ED922DF2267800D6BD24 /* ClockCore */,
+				8E40ED9F2DF2267900D6BD24 /* ClockCoreTests */,
+				8E40EDB62DF2277200D6BD24 /* Frameworks */,
 				8E39E6222670550900AED406 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,6 +230,8 @@
 				8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */,
 				8E39E64B2670550C00AED406 /* MorbidMeterTests.xctest */,
 				8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */,
+				8E40ED912DF2267800D6BD24 /* ClockCore.framework */,
+				8E40ED9B2DF2267900D6BD24 /* ClockCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -239,6 +295,13 @@
 			path = MorbidMeterUITests;
 			sourceTree = "<group>";
 		};
+		8E40EDB62DF2277200D6BD24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8EF6BAC226853E9E00800575 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +318,16 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8E40ED8C2DF2267800D6BD24 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		8E39E6202670550900AED406 /* MorbidMeter */ = {
@@ -281,10 +354,12 @@
 				8E39E6232670550A00AED406 /* Resources */,
 				8E39E62D2670550B00AED406 /* Sources */,
 				8E39E62E2670550B00AED406 /* Frameworks */,
+				8E40EDBB2DF2277200D6BD24 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8E40EDBA2DF2277200D6BD24 /* PBXTargetDependency */,
 			);
 			name = "MorbidMeter WatchKit App";
 			productName = "MorbidMeter WatchKit App";
@@ -327,6 +402,52 @@
 			productReference = 8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8E40ED902DF2267800D6BD24 /* ClockCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E40EDA22DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCore" */;
+			buildPhases = (
+				8E40ED8C2DF2267800D6BD24 /* Headers */,
+				8E40ED8D2DF2267800D6BD24 /* Sources */,
+				8E40ED8E2DF2267800D6BD24 /* Frameworks */,
+				8E40ED8F2DF2267800D6BD24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8E40ED922DF2267800D6BD24 /* ClockCore */,
+			);
+			name = ClockCore;
+			packageProductDependencies = (
+			);
+			productName = ClockCore;
+			productReference = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8E40ED9A2DF2267900D6BD24 /* ClockCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E40EDA52DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCoreTests" */;
+			buildPhases = (
+				8E40ED972DF2267900D6BD24 /* Sources */,
+				8E40ED982DF2267900D6BD24 /* Frameworks */,
+				8E40ED992DF2267900D6BD24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E40ED9E2DF2267900D6BD24 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8E40ED9F2DF2267900D6BD24 /* ClockCoreTests */,
+			);
+			name = ClockCoreTests;
+			packageProductDependencies = (
+			);
+			productName = ClockCoreTests;
+			productReference = 8E40ED9B2DF2267900D6BD24 /* ClockCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -334,7 +455,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					8E39E6202670550900AED406 = {
@@ -350,6 +471,12 @@
 					8E39E6552670550C00AED406 = {
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = 8E39E6242670550A00AED406;
+					};
+					8E40ED902DF2267800D6BD24 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8E40ED9A2DF2267900D6BD24 = {
+						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
@@ -370,6 +497,8 @@
 				8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */,
 				8E39E64A2670550C00AED406 /* MorbidMeterTests */,
 				8E39E6552670550C00AED406 /* MorbidMeterUITests */,
+				8E40ED902DF2267800D6BD24 /* ClockCore */,
+				8E40ED9A2DF2267900D6BD24 /* ClockCoreTests */,
 			);
 		};
 /* End PBXProject section */
@@ -401,6 +530,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8E39E6542670550C00AED406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED8F2DF2267800D6BD24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED992DF2267900D6BD24 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -457,6 +600,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8E40ED8D2DF2267800D6BD24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED972DF2267900D6BD24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -469,6 +626,16 @@
 			isa = PBXTargetDependency;
 			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
 			targetProxy = 8E39E6572670550C00AED406 /* PBXContainerItemProxy */;
+		};
+		8E40ED9E2DF2267900D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E40ED9D2DF2267900D6BD24 /* PBXContainerItemProxy */;
+		};
+		8E40EDBA2DF2277200D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E40EDB92DF2277200D6BD24 /* PBXContainerItemProxy */;
 		};
 		8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -754,6 +921,126 @@
 			};
 			name = Release;
 		};
+		8E40EDA32DF2267900D6BD24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8E40EDA42DF2267900D6BD24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8E40EDA62DF2267900D6BD24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E40EDA72DF2267900D6BD24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -798,6 +1085,24 @@
 			buildConfigurations = (
 				8E39E66E2670550C00AED406 /* Debug */,
 				8E39E66F2670550C00AED406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E40EDA22DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E40EDA32DF2267900D6BD24 /* Debug */,
+				8E40EDA42DF2267900D6BD24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E40EDA52DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E40EDA62DF2267900D6BD24 /* Debug */,
+				8E40EDA72DF2267900D6BD24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
