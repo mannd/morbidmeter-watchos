@@ -1,13 +1,13 @@
 //
 //  Timescales.swift
-//  MorbidMeter WatchKit Extension
+//  ClockCore
 //
-//  Created by David Mann on 6/23/21.
+//  Created by David Mann on 5/22/25.
 //
 
 import Foundation
 
-class Timescales {
+public class Timescales {
     private static let errorMessage = "Error"
     private static let cr = "\n"
     private static let space = " "
@@ -259,7 +259,7 @@ class Timescales {
     }
 }
 
-enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identifiable {
+public enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identifiable {
     case seconds
     case minutes
     case hours
@@ -277,9 +277,9 @@ enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identif
     case percent
     case blank
 
-    var id: TimescaleType { self }
+    public var id: TimescaleType { self }
 
-    var description: String {
+    public var description: String {
         switch self {
         case .seconds: return "Seconds"
         case .minutes: return "Minutes"
@@ -321,7 +321,7 @@ enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identif
         }
     }
 
-    func fullDescription(reverseTime: Bool) -> String {
+    public func fullDescription(reverseTime: Bool) -> String {
         return reverseTime ? [description, "-R"].joined() : description
     }
 }

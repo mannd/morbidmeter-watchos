@@ -1,27 +1,27 @@
 //
 //  Clock.swift
-//  MorbidMeter WatchKit Extension
+//  ClockCore
 //
-//  Created by David Mann on 7/9/21.
+//  Created by David Mann on 5/22/25.
 //
 
 import Foundation
 import SwiftUI
 
 /// A Clock has a birthday, deathday, timescale type, and time direction.  It can calculate Moments based on the Lifsspan and Date.
-struct Clock: Codable, Equatable {
-    var timescaleType: TimescaleType
-    var birthday: Date
-    var deathday: Date
-    var reverseTime: Bool
+public struct Clock: Codable, Equatable {
+    public var timescaleType: TimescaleType
+    public var birthday: Date
+    public var deathday: Date
+    public var reverseTime: Bool
 
     let uuid: UUID
 
     // Clock names used for labels, complications, etc.
-    static let fullName = "MorbidMeter"
-    static let shortName = "MM"
-    static let ultraShortName = "M"
-    static let skull = "💀"
+    public static let fullName = "MorbidMeter"
+    public static let shortName = "MM"
+    public static let ultraShortName = "M"
+    public static let skull = "💀"
 
     var timescale: Timescale {
         return Timescales.getInstance(timescaleType)
@@ -43,7 +43,7 @@ struct Clock: Codable, Equatable {
         self.uuid = uuid
     }
 
-    func dateFromPercentage(percent: Double) -> Date? {
+    public func dateFromPercentage(percent: Double) -> Date? {
         if let lifespan = try? Lifespan(birthday: birthday, deathday: deathday) {
             return lifespan.dateFromPercentage(percent: percent)
         }
@@ -51,7 +51,7 @@ struct Clock: Codable, Equatable {
     }
 
     // Older algorithm that does work, remains for testing of behavior
-    func getClockLandmarks(minimalTimeInterval: TimeInterval = 0) -> [Date: Int] {
+    public func getClockLandmarks(minimalTimeInterval: TimeInterval = 0) -> [Date: Int] {
         var dates: [Date: Int] = [:]
         dates[birthday] = 0
         dates[deathday] = 99
@@ -86,7 +86,7 @@ struct Clock: Codable, Equatable {
         return dates
     }
 
-    func getClockLandmarkDates(minimalTimeInterval: TimeInterval = 0, after date: Date, timeInterval: TimeInterval) -> [Date] {
+    public func getClockLandmarkDates(minimalTimeInterval: TimeInterval = 0, after date: Date, timeInterval: TimeInterval) -> [Date] {
         let startDate = date
         let endDate = startDate.addingTimeInterval(timeInterval)
 
@@ -94,14 +94,14 @@ struct Clock: Codable, Equatable {
         return landmarks
     }
 
-    func lifespanLongerThan(timeInterval: TimeInterval) -> Bool {
+    public func lifespanLongerThan(timeInterval: TimeInterval) -> Bool {
         if let lifespan = try? Lifespan(birthday: birthday, deathday: deathday), let longevity = try? lifespan.longevity() {
             return longevity > timeInterval
         }
         return false
     }
 
-    func getMoment(date: Date = Date()) -> Moment {
+    public func getMoment(date: Date = Date()) -> Moment {
         var moment = Moment()
         do {
             let lifespan = try Lifespan(birthday: birthday, deathday: deathday)
@@ -133,7 +133,7 @@ struct Clock: Codable, Equatable {
         return moment
     }
 
-    func getShortFormattedMomentPercentage(date: Date, fractionDigits: Int = 0) -> String {
+    public func getShortFormattedMomentPercentage(date: Date, fractionDigits: Int = 0) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .percent
         formatter.maximumFractionDigits = fractionDigits
@@ -145,7 +145,7 @@ struct Clock: Codable, Equatable {
     /// Get moment time string, but replace cr with space
     /// - Parameter date: Date to calculate MomentTime from
     /// - Returns: Unwarpped moment time string
-    func getUnwrappedMomentTime(date: Date) -> String {
+    public func getUnwrappedMomentTime(date: Date) -> String {
         let time = getMoment(date: date).time
         let unwrappedTime = String(time.map {
             $0 == "\n" ? " " : $0
@@ -153,7 +153,7 @@ struct Clock: Codable, Equatable {
         return unwrappedTime
     }
 
-    func getMomentTimeNumberAndUnits(date: Date) -> [String.SubSequence]? {
+    public func getMomentTimeNumberAndUnits(date: Date) -> [String.SubSequence]? {
         let time = getMoment(date: date).time
         let components = time.split(separator: "\n")
         if components.count == 2 {
@@ -162,7 +162,7 @@ struct Clock: Codable, Equatable {
         return nil
     }
 
-    func shortenedTimeString(_ time: String) -> String {
+    public func shortenedTimeString(_ time: String) -> String {
         let components = time.split(separator: " ")
         var shortUnits = ""
         if components.count >= 2 {
@@ -189,20 +189,20 @@ struct Clock: Codable, Equatable {
         return time
     }
 
-    func getMomentTimeShortUnits(date: Date) -> String {
+    public func getMomentTimeShortUnits(date: Date) -> String {
         let time = getUnwrappedMomentTime(date: date)
         return shortenedTimeString(time)
     }
 }
 
 /// A moment of MorbidMeter time, containing elapsed percentage of time and a time string.
-struct Moment {
-    var percentage: Double = 0
-    var time: String = "Error"
+public struct Moment {
+    public var percentage: Double = 0
+    public var time: String = "Error"
 }
 
-///  The two clock endpoints are birthday and deathday. 
-enum Endpoint {
+///  The two clock endpoints are birthday and deathday.
+public enum Endpoint {
     case birthday
     case deathday
 }

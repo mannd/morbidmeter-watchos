@@ -1,14 +1,14 @@
 //
 //  Lifespan.swift
-//  MorbidMeter WatchKit Extension
+//  ClockCore
 //
-//  Created by David Mann on 7/3/21.
+//  Created by David Mann on 5/22/25.
 //
 
 import Foundation
 
 /// A Lifespan contains a birthday and deathday, and can determine time intervals and percentages of the Lifespan from a specific Date.
-struct Lifespan {
+public struct Lifespan {
     private let dateInterval: DateInterval
 
     var birthday: Date { dateInterval.start }

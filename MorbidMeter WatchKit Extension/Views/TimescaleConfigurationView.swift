@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ClockCore
 
 struct TimescaleConfigurationView: View {
     @Binding var timescaleType: TimescaleType

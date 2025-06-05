@@ -7,10 +7,29 @@
 
 import ClockKit
 import SwiftUI
+import ClockCore
 
-class ComplicationController: NSObject, CLKComplicationDataSource {
+class ComplicationController: NSObject, CLKComplicationDataSource, CLKComplicationWidgetMigrator {
     // MARK: - Complication Configuration
     lazy var data = ClockData.shared
+
+    // Necessary to migrate to new WidgetKit complications.
+    // See https://developer.apple.com/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:) and https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app
+    var widgetMigrator: any CLKComplicationWidgetMigrator { self }
+
+    func getWidgetConfiguration(from complicationDescriptor: CLKComplicationDescriptor, completionHandler: @escaping (CLKComplicationWidgetMigrationConfiguration?) -> Void) {
+        var configuration: CLKComplicationWidgetMigrationConfiguration? = nil
+        switch complicationDescriptor.identifier {
+        case "morbidmeter_complication":
+             configuration = CLKComplicationStaticWidgetMigrationConfiguration(
+                kind: "com.epstudiossoftware.MorbidMeterComplications",
+                extensionBundleIdentifier: "org.epstudios.MorbidMeter.watchkitapp"
+             )
+        default:
+            configuration = nil
+        }
+        completionHandler(configuration)
+    }
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
