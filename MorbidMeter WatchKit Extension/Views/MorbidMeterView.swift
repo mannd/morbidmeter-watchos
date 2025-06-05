@@ -7,10 +7,15 @@
 
 import SwiftUI
 import UserNotifications
+import ClockCore
+import WidgetKit
+import os
 
 // See https://horrormade.com/2016/03/14/131-free-horror-fonts-you-can-use-anywhere/ for source of MM type fonts.
 
 struct MorbidMeterView: View {
+    let logger = Logger(subsystem: "org.epstudios.morbidmeter", category: "View")
+
     @State var birthday = Date()
     @State var deathday = Date()
     @State var reverseTime = false
@@ -22,6 +27,7 @@ struct MorbidMeterView: View {
     @State private var progressValue: Double = 0
 
     @EnvironmentObject var clockData: ClockData
+    @State private var lastSavedClock: Clock = ClockData.shared.clock
 
     var body: some View {
         VStack {
@@ -43,6 +49,15 @@ struct MorbidMeterView: View {
                     reloadComplications()
                 })
             ProgressView(value: progressValue)
+        }
+        .onAppear {
+            logger.info("MorbidMetreView.onAppear")
+            if ClockData.shared.clock != self.lastSavedClock {
+                ClockData.shared.save()
+                lastSavedClock = ClockData.shared.clock
+                WidgetCenter.shared.reloadTimelines(ofKind: "com.epstudiossoftware.MorbidMeterComplications")
+            }
+
         }
     }
 

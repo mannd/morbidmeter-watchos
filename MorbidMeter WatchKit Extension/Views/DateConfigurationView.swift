@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ClockCore
 
 struct DateConfigurationView: View {
     private static let minimumYear = 1910
@@ -70,6 +71,8 @@ struct DateConfigurationView: View {
                 clockData.clock.birthday = newDate
             case .deathday:
                 clockData.clock.deathday = newDate
+            @unknown default:
+                fatalError()
             }
         }
     }
@@ -81,6 +84,8 @@ struct DateConfigurationView: View {
             date = clockData.clock.birthday
         case .deathday:
             date = clockData.clock.deathday
+        @unknown default:
+            fatalError()
         }
         let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
         if let yearIndex = components.year, let monthIndex = components.month, let dayIndex = components.day, let hourIndex = components.hour, let minuteIndex = components.minute, let secondIndex = components.second {

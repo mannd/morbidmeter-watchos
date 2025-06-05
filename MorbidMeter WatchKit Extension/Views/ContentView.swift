@@ -8,31 +8,32 @@
 import SwiftUI
 import UserNotifications
 import os
+import ClockCore
 
 struct ContentView: View {
 
-    let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ContentView", category: "Content View")
+    let logger = Logger(subsystem: "org.epstudios.morbidmeter", category: "View")
 
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         MorbidMeterView()
-            .onChange(of: scenePhase) { (phase) in
+            .onChange(of: scenePhase) { (phase, _) in
                 switch phase {
                 case .inactive:
-                    logger.debug("Scene became inactive.")
+                    logger.info("Scene became inactive.")
 
                 case .active:
-                    logger.debug("Scene became active.")
+                    logger.info("Scene became active.")
 
                 case .background:
-                    logger.debug("Scene moved to the background.")
+                    logger.info("Scene moved to the background.")
                     // Schedule a background refresh task
                     // to update the complications.
                     scheduleBackgroundRefreshTasks()
 
                 @unknown default:
-                    logger.debug("Scene entered unknown state.")
+                    logger.info("Scene entered unknown state.")
                     assertionFailure()
                 }
         }

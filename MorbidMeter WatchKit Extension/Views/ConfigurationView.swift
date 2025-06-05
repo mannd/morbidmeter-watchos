@@ -7,8 +7,13 @@
 
 import SwiftUI
 import UserNotifications
+import ClockCore
+import os
+import WidgetKit
 
 struct ConfigurationView: View {
+    let logger = Logger(subsystem: "org.epstudios.morbidmeter", category: "View")
+
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -34,6 +39,9 @@ struct ConfigurationView: View {
                         Text("Secrets")
                     })
             }
+        }
+        .onAppear {
+            logger.debug("Configuration appeared")
         }
     }
 }
