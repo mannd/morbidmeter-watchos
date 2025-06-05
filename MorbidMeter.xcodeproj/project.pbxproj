@@ -13,13 +13,8 @@
 		8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6432670550C00AED406 /* Preview Assets.xcassets */; };
 		8E39E65B2670550C00AED406 /* MorbidMeterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */; };
 		8E40ED9C2DF2267900D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
-		8E40EDB72DF2277200D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
-		8E40EDB82DF2277200D6BD24 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E40EDC22DF2291800D6BD24 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40EDC12DF2291800D6BD24 /* WidgetKit.framework */; };
 		8E40EDC42DF2291800D6BD24 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40EDC32DF2291800D6BD24 /* SwiftUI.framework */; };
-		8E40EDCD2DF2291900D6BD24 /* MorbidMeterComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8E40EDC02DF2291800D6BD24 /* MorbidMeterComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8E40EDD32DF2294900D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
-		8E40EDD42DF2294900D6BD24 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E40EDE22DF2308600D6BD24 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDDE2DF2308600D6BD24 /* ExtensionDelegate.swift */; };
 		8E40EDE32DF2308600D6BD24 /* MorbidMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDDF2DF2308600D6BD24 /* MorbidMeterApp.swift */; };
 		8E40EDE42DF2308600D6BD24 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDE12DF2308600D6BD24 /* NotificationView.swift */; };
@@ -34,6 +29,10 @@
 		8E40EDF52DF2313B00D6BD24 /* TimeConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEE2DF2313B00D6BD24 /* TimeConfigurationView.swift */; };
 		8E40EDF62DF2313B00D6BD24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEA2DF2313B00D6BD24 /* ContentView.swift */; };
 		8E40EDF72DF2313B00D6BD24 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDE92DF2313B00D6BD24 /* ConfigurationView.swift */; };
+		8E40EDF82DF2366400D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EDF92DF2366400D6BD24 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8E40EDFD2DF2367100D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EE062DF23A0400D6BD24 /* MorbidMeterComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8E40EDC02DF2291800D6BD24 /* MorbidMeterComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E50D6F0269A029E006239B4 /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50D6EF269A029E006239B4 /* ClockTests.swift */; };
 		8E6D255C26914E5E0032CBE2 /* LifespanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */; };
 		8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255D26952A030032CBE2 /* TimescaleTests.swift */; };
@@ -64,26 +63,26 @@
 			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
 			remoteInfo = ClockCore;
 		};
-		8E40EDB92DF2277200D6BD24 /* PBXContainerItemProxy */ = {
+		8E40EDFA2DF2366400D6BD24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
 			remoteInfo = ClockCore;
 		};
-		8E40EDCB2DF2291900D6BD24 /* PBXContainerItemProxy */ = {
+		8E40EDFF2DF2367100D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
+		8E40EE072DF23A0400D6BD24 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8E40EDBF2DF2291800D6BD24;
 			remoteInfo = MorbidMeterComplicationsExtension;
-		};
-		8E40EDD52DF2294900D6BD24 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
-			remoteInfo = ClockCore;
 		};
 		8EE9835B2DBCE97A000AB178 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,37 +105,26 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E40EDBB2DF2277200D6BD24 /* Embed Frameworks */ = {
+		8E40EDFC2DF2366400D6BD24 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8E40EDB82DF2277200D6BD24 /* ClockCore.framework in Embed Frameworks */,
+				8E40EDF92DF2366400D6BD24 /* ClockCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E40EDD22DF2291900D6BD24 /* Embed Foundation Extensions */ = {
+		8E40EE092DF23A0400D6BD24 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8E40EDCD2DF2291900D6BD24 /* MorbidMeterComplicationsExtension.appex in Embed Foundation Extensions */,
+				8E40EE062DF23A0400D6BD24 /* MorbidMeterComplicationsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8E40EDD72DF2294900D6BD24 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8E40EDD42DF2294900D6BD24 /* ClockCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -205,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E40EDB72DF2277200D6BD24 /* ClockCore.framework in Frameworks */,
+				8E40EDF82DF2366400D6BD24 /* ClockCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E40EDD32DF2294900D6BD24 /* ClockCore.framework in Frameworks */,
+				8E40EDFD2DF2367100D6BD24 /* ClockCore.framework in Frameworks */,
 				8E40EDC42DF2291800D6BD24 /* SwiftUI.framework in Frameworks */,
 				8E40EDC22DF2291800D6BD24 /* WidgetKit.framework in Frameworks */,
 			);
@@ -409,14 +397,14 @@
 				8E39E6232670550A00AED406 /* Resources */,
 				8E39E62D2670550B00AED406 /* Sources */,
 				8E39E62E2670550B00AED406 /* Frameworks */,
-				8E40EDBB2DF2277200D6BD24 /* Embed Frameworks */,
-				8E40EDD22DF2291900D6BD24 /* Embed Foundation Extensions */,
+				8E40EDFC2DF2366400D6BD24 /* Embed Frameworks */,
+				8E40EE092DF23A0400D6BD24 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8E40EDBA2DF2277200D6BD24 /* PBXTargetDependency */,
-				8E40EDCC2DF2291900D6BD24 /* PBXTargetDependency */,
+				8E40EDFB2DF2366400D6BD24 /* PBXTargetDependency */,
+				8E40EE082DF23A0400D6BD24 /* PBXTargetDependency */,
 			);
 			name = "MorbidMeter WatchKit App";
 			productName = "MorbidMeter WatchKit App";
@@ -512,12 +500,11 @@
 				8E40EDBC2DF2291800D6BD24 /* Sources */,
 				8E40EDBD2DF2291800D6BD24 /* Frameworks */,
 				8E40EDBE2DF2291800D6BD24 /* Resources */,
-				8E40EDD72DF2294900D6BD24 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8E40EDD62DF2294900D6BD24 /* PBXTargetDependency */,
+				8E40EE002DF2367100D6BD24 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8E40EDC52DF2291800D6BD24 /* MorbidMeterComplications */,
@@ -726,20 +713,20 @@
 			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
 			targetProxy = 8E40ED9D2DF2267900D6BD24 /* PBXContainerItemProxy */;
 		};
-		8E40EDBA2DF2277200D6BD24 /* PBXTargetDependency */ = {
+		8E40EDFB2DF2366400D6BD24 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
-			targetProxy = 8E40EDB92DF2277200D6BD24 /* PBXContainerItemProxy */;
+			targetProxy = 8E40EDFA2DF2366400D6BD24 /* PBXContainerItemProxy */;
 		};
-		8E40EDCC2DF2291900D6BD24 /* PBXTargetDependency */ = {
+		8E40EE002DF2367100D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E40EDFF2DF2367100D6BD24 /* PBXContainerItemProxy */;
+		};
+		8E40EE082DF23A0400D6BD24 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8E40EDBF2DF2291800D6BD24 /* MorbidMeterComplicationsExtension */;
-			targetProxy = 8E40EDCB2DF2291900D6BD24 /* PBXContainerItemProxy */;
-		};
-		8E40EDD62DF2294900D6BD24 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
-			targetProxy = 8E40EDD52DF2294900D6BD24 /* PBXContainerItemProxy */;
+			targetProxy = 8E40EE072DF23A0400D6BD24 /* PBXContainerItemProxy */;
 		};
 		8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -878,13 +865,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "MorbidMeter WatchKit App/MorbidMeter WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 11;
 				INFOPLIST_FILE = "MorbidMeter WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -904,13 +891,13 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "MorbidMeter WatchKit App/MorbidMeter WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 11;
 				INFOPLIST_FILE = "MorbidMeter WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -925,7 +912,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -937,7 +924,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1062,7 +1049,7 @@
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,4";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 10.6;
@@ -1103,7 +1090,7 @@
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,4";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 10.6;
@@ -1160,7 +1147,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MorbidMeterComplicationsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 11;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MorbidMeterComplications/Info.plist;
@@ -1173,7 +1160,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp.MorbidMeterComplications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1196,7 +1183,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MorbidMeterComplicationsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 11;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MorbidMeterComplications/Info.plist;
@@ -1209,7 +1196,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp.MorbidMeterComplications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
