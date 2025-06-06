@@ -83,26 +83,67 @@ struct MorbidMeterRectangularView : View {
     let entry: MorbidMeterProvider.Entry
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(Clock.fullName)
-            Text(entry.percentageText)
+                .font(.caption2)
+                .foregroundColor(.secondary)
+            Text("Elapsed: " + entry.percentageText)
+                .font(.headline)
             ProgressView(value: entry.percentage, total: 1.0 )
+                .tint(entry.percentage > 0.9 ? .red : .green)
         }
     }
 }
 
-struct MorbidMeterAccessoryCircularView : View {
+struct MorbidMeterAccessoryInlineView : View {
     let entry: MorbidMeterProvider.Entry
 
     var body: some View {
-        ZStack {
-            ProgressView(value: entry.percentage, total: 1.0 ) {
-                Text(entry.percentageText)
-            }
-            .progressViewStyle(CircularProgressViewStyle())
-        }
+        Text(Clock.fullName + " " + entry.percentageText)
     }
 }
+
+struct MorbidMeterAccessoryCornerView : View {
+    let entry: MorbidMeterProvider.Entry
+
+    var body: some View {
+            Gauge(value: entry.percentage) {
+                Text(Clock.ultraShortName) // Label text
+            } currentValueLabel: {
+                Text(entry.percentageText) // e.g., "73%"
+            }
+            .gaugeStyle(.accessoryCircular)
+        }
+}
+
+struct MorbidMeterAccessoryCircularView: View {
+    let entry: MorbidMeterProvider.Entry
+
+    var body: some View {
+        Gauge(value: entry.percentage) {
+            // Label is not shown in circular style, so you can use EmptyView
+            EmptyView()
+        } currentValueLabel: {
+            Text(entry.percentageText)
+                .font(.caption2)
+        }
+        .gaugeStyle(.accessoryCircular)
+    }
+}
+
+
+//struct MorbidMeterAccessoryCircularView : View {
+//    let entry: MorbidMeterProvider.Entry
+//
+//    var body: some View {
+//        ZStack {
+//            ProgressView(value: entry.percentage, total: 1.0 ) {
+//                Text(entry.percentageText)
+//            }
+//            .progressViewStyle(CircularProgressViewStyle())
+//        }
+//    }
+//}
 
 
 struct MorbidMeterComplicationsEntryView : View {
@@ -115,6 +156,10 @@ struct MorbidMeterComplicationsEntryView : View {
             MorbidMeterRectangularView(entry: entry)
         case .accessoryCircular:
             MorbidMeterAccessoryCircularView(entry: entry)
+        case .accessoryInline:
+            MorbidMeterAccessoryInlineView(entry: entry)
+        case .accessoryCorner:
+            MorbidMeterAccessoryCornerView(entry: entry)
         default:
             Text(Clock.skull)
         }
@@ -150,7 +195,7 @@ struct MorbidMeterComplicationWidget: Widget {
         }
         .configurationDisplayName("MorbidMeter")
         .description("This shows the current MorbidMeter time.")
-        .supportedFamilies( [.accessoryRectangular, .accessoryCircular] )
+        .supportedFamilies( [.accessoryRectangular, .accessoryCircular, .accessoryInline, .accessoryCorner] )
     }
 }
 
@@ -161,14 +206,32 @@ class WidgetEnvironment: ClockEnvironmentDelegate {
     }
 }
 
-//#Preview(as: .accessoryRectangular) {
-//    MorbidMeterComplicationWidget()
-//} timeline: {
-//    MorbidMeterTimeLineEntry(date: .now, percentageText: ClockData.shared.clock.getShortFormattedMomentPercentage(date: Date()), percentage: ClockData.shared.clock.getMoment(date: Date()).percentage)
-//}
+#Preview(as: .accessoryCorner) {
+    MorbidMeterComplicationWidget()
+} timeline: {
+    MorbidMeterTimeLineEntry(date: .now, percentageText: "73%", percentage: 0.73)
+}
 
 #Preview(as: .accessoryCircular) {
     MorbidMeterComplicationWidget()
 } timeline: {
-    MorbidMeterTimeLineEntry(date: .now, percentageText: ClockData.shared.clock.getShortFormattedMomentPercentage(date: Date()), percentage: ClockData.shared.clock.getMoment(date: Date()).percentage)
+    MorbidMeterTimeLineEntry(date: .now, percentageText: "73%", percentage: 0.73)
+}
+
+#Preview(as: .accessoryRectangular) {
+    MorbidMeterComplicationWidget()
+} timeline: {
+    MorbidMeterTimeLineEntry(date: .now, percentageText: "73%", percentage: 0.73)
+}
+
+#Preview(as: .accessoryRectangular) {
+    MorbidMeterComplicationWidget()
+} timeline: {
+    MorbidMeterTimeLineEntry(date: .now, percentageText: "93%", percentage: 0.93)
+}
+
+#Preview(as: .accessoryInline) {
+    MorbidMeterComplicationWidget()
+} timeline: {
+    MorbidMeterTimeLineEntry(date: .now, percentageText: "73%", percentage: 0.73)
 }
