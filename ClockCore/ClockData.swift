@@ -20,7 +20,7 @@ public class ClockData: ObservableObject {
     public static let test = ClockData(clock: Clock(birthday: Date().addingTimeInterval(-60.0 * 60.0),
                                              deathday: Date().addingTimeInterval(60.0 * 60.0),
                                              reverseTime: false))
-    static let longLifeTest = ClockData(clock: Clock(birthday: Date().addingTimeInterval(-60.0 * 60.0 * 24 * 365 * 40),
+    public static let longLifeTest = ClockData(clock: Clock(birthday: Date().addingTimeInterval(-60.0 * 60.0 * 24 * 365 * 40),
                                                      deathday: Date().addingTimeInterval(60.0 * 60.0 * 24 * 365 * 40),
                                                      reverseTime: false))
 

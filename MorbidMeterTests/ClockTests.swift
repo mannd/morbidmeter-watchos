@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import ClockCore
 @testable import MorbidMeter_WatchKit_App
 import SwiftUI
 

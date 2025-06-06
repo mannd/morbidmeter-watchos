@@ -23,17 +23,17 @@ public class Timescales {
     static let timescaleBlank = Timescale(timescaleType: .blank, getTime: { _, _, _ in
         return "" })
 
-    static func getTime(result: String,
+    public static func getTime(result: String,
                         reverseTime: Bool,
                         forwardMessage: String = "passed",
                         backwardMessage: String = "to go") -> String {
         return [result, reverseTime ? backwardMessage : forwardMessage].joined(separator: cr)
     }
 
-    static func getFormattedTime(result: String,
+    public static func getFormattedTime(result: String,
                                  units: String? = nil,
                                  reverseTime: Bool,
-                                 separator: String = cr) -> String {
+                                 separator: String = "\n") -> String {
         var finalUnits = reverseTime ? "to go" : "passed"
         if var units = units {
             // Handle 1 which is singular, all fractions are plural in English.
@@ -52,7 +52,7 @@ public class Timescales {
     /// It can't handle irregular plurals, it can't handle internationalization.
     /// - Parameter units: time units as String
     /// - Returns: time units without terminal "s", or original String if no terminal "s"
-    static func unpluralizeUnits(_ units: String) -> String {
+    public static func unpluralizeUnits(_ units: String) -> String {
         guard !units.isEmpty, units.count > 1 else { return units }
         let lastCharacter = units.last
         if let lastCharacter = lastCharacter {
@@ -240,7 +240,7 @@ public class Timescales {
         return timescaleBlank
     }
 
-    static func integerFormattedDouble(_ number: Double, verbosePrecision: Bool = true) -> String? {
+    public static func integerFormattedDouble(_ number: Double, verbosePrecision: Bool = true) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.usesSignificantDigits = false

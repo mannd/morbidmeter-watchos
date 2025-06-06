@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E0E8A172DF35F150000B1D5 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E0E8A182DF35F150000B1D5 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E39E6262670550A00AED406 /* MorbidMeter WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E62A2670550B00AED406 /* Assets.xcassets */; };
 		8E39E6412670550C00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6402670550C00AED406 /* Assets.xcassets */; };
@@ -42,6 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8E0E8A192DF35F150000B1D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
 		8E39E6272670550A00AED406 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
@@ -94,6 +103,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8E0E8A1B2DF35F150000B1D5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8E0E8A182DF35F150000B1D5 /* ClockCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8E39E6662670550C00AED406 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0E8A172DF35F150000B1D5 /* ClockCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,11 +439,13 @@
 				8E39E6472670550C00AED406 /* Sources */,
 				8E39E6482670550C00AED406 /* Frameworks */,
 				8E39E6492670550C00AED406 /* Resources */,
+				8E0E8A1B2DF35F150000B1D5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */,
+				8E0E8A1A2DF35F150000B1D5 /* PBXTargetDependency */,
 			);
 			name = MorbidMeterTests;
 			productName = MorbidMeterTests;
@@ -698,6 +721,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8E0E8A1A2DF35F150000B1D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E0E8A192DF35F150000B1D5 /* PBXContainerItemProxy */;
+		};
 		8E39E6282670550A00AED406 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
@@ -949,7 +977,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -970,7 +998,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -990,7 +1018,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -1010,7 +1038,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};

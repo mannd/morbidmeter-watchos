@@ -27,7 +27,7 @@ public struct Clock: Codable, Equatable {
         return Timescales.getInstance(timescaleType)
     }
 
-    init() {
+    public init() {
         timescaleType = .seconds
         birthday = Date()
         deathday = Date()
@@ -35,7 +35,7 @@ public struct Clock: Codable, Equatable {
         uuid = UUID()
     }
 
-    init(timescaleType: TimescaleType = .seconds, birthday: Date, deathday: Date, reverseTime: Bool, uuid: UUID = UUID()) {
+    public init(timescaleType: TimescaleType = .seconds, birthday: Date, deathday: Date, reverseTime: Bool, uuid: UUID = UUID()) {
         self.birthday = birthday
         self.deathday = deathday
         self.reverseTime = reverseTime
@@ -68,7 +68,7 @@ public struct Clock: Codable, Equatable {
     }
 
     // More efficient algorithm
-    func getClockLandmarks2(minimalTimeInterval: TimeInterval = 0) -> [Date] {
+    public func getClockLandmarks2(minimalTimeInterval: TimeInterval = 0) -> [Date] {
         var dates: [Date] = []
         let firstLandmark = birthday
         let lastLandmark = deathday
