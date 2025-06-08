@@ -8,15 +8,16 @@
 import WatchKit
 import ClockKit
 import os
+import ClockCore
 
 class ExtensionDelegate: NSObject, WKApplicationDelegate {
-    let logger = Logger(subsystem: "org.epstudios.MorbidMeter.watchkitapp.watchkitextension.ExtensionDelegate", category: "Extension Delegate")
+    let logger = Logger(subsystem: "org.epstudios.morbidmeter", category: "Extension Delegate")
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
-        logger.debug("Handling background task")
-        logger.debug("App State: \(WKApplication.shared().applicationState.rawValue)")
+        logger.info("Handling background task")
+        logger.info("App State: \(WKApplication.shared().applicationState.rawValue)")
         for task in backgroundTasks {
-            logger.debug("Task: \(task)")
+            logger.info("Task: \(task)")
             switch task {
             // Handle background refresh tasks.
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
@@ -26,7 +27,7 @@ class ExtensionDelegate: NSObject, WKApplicationDelegate {
                     scheduleBackgroundRefreshTasks()
                 }
                 backgroundTask.setTaskCompletedWithSnapshot(false)
-                logger.debug("MorbidMeter app background refresh scheduled")
+                logger.info("MorbidMeter app background refresh scheduled")
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:

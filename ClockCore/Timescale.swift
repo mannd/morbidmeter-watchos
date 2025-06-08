@@ -1,14 +1,14 @@
 //
 //  Timescale.swift
-//  MorbidMeter WatchKit Extension
+//  ClockCore
 //
-//  Created by David Mann on 6/21/21.
+//  Created by David Mann on 5/22/25.
 //
 
 import Foundation
 
 /// A Timescale provides a method to to create a time string used to generate Moments.
-struct Timescale {
+public struct Timescale {
     let timescaleType: TimescaleType?
     // Different timescales use different parameters, such as dates, time intervals, or percentage, so the first two clock time parameters are Any to allow passing Doubles or Dates.
     let getTime: ((Any, Any, Bool)->String)?

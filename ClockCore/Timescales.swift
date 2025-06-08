@@ -1,13 +1,13 @@
 //
 //  Timescales.swift
-//  MorbidMeter WatchKit Extension
+//  ClockCore
 //
-//  Created by David Mann on 6/23/21.
+//  Created by David Mann on 5/22/25.
 //
 
 import Foundation
 
-class Timescales {
+public class Timescales {
     private static let errorMessage = "Error"
     private static let cr = "\n"
     private static let space = " "
@@ -23,17 +23,17 @@ class Timescales {
     static let timescaleBlank = Timescale(timescaleType: .blank, getTime: { _, _, _ in
         return "" })
 
-    static func getTime(result: String,
+    public static func getTime(result: String,
                         reverseTime: Bool,
                         forwardMessage: String = "passed",
                         backwardMessage: String = "to go") -> String {
         return [result, reverseTime ? backwardMessage : forwardMessage].joined(separator: cr)
     }
 
-    static func getFormattedTime(result: String,
+    public static func getFormattedTime(result: String,
                                  units: String? = nil,
                                  reverseTime: Bool,
-                                 separator: String = cr) -> String {
+                                 separator: String = "\n") -> String {
         var finalUnits = reverseTime ? "to go" : "passed"
         if var units = units {
             // Handle 1 which is singular, all fractions are plural in English.
@@ -52,7 +52,7 @@ class Timescales {
     /// It can't handle irregular plurals, it can't handle internationalization.
     /// - Parameter units: time units as String
     /// - Returns: time units without terminal "s", or original String if no terminal "s"
-    static func unpluralizeUnits(_ units: String) -> String {
+    public static func unpluralizeUnits(_ units: String) -> String {
         guard !units.isEmpty, units.count > 1 else { return units }
         let lastCharacter = units.last
         if let lastCharacter = lastCharacter {
@@ -240,7 +240,7 @@ class Timescales {
         return timescaleBlank
     }
 
-    static func integerFormattedDouble(_ number: Double, verbosePrecision: Bool = true) -> String? {
+    public static func integerFormattedDouble(_ number: Double, verbosePrecision: Bool = true) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.usesSignificantDigits = false
@@ -259,7 +259,7 @@ class Timescales {
     }
 }
 
-enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identifiable {
+public enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identifiable {
     case seconds
     case minutes
     case hours
@@ -277,9 +277,9 @@ enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identif
     case percent
     case blank
 
-    var id: TimescaleType { self }
+    public var id: TimescaleType { self }
 
-    var description: String {
+    public var description: String {
         switch self {
         case .seconds: return "Seconds"
         case .minutes: return "Minutes"
@@ -321,7 +321,7 @@ enum TimescaleType: Int, Codable, CustomStringConvertible, CaseIterable, Identif
         }
     }
 
-    func fullDescription(reverseTime: Bool) -> String {
+    public func fullDescription(reverseTime: Bool) -> String {
         return reverseTime ? [description, "-R"].joined() : description
     }
 }

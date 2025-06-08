@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ClockKit
+import ClockCore
 
 struct ComplicationViews: View {
     var body: some View {

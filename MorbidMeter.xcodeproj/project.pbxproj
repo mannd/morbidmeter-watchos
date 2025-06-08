@@ -3,44 +3,54 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E17DC7F268102FB00FC3C5B /* Timescale.swift */; };
-		8E289D6026B77FA800E70899 /* SecretsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E289D5F26B77FA800E70899 /* SecretsView.swift */; };
+		8E0E8A172DF35F150000B1D5 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E0E8A182DF35F150000B1D5 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E39E6262670550A00AED406 /* MorbidMeter WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E39E62B2670550B00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E62A2670550B00AED406 /* Assets.xcassets */; };
-		8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E6362670550B00AED406 /* MorbidMeterApp.swift */; };
-		8E39E6392670550B00AED406 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E6382670550B00AED406 /* ContentView.swift */; };
-		8E39E63B2670550B00AED406 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E63A2670550B00AED406 /* NotificationController.swift */; };
-		8E39E63D2670550B00AED406 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E63C2670550B00AED406 /* NotificationView.swift */; };
-		8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E63E2670550B00AED406 /* ComplicationController.swift */; };
 		8E39E6412670550C00AED406 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6402670550C00AED406 /* Assets.xcassets */; };
 		8E39E6442670550C00AED406 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E39E6432670550C00AED406 /* Preview Assets.xcassets */; };
 		8E39E65B2670550C00AED406 /* MorbidMeterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */; };
+		8E40ED9C2DF2267900D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EDC22DF2291800D6BD24 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40EDC12DF2291800D6BD24 /* WidgetKit.framework */; };
+		8E40EDC42DF2291800D6BD24 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40EDC32DF2291800D6BD24 /* SwiftUI.framework */; };
+		8E40EDE22DF2308600D6BD24 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDDE2DF2308600D6BD24 /* ExtensionDelegate.swift */; };
+		8E40EDE32DF2308600D6BD24 /* MorbidMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDDF2DF2308600D6BD24 /* MorbidMeterApp.swift */; };
+		8E40EDE42DF2308600D6BD24 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDE12DF2308600D6BD24 /* NotificationView.swift */; };
+		8E40EDE52DF2308600D6BD24 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDDC2DF2308600D6BD24 /* ComplicationController.swift */; };
+		8E40EDE62DF2308600D6BD24 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDE02DF2308600D6BD24 /* NotificationController.swift */; };
+		8E40EDE72DF2308600D6BD24 /* Date+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDDD2DF2308600D6BD24 /* Date+RawRepresentable.swift */; };
+		8E40EDF02DF2313B00D6BD24 /* TimescaleConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEF2DF2313B00D6BD24 /* TimescaleConfigurationView.swift */; };
+		8E40EDF12DF2313B00D6BD24 /* ComplicationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDE82DF2313B00D6BD24 /* ComplicationViews.swift */; };
+		8E40EDF22DF2313B00D6BD24 /* MorbidMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEC2DF2313B00D6BD24 /* MorbidMeterView.swift */; };
+		8E40EDF32DF2313B00D6BD24 /* DateConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEB2DF2313B00D6BD24 /* DateConfigurationView.swift */; };
+		8E40EDF42DF2313B00D6BD24 /* SecretsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDED2DF2313B00D6BD24 /* SecretsView.swift */; };
+		8E40EDF52DF2313B00D6BD24 /* TimeConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEE2DF2313B00D6BD24 /* TimeConfigurationView.swift */; };
+		8E40EDF62DF2313B00D6BD24 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDEA2DF2313B00D6BD24 /* ContentView.swift */; };
+		8E40EDF72DF2313B00D6BD24 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40EDE92DF2313B00D6BD24 /* ConfigurationView.swift */; };
+		8E40EDF82DF2366400D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EDF92DF2366400D6BD24 /* ClockCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8E40EDFD2DF2367100D6BD24 /* ClockCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */; };
+		8E40EE062DF23A0400D6BD24 /* MorbidMeterComplicationsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8E40EDC02DF2291800D6BD24 /* MorbidMeterComplicationsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8E50D6F0269A029E006239B4 /* ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E50D6EF269A029E006239B4 /* ClockTests.swift */; };
-		8E69FCFA26A11506008BF083 /* ClockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E69FCF926A11506008BF083 /* ClockData.swift */; };
-		8E6D255A26914C1D0032CBE2 /* Lifespan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255926914C1D0032CBE2 /* Lifespan.swift */; };
 		8E6D255C26914E5E0032CBE2 /* LifespanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */; };
 		8E6D255E26952A030032CBE2 /* TimescaleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6D255D26952A030032CBE2 /* TimescaleTests.swift */; };
-		8E77A6B326B45AC000109B9E /* TimeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E77A6B226B45AC000109B9E /* TimeConstants.swift */; };
 		8E80B4652681287900D27383 /* BLKCHCRY.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 8E80B464268127D500D27383 /* BLKCHCRY.TTF */; };
-		8E8AB1AC26A9D03600F14E99 /* MorbidMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */; };
-		8E8AB1AE26A9D9B600F14E99 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */; };
-		8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9503B82697DDD10077851C /* ComplicationViews.swift */; };
-		8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAF66DF2684115E00494DE6 /* Timescales.swift */; };
-		8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEB9EB92698A3AF00392BDF /* Clock.swift */; };
-		8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABC26851E6200800575 /* ConfigurationView.swift */; };
 		8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BABE26851EFC00800575 /* Preferences.swift */; };
-		8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */; };
-		8EF6BAC426853EDA00800575 /* DateConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */; };
-		8EF6BAC626853EEB00800575 /* TimescaleConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */; };
-		8EFF8DE7269CAF36002453A0 /* TimeConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF8DE6269CAF36002453A0 /* TimeConfigurationView.swift */; };
 		8EFF8DE9269CC8C5002453A0 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFF8DE8269CC8C5002453A0 /* DateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8E0E8A192DF35F150000B1D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
 		8E39E6272670550A00AED406 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
@@ -55,6 +65,34 @@
 			remoteGlobalIDString = 8E39E6242670550A00AED406;
 			remoteInfo = "MorbidMeter WatchKit App";
 		};
+		8E40ED9D2DF2267900D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
+		8E40EDFA2DF2366400D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
+		8E40EDFF2DF2367100D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40ED902DF2267800D6BD24;
+			remoteInfo = ClockCore;
+		};
+		8E40EE072DF23A0400D6BD24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8E40EDBF2DF2291800D6BD24;
+			remoteInfo = MorbidMeterComplicationsExtension;
+		};
 		8EE9835B2DBCE97A000AB178 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8E39E61B2670550900AED406 /* Project object */;
@@ -65,6 +103,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8E0E8A1B2DF35F150000B1D5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8E0E8A182DF35F150000B1D5 /* ClockCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8E39E6662670550C00AED406 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,20 +125,35 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8E40EDFC2DF2366400D6BD24 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8E40EDF92DF2366400D6BD24 /* ClockCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40EE092DF23A0400D6BD24 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8E40EE062DF23A0400D6BD24 /* MorbidMeterComplicationsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8E17DC7F268102FB00FC3C5B /* Timescale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescale.swift; sourceTree = "<group>"; };
-		8E289D5F26B77FA800E70899 /* SecretsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsView.swift; sourceTree = "<group>"; };
 		8E39E6212670550900AED406 /* MorbidMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorbidMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MorbidMeter WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E62A2670550B00AED406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E39E62C2670550B00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E39E6362670550B00AED406 /* MorbidMeterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterApp.swift; sourceTree = "<group>"; };
-		8E39E6382670550B00AED406 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8E39E63A2670550B00AED406 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		8E39E63C2670550B00AED406 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		8E39E63E2670550B00AED406 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		8E39E6402670550C00AED406 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E39E6432670550C00AED406 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8E39E6452670550C00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,32 +163,57 @@
 		8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorbidMeterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39E65A2670550C00AED406 /* MorbidMeterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterUITests.swift; sourceTree = "<group>"; };
 		8E39E65C2670550C00AED406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E40ED912DF2267800D6BD24 /* ClockCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClockCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E40ED9B2DF2267900D6BD24 /* ClockCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClockCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E40EDC02DF2291800D6BD24 /* MorbidMeterComplicationsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MorbidMeterComplicationsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E40EDC12DF2291800D6BD24 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8E40EDC32DF2291800D6BD24 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		8E40EDDA2DF22B1D00D6BD24 /* MorbidMeterComplicationsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MorbidMeterComplicationsExtension.entitlements; sourceTree = "<group>"; };
+		8E40EDDB2DF22B3400D6BD24 /* MorbidMeter WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MorbidMeter WatchKit App.entitlements"; sourceTree = "<group>"; };
+		8E40EDDC2DF2308600D6BD24 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		8E40EDDD2DF2308600D6BD24 /* Date+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RawRepresentable.swift"; sourceTree = "<group>"; };
+		8E40EDDE2DF2308600D6BD24 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		8E40EDDF2DF2308600D6BD24 /* MorbidMeterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterApp.swift; sourceTree = "<group>"; };
+		8E40EDE02DF2308600D6BD24 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8E40EDE12DF2308600D6BD24 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		8E40EDE82DF2313B00D6BD24 /* ComplicationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationViews.swift; sourceTree = "<group>"; };
+		8E40EDE92DF2313B00D6BD24 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		8E40EDEA2DF2313B00D6BD24 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8E40EDEB2DF2313B00D6BD24 /* DateConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConfigurationView.swift; sourceTree = "<group>"; };
+		8E40EDEC2DF2313B00D6BD24 /* MorbidMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterView.swift; sourceTree = "<group>"; };
+		8E40EDED2DF2313B00D6BD24 /* SecretsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsView.swift; sourceTree = "<group>"; };
+		8E40EDEE2DF2313B00D6BD24 /* TimeConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConfigurationView.swift; sourceTree = "<group>"; };
+		8E40EDEF2DF2313B00D6BD24 /* TimescaleConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleConfigurationView.swift; sourceTree = "<group>"; };
 		8E50D6EF269A029E006239B4 /* ClockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTests.swift; sourceTree = "<group>"; };
-		8E69FCF926A11506008BF083 /* ClockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockData.swift; sourceTree = "<group>"; };
-		8E6D255926914C1D0032CBE2 /* Lifespan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifespan.swift; sourceTree = "<group>"; };
 		8E6D255B26914E5E0032CBE2 /* LifespanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifespanTests.swift; sourceTree = "<group>"; };
 		8E6D255D26952A030032CBE2 /* TimescaleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleTests.swift; sourceTree = "<group>"; };
-		8E77A6B226B45AC000109B9E /* TimeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConstants.swift; sourceTree = "<group>"; };
 		8E80B464268127D500D27383 /* BLKCHCRY.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = BLKCHCRY.TTF; sourceTree = "<group>"; };
-		8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorbidMeterView.swift; sourceTree = "<group>"; };
-		8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		8E9503B82697DDD10077851C /* ComplicationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationViews.swift; sourceTree = "<group>"; };
-		8EAF66DF2684115E00494DE6 /* Timescales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timescales.swift; sourceTree = "<group>"; };
-		8EEB9EB92698A3AF00392BDF /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
-		8EF6BABC26851E6200800575 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		8EF6BABE26851EFC00800575 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+RawRepresentable.swift"; sourceTree = "<group>"; };
-		8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConfigurationView.swift; sourceTree = "<group>"; };
-		8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimescaleConfigurationView.swift; sourceTree = "<group>"; };
-		8EFF8DE6269CAF36002453A0 /* TimeConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConfigurationView.swift; sourceTree = "<group>"; };
 		8EFF8DE8269CC8C5002453A0 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8E40EDCE2DF2291900D6BD24 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8E40EDBF2DF2291800D6BD24 /* MorbidMeterComplicationsExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8E40ED922DF2267800D6BD24 /* ClockCore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ClockCore; sourceTree = "<group>"; };
+		8E40ED9F2DF2267900D6BD24 /* ClockCoreTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ClockCoreTests; sourceTree = "<group>"; };
+		8E40EDC52DF2291800D6BD24 /* MorbidMeterComplications */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8E40EDCE2DF2291900D6BD24 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MorbidMeterComplications; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8E39E62E2670550B00AED406 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E40EDF82DF2366400D6BD24 /* ClockCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0E8A172DF35F150000B1D5 /* ClockCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,18 +232,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8E40ED8E2DF2267800D6BD24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED982DF2267900D6BD24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E40ED9C2DF2267900D6BD24 /* ClockCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40EDBD2DF2291800D6BD24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E40EDFD2DF2367100D6BD24 /* ClockCore.framework in Frameworks */,
+				8E40EDC42DF2291800D6BD24 /* SwiftUI.framework in Frameworks */,
+				8E40EDC22DF2291800D6BD24 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		8E17DC7E2681029C00FC3C5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E6D255926914C1D0032CBE2 /* Lifespan.swift */,
 				8EF6BABE26851EFC00800575 /* Preferences.swift */,
-				8E17DC7F268102FB00FC3C5B /* Timescale.swift */,
-				8EAF66DF2684115E00494DE6 /* Timescales.swift */,
-				8EEB9EB92698A3AF00392BDF /* Clock.swift */,
-				8E69FCF926A11506008BF083 /* ClockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,10 +271,15 @@
 		8E39E61A2670550900AED406 = {
 			isa = PBXGroup;
 			children = (
+				8E40EDDA2DF22B1D00D6BD24 /* MorbidMeterComplicationsExtension.entitlements */,
 				8E39E6292670550A00AED406 /* MorbidMeter WatchKit App */,
 				8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */,
 				8E39E64E2670550C00AED406 /* MorbidMeterTests */,
 				8E39E6592670550C00AED406 /* MorbidMeterUITests */,
+				8E40ED922DF2267800D6BD24 /* ClockCore */,
+				8E40ED9F2DF2267900D6BD24 /* ClockCoreTests */,
+				8E40EDC52DF2291800D6BD24 /* MorbidMeterComplications */,
+				8E40EDB62DF2277200D6BD24 /* Frameworks */,
 				8E39E6222670550900AED406 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,6 +291,9 @@
 				8E39E6252670550A00AED406 /* MorbidMeter WatchKit App.app */,
 				8E39E64B2670550C00AED406 /* MorbidMeterTests.xctest */,
 				8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */,
+				8E40ED912DF2267800D6BD24 /* ClockCore.framework */,
+				8E40ED9B2DF2267900D6BD24 /* ClockCoreTests.xctest */,
+				8E40EDC02DF2291800D6BD24 /* MorbidMeterComplicationsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +301,7 @@
 		8E39E6292670550A00AED406 /* MorbidMeter WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				8E40EDDB2DF22B3400D6BD24 /* MorbidMeter WatchKit App.entitlements */,
 				8E39E62A2670550B00AED406 /* Assets.xcassets */,
 				8E39E62C2670550B00AED406 /* Info.plist */,
 			);
@@ -192,15 +311,14 @@
 		8E39E6352670550B00AED406 /* MorbidMeter WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8E40EDDC2DF2308600D6BD24 /* ComplicationController.swift */,
+				8E40EDDD2DF2308600D6BD24 /* Date+RawRepresentable.swift */,
+				8E40EDDE2DF2308600D6BD24 /* ExtensionDelegate.swift */,
+				8E40EDDF2DF2308600D6BD24 /* MorbidMeterApp.swift */,
+				8E40EDE02DF2308600D6BD24 /* NotificationController.swift */,
+				8E40EDE12DF2308600D6BD24 /* NotificationView.swift */,
 				8E39E6462670550C00AED406 /* PushNotificationPayload.apns */,
 				8E39E6452670550C00AED406 /* Info.plist */,
-				8E39E63E2670550B00AED406 /* ComplicationController.swift */,
-				8EF6BAC02685288100800575 /* Date+RawRepresentable.swift */,
-				8E8AB1AD26A9D9B600F14E99 /* ExtensionDelegate.swift */,
-				8E39E6362670550B00AED406 /* MorbidMeterApp.swift */,
-				8E39E63A2670550B00AED406 /* NotificationController.swift */,
-				8E39E63C2670550B00AED406 /* NotificationView.swift */,
-				8E77A6B226B45AC000109B9E /* TimeConstants.swift */,
 				8E80B464268127D500D27383 /* BLKCHCRY.TTF */,
 				8E39E6402670550C00AED406 /* Assets.xcassets */,
 				8E17DC7E2681029C00FC3C5B /* Model */,
@@ -239,22 +357,41 @@
 			path = MorbidMeterUITests;
 			sourceTree = "<group>";
 		};
+		8E40EDB62DF2277200D6BD24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E40EDC12DF2291800D6BD24 /* WidgetKit.framework */,
+				8E40EDC32DF2291800D6BD24 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8EF6BAC226853E9E00800575 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8E9503B82697DDD10077851C /* ComplicationViews.swift */,
-				8EF6BABC26851E6200800575 /* ConfigurationView.swift */,
-				8E39E6382670550B00AED406 /* ContentView.swift */,
-				8EF6BAC326853EDA00800575 /* DateConfigurationView.swift */,
-				8EFF8DE6269CAF36002453A0 /* TimeConfigurationView.swift */,
-				8EF6BAC526853EEB00800575 /* TimescaleConfigurationView.swift */,
-				8E8AB1AB26A9D03600F14E99 /* MorbidMeterView.swift */,
-				8E289D5F26B77FA800E70899 /* SecretsView.swift */,
+				8E40EDE82DF2313B00D6BD24 /* ComplicationViews.swift */,
+				8E40EDE92DF2313B00D6BD24 /* ConfigurationView.swift */,
+				8E40EDEA2DF2313B00D6BD24 /* ContentView.swift */,
+				8E40EDEB2DF2313B00D6BD24 /* DateConfigurationView.swift */,
+				8E40EDEC2DF2313B00D6BD24 /* MorbidMeterView.swift */,
+				8E40EDED2DF2313B00D6BD24 /* SecretsView.swift */,
+				8E40EDEE2DF2313B00D6BD24 /* TimeConfigurationView.swift */,
+				8E40EDEF2DF2313B00D6BD24 /* TimescaleConfigurationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8E40ED8C2DF2267800D6BD24 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		8E39E6202670550900AED406 /* MorbidMeter */ = {
@@ -281,10 +418,14 @@
 				8E39E6232670550A00AED406 /* Resources */,
 				8E39E62D2670550B00AED406 /* Sources */,
 				8E39E62E2670550B00AED406 /* Frameworks */,
+				8E40EDFC2DF2366400D6BD24 /* Embed Frameworks */,
+				8E40EE092DF23A0400D6BD24 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8E40EDFB2DF2366400D6BD24 /* PBXTargetDependency */,
+				8E40EE082DF23A0400D6BD24 /* PBXTargetDependency */,
 			);
 			name = "MorbidMeter WatchKit App";
 			productName = "MorbidMeter WatchKit App";
@@ -298,11 +439,13 @@
 				8E39E6472670550C00AED406 /* Sources */,
 				8E39E6482670550C00AED406 /* Frameworks */,
 				8E39E6492670550C00AED406 /* Resources */,
+				8E0E8A1B2DF35F150000B1D5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */,
+				8E0E8A1A2DF35F150000B1D5 /* PBXTargetDependency */,
 			);
 			name = MorbidMeterTests;
 			productName = MorbidMeterTests;
@@ -327,6 +470,75 @@
 			productReference = 8E39E6562670550C00AED406 /* MorbidMeterUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8E40ED902DF2267800D6BD24 /* ClockCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E40EDA22DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCore" */;
+			buildPhases = (
+				8E40ED8C2DF2267800D6BD24 /* Headers */,
+				8E40ED8D2DF2267800D6BD24 /* Sources */,
+				8E40ED8E2DF2267800D6BD24 /* Frameworks */,
+				8E40ED8F2DF2267800D6BD24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8E40ED922DF2267800D6BD24 /* ClockCore */,
+			);
+			name = ClockCore;
+			packageProductDependencies = (
+			);
+			productName = ClockCore;
+			productReference = 8E40ED912DF2267800D6BD24 /* ClockCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8E40ED9A2DF2267900D6BD24 /* ClockCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E40EDA52DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCoreTests" */;
+			buildPhases = (
+				8E40ED972DF2267900D6BD24 /* Sources */,
+				8E40ED982DF2267900D6BD24 /* Frameworks */,
+				8E40ED992DF2267900D6BD24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E40ED9E2DF2267900D6BD24 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8E40ED9F2DF2267900D6BD24 /* ClockCoreTests */,
+			);
+			name = ClockCoreTests;
+			packageProductDependencies = (
+			);
+			productName = ClockCoreTests;
+			productReference = 8E40ED9B2DF2267900D6BD24 /* ClockCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8E40EDBF2DF2291800D6BD24 /* MorbidMeterComplicationsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E40EDCF2DF2291900D6BD24 /* Build configuration list for PBXNativeTarget "MorbidMeterComplicationsExtension" */;
+			buildPhases = (
+				8E40EDBC2DF2291800D6BD24 /* Sources */,
+				8E40EDBD2DF2291800D6BD24 /* Frameworks */,
+				8E40EDBE2DF2291800D6BD24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E40EE002DF2367100D6BD24 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8E40EDC52DF2291800D6BD24 /* MorbidMeterComplications */,
+			);
+			name = MorbidMeterComplicationsExtension;
+			packageProductDependencies = (
+			);
+			productName = MorbidMeterComplicationsExtension;
+			productReference = 8E40EDC02DF2291800D6BD24 /* MorbidMeterComplicationsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -334,8 +546,8 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1630;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					8E39E6202670550900AED406 = {
 						CreatedOnToolsVersion = 12.5;
@@ -350,6 +562,16 @@
 					8E39E6552670550C00AED406 = {
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = 8E39E6242670550A00AED406;
+					};
+					8E40ED902DF2267800D6BD24 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8E40ED9A2DF2267900D6BD24 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8E40EDBF2DF2291800D6BD24 = {
+						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
 					};
 				};
 			};
@@ -370,6 +592,9 @@
 				8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */,
 				8E39E64A2670550C00AED406 /* MorbidMeterTests */,
 				8E39E6552670550C00AED406 /* MorbidMeterUITests */,
+				8E40ED902DF2267800D6BD24 /* ClockCore */,
+				8E40ED9A2DF2267900D6BD24 /* ClockCoreTests */,
+				8E40EDBF2DF2291800D6BD24 /* MorbidMeterComplicationsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -407,6 +632,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8E40ED8F2DF2267800D6BD24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED992DF2267900D6BD24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40EDBE2DF2291800D6BD24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -414,27 +660,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E39E63B2670550B00AED406 /* NotificationController.swift in Sources */,
-				8E8AB1AC26A9D03600F14E99 /* MorbidMeterView.swift in Sources */,
-				8EF6BABD26851E6200800575 /* ConfigurationView.swift in Sources */,
-				8E289D6026B77FA800E70899 /* SecretsView.swift in Sources */,
+				8E40EDE22DF2308600D6BD24 /* ExtensionDelegate.swift in Sources */,
+				8E40EDE32DF2308600D6BD24 /* MorbidMeterApp.swift in Sources */,
+				8E40EDE42DF2308600D6BD24 /* NotificationView.swift in Sources */,
+				8E40EDE52DF2308600D6BD24 /* ComplicationController.swift in Sources */,
+				8E40EDE62DF2308600D6BD24 /* NotificationController.swift in Sources */,
+				8E40EDE72DF2308600D6BD24 /* Date+RawRepresentable.swift in Sources */,
 				8EF6BABF26851EFC00800575 /* Preferences.swift in Sources */,
-				8E69FCFA26A11506008BF083 /* ClockData.swift in Sources */,
-				8EF6BAC12685288100800575 /* Date+RawRepresentable.swift in Sources */,
-				8E77A6B326B45AC000109B9E /* TimeConstants.swift in Sources */,
-				8EF6BAC626853EEB00800575 /* TimescaleConfigurationView.swift in Sources */,
-				8E39E6392670550B00AED406 /* ContentView.swift in Sources */,
-				8E6D255A26914C1D0032CBE2 /* Lifespan.swift in Sources */,
-				8E39E63F2670550B00AED406 /* ComplicationController.swift in Sources */,
-				8EFF8DE7269CAF36002453A0 /* TimeConfigurationView.swift in Sources */,
-				8E39E6372670550B00AED406 /* MorbidMeterApp.swift in Sources */,
-				8E8AB1AE26A9D9B600F14E99 /* ExtensionDelegate.swift in Sources */,
-				8EEB9EBA2698A3AF00392BDF /* Clock.swift in Sources */,
-				8EAF66E02684115E00494DE6 /* Timescales.swift in Sources */,
-				8E9503B92697DDD10077851C /* ComplicationViews.swift in Sources */,
-				8E39E63D2670550B00AED406 /* NotificationView.swift in Sources */,
-				8E17DC80268102FB00FC3C5B /* Timescale.swift in Sources */,
-				8EF6BAC426853EDA00800575 /* DateConfigurationView.swift in Sources */,
+				8E40EDF02DF2313B00D6BD24 /* TimescaleConfigurationView.swift in Sources */,
+				8E40EDF12DF2313B00D6BD24 /* ComplicationViews.swift in Sources */,
+				8E40EDF22DF2313B00D6BD24 /* MorbidMeterView.swift in Sources */,
+				8E40EDF32DF2313B00D6BD24 /* DateConfigurationView.swift in Sources */,
+				8E40EDF42DF2313B00D6BD24 /* SecretsView.swift in Sources */,
+				8E40EDF52DF2313B00D6BD24 /* TimeConfigurationView.swift in Sources */,
+				8E40EDF62DF2313B00D6BD24 /* ContentView.swift in Sources */,
+				8E40EDF72DF2313B00D6BD24 /* ConfigurationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,9 +697,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8E40ED8D2DF2267800D6BD24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40ED972DF2267900D6BD24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E40EDBC2DF2291800D6BD24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8E0E8A1A2DF35F150000B1D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E0E8A192DF35F150000B1D5 /* PBXContainerItemProxy */;
+		};
 		8E39E6282670550A00AED406 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
@@ -469,6 +735,26 @@
 			isa = PBXTargetDependency;
 			target = 8E39E6242670550A00AED406 /* MorbidMeter WatchKit App */;
 			targetProxy = 8E39E6572670550C00AED406 /* PBXContainerItemProxy */;
+		};
+		8E40ED9E2DF2267900D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E40ED9D2DF2267900D6BD24 /* PBXContainerItemProxy */;
+		};
+		8E40EDFB2DF2366400D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E40EDFA2DF2366400D6BD24 /* PBXContainerItemProxy */;
+		};
+		8E40EE002DF2367100D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40ED902DF2267800D6BD24 /* ClockCore */;
+			targetProxy = 8E40EDFF2DF2367100D6BD24 /* PBXContainerItemProxy */;
+		};
+		8E40EE082DF23A0400D6BD24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8E40EDBF2DF2291800D6BD24 /* MorbidMeterComplicationsExtension */;
+			targetProxy = 8E40EE072DF23A0400D6BD24 /* PBXContainerItemProxy */;
 		};
 		8EE9835C2DBCE97A000AB178 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -482,6 +768,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -544,6 +831,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -603,21 +891,22 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "MorbidMeter WatchKit App/MorbidMeter WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 12;
 				INFOPLIST_FILE = "MorbidMeter WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -628,21 +917,22 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = "MorbidMeter WatchKit App/MorbidMeter WatchKit App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 12;
 				INFOPLIST_FILE = "MorbidMeter WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -650,8 +940,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
-				MARKETING_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 12;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -662,8 +952,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
-				MARKETING_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 12;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -687,7 +977,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -708,7 +998,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MorbidMeter WatchKit App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -728,7 +1018,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -748,7 +1038,201 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "MorbidMeter WatchKit App";
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Release;
+		};
+		8E40EDA32DF2267900D6BD24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,4";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Debug;
+		};
+		8E40EDA42DF2267900D6BD24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,4";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Release;
+		};
+		8E40EDA62DF2267900D6BD24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E40EDA72DF2267900D6BD24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W74NPJXYEG;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.ClockCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8E40EDD02DF2291900D6BD24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MorbidMeterComplicationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MorbidMeterComplications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MorbidMeterComplications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp.MorbidMeterComplications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
+			};
+			name = Debug;
+		};
+		8E40EDD12DF2291900D6BD24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MorbidMeterComplicationsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MorbidMeterComplications/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MorbidMeterComplications;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.epstudios.MorbidMeter.watchkitapp.MorbidMeterComplications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -796,6 +1280,33 @@
 			buildConfigurations = (
 				8E39E66E2670550C00AED406 /* Debug */,
 				8E39E66F2670550C00AED406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E40EDA22DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E40EDA32DF2267900D6BD24 /* Debug */,
+				8E40EDA42DF2267900D6BD24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E40EDA52DF2267900D6BD24 /* Build configuration list for PBXNativeTarget "ClockCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E40EDA62DF2267900D6BD24 /* Debug */,
+				8E40EDA72DF2267900D6BD24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E40EDCF2DF2291900D6BD24 /* Build configuration list for PBXNativeTarget "MorbidMeterComplicationsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E40EDD02DF2291900D6BD24 /* Debug */,
+				8E40EDD12DF2291900D6BD24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

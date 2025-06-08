@@ -1,32 +1,32 @@
 //
 //  Lifespan.swift
-//  MorbidMeter WatchKit Extension
+//  ClockCore
 //
-//  Created by David Mann on 7/3/21.
+//  Created by David Mann on 5/22/25.
 //
 
 import Foundation
 
 /// A Lifespan contains a birthday and deathday, and can determine time intervals and percentages of the Lifespan from a specific Date.
-struct Lifespan {
+public struct Lifespan {
     private let dateInterval: DateInterval
 
-    var birthday: Date { dateInterval.start }
-    var deathday: Date { dateInterval.end }
+    public var birthday: Date { dateInterval.start }
+    public var deathday: Date { dateInterval.end }
 
-    init(birthday: Date, deathday: Date) throws {
+    public init(birthday: Date, deathday: Date) throws {
         guard deathday >= birthday else { throw LifespanError.negativeLongevity }
         dateInterval = DateInterval(start: birthday, end: deathday)
     }
 
-    func longevity() throws -> TimeInterval {
+    public func longevity() throws -> TimeInterval {
         let duration = dateInterval.duration
         guard duration > 0 else { throw LifespanError.lifespanIsZero }
         guard duration / TimeConstants.oneYear < 120 else { throw LifespanError.excessLongevity }
         return duration
     }
 
-    func dateFromPercentage(percent: Double) -> Date? {
+    public func dateFromPercentage(percent: Double) -> Date? {
         guard percent >= 0 && percent <= 1.0 else { return nil }
         do {
             var duration = try longevity()
@@ -37,7 +37,7 @@ struct Lifespan {
         }
     }
 
-    func percentage(date: Date, reverse: Bool = false) throws -> Double {
+    public func percentage(date: Date, reverse: Bool = false) throws -> Double {
         let duration = date.timeIntervalSince(dateInterval.start)
         let ratio = try duration / longevity()
         guard ratio <= 1.0 else { throw LifespanError.alreadyDead }
@@ -48,7 +48,7 @@ struct Lifespan {
         return ratio
     }
 
-    func timeInterval(date: Date, reverseTime: Bool) -> TimeInterval {
+    public func timeInterval(date: Date, reverseTime: Bool) -> TimeInterval {
         if reverseTime {
             return timeUntilDeath(date: date)
         }

@@ -4,22 +4,9 @@
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E39E6242670550A00AED406"
-               BuildableName = "MorbidMeter WatchKit App.app"
-               BlueprintName = "MorbidMeter WatchKit App"
-               ReferencedContainer = "container:MorbidMeter.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -40,29 +27,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E39E64A2670550C00AED406"
-               BuildableName = "MorbidMeterTests.xctest"
-               BlueprintName = "MorbidMeterTests"
-               ReferencedContainer = "container:MorbidMeter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E39E6552670550C00AED406"
-               BuildableName = "MorbidMeterUITests.xctest"
-               BlueprintName = "MorbidMeterUITests"
-               ReferencedContainer = "container:MorbidMeter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -73,16 +39,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      enableGPUValidationMode = "1"
-      allowLocationSimulation = "YES"
-      notificationPayloadFile = "MorbidMeter WatchKit Extension/PushNotificationPayload.apns">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8E39E6242670550A00AED406"
-            BuildableName = "MorbidMeter WatchKit App.app"
-            BlueprintName = "MorbidMeter WatchKit App"
+            BlueprintIdentifier = "8E39E6202670550900AED406"
+            BuildableName = "MorbidMeter.app"
+            BlueprintName = "MorbidMeter"
             ReferencedContainer = "container:MorbidMeter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -101,9 +65,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8E39E6242670550A00AED406"
-            BuildableName = "MorbidMeter WatchKit App.app"
-            BlueprintName = "MorbidMeter WatchKit App"
+            BlueprintIdentifier = "8E39E6202670550900AED406"
+            BuildableName = "MorbidMeter.app"
+            BlueprintName = "MorbidMeter"
             ReferencedContainer = "container:MorbidMeter.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

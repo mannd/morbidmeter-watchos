@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import ClockCore
 
 @main
 struct MorbidMeterApp: App {
     @WKApplicationDelegateAdaptor private var appDelegate: ExtensionDelegate
     @StateObject var clockData = ClockData.shared
+    private let watchEnvironment = WatchEnvironment() // ← strong reference
+
 
     init() {
         UserDefaults.standard.register(defaults: Preferences.defaults())
@@ -20,6 +23,9 @@ struct MorbidMeterApp: App {
         WindowGroup {
             NavigationView {
                 ContentView()
+                    .onAppear {
+                        clockData.environmentDelegate = watchEnvironment
+                    }
             }
             .environmentObject(clockData)
         }
@@ -27,3 +33,10 @@ struct MorbidMeterApp: App {
         WKNotificationScene(controller: NotificationController.self, category: "MMNotification")
     }
 }
+
+class WatchEnvironment: ClockEnvironmentDelegate {
+    func shouldSaveSynchronously() -> Bool {
+        return WKApplication.shared().applicationState == .background
+    }
+}
+

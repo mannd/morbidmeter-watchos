@@ -6,7 +6,8 @@
 //
 
 import XCTest
-@testable import MorbidMeter_WatchKit_Extension
+import ClockCore
+@testable import MorbidMeter_WatchKit_App
 
 class LifespanTests: XCTestCase {
     static let birthday = Date()

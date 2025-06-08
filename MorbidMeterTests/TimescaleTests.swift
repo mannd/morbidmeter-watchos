@@ -6,7 +6,8 @@
 //
 
 import XCTest
-@testable import MorbidMeter_WatchKit_Extension
+import ClockCore
+@testable import MorbidMeter_WatchKit_App
 
 class TimescaleTests: XCTestCase {
 
@@ -45,7 +46,7 @@ class TimescaleTests: XCTestCase {
         XCTAssertEqual(result2, "100\nsec to go")
     }
 
-    func testTimescalesGetFormattedTime() {
+    public func testTimescalesGetFormattedTime() {
         let formattedResult = Timescales.getFormattedTime(result: "100", units: "sec", reverseTime: false)
         XCTAssertEqual(formattedResult, "100\nsec passed")
         let formattedResult1 = Timescales.getFormattedTime(result: "100 secs", units: nil, reverseTime: false)
