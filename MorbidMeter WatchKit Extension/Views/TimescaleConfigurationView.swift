@@ -12,23 +12,25 @@ struct TimescaleConfigurationView: View {
     @Binding var timescaleType: TimescaleType
     @Binding var reverseTime: Bool
 
-    @State var timescaleTypeState: TimescaleType = TimescaleType.seconds
-    @State var reverseTimeState: Bool = false
+    @State private var timescaleTypeState: TimescaleType = TimescaleType.seconds
+    @State private var reverseTimeState: Bool = false
 
     var body: some View {
         VStack {
             Picker(selection: $timescaleTypeState, label: Text("Timescale"), content: {
-                ForEach(TimescaleType.allCases) { timescaleTypeState in
-                    Text(timescaleTypeState.description)
+                ForEach(TimescaleType.allCases) { option in
+                    Text(option.description)
 
                 }
             })
             Toggle(isOn: $reverseTimeState, label: { Text("Reverse Time") })
         }
-        .onAppear(perform: {
-            timescaleTypeState = timescaleType
-            reverseTimeState = reverseTime
-        })
+        .onAppear {
+            DispatchQueue.main.async {
+                timescaleTypeState = timescaleType
+                reverseTimeState = reverseTime
+            }
+        }
         .onDisappear(perform: {
             if timescaleType != timescaleTypeState {
                 timescaleType = timescaleTypeState
