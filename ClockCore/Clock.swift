@@ -122,7 +122,7 @@ public struct Clock: Codable, Equatable {
             moment.percentage = 0
         } catch LifespanError.alreadyDead {
             moment.time = "You're Finished"
-            moment.percentage = 1.0
+            moment.percentage = reverseTime ? 0.0 : 1.0
         } catch LifespanError.lifespanIsZero {
             moment.time = "Time Period Too Short"
             moment.percentage = 0
@@ -138,8 +138,9 @@ public struct Clock: Codable, Equatable {
         formatter.numberStyle = .percent
         formatter.maximumFractionDigits = fractionDigits
         formatter.roundingMode = reverseTime ? .up : .down
-        return getMoment(date: date).percentage < 1.0 ?
-            formatter.string(for: getMoment(date: date).percentage)! : Self.skull
+        let percentage = getMoment(date: date).percentage
+        return percentage > 0.0 && percentage < 1.0 ?
+        formatter.string(for: percentage) ?? Self.skull : Self.skull
     }
 
     /// Get moment time string, but replace cr with space

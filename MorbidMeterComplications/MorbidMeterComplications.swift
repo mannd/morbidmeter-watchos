@@ -52,7 +52,7 @@ struct MorbidMeterProvider: TimelineProvider {
 
         // Deal with finished clock.
         if now > endDate {
-            let entry = MorbidMeterTimeLineEntry(date: now, percentageText: Clock.skull, percentage: 1.0)
+            let entry = MorbidMeterTimeLineEntry(date: now, percentageText: Clock.skull, percentage: ClockData.shared.clock.reverseTime ? 0.0 : 1.0)
             entries.append(entry)
             let timeline = Timeline(entries: entries, policy: .never)
             completion(timeline)
@@ -87,10 +87,17 @@ struct MorbidMeterRectangularView : View {
             Text(Clock.fullName)
                 .font(.caption2)
                 .foregroundColor(.secondary)
-            Text("Elapsed: " + entry.percentageText)
+            Text(getPrefix() + entry.percentageText)
                 .font(.headline)
             ProgressView(value: entry.percentage, total: 1.0 )
-                .tint(entry.percentage > 0.9 ? .red : .green)
+        }
+    }
+
+    private func getPrefix() -> String {
+        if ClockData.shared.clock.reverseTime {
+            return "Time left: "
+        } else {
+            return "Elapsed time: "
         }
     }
 }
@@ -108,7 +115,7 @@ struct MorbidMeterAccessoryCornerView : View {
 
     var body: some View {
             Gauge(value: entry.percentage) {
-                Text(Clock.ultraShortName) // Label text
+                Text(Clock.shortName) // Label text
             } currentValueLabel: {
                 Text(entry.percentageText) // e.g., "73%"
             }
@@ -122,7 +129,7 @@ struct MorbidMeterAccessoryCircularView: View {
     var body: some View {
         Gauge(value: entry.percentage) {
             // Label is not shown in circular style, so you can use EmptyView
-            EmptyView()
+            Text(Clock.shortName)
         } currentValueLabel: {
             Text(entry.percentageText)
                 .font(.caption2)
@@ -131,7 +138,7 @@ struct MorbidMeterAccessoryCircularView: View {
     }
 }
 
-
+/// Old style circular view, perhaps include as alternative.
 //struct MorbidMeterAccessoryCircularView : View {
 //    let entry: MorbidMeterProvider.Entry
 //
@@ -235,3 +242,4 @@ class WidgetEnvironment: ClockEnvironmentDelegate {
 } timeline: {
     MorbidMeterTimeLineEntry(date: .now, percentageText: "73%", percentage: 0.73)
 }
+
